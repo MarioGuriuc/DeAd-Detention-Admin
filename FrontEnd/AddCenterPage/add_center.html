@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Add Detention Center</title>
+	<link rel="stylesheet" href="add_center.css">
+</head>
+<body>
+<header>
+	<h1>Add Detention Center</h1>
+</header>
+
+<div class="container">
+	<form action="submit_center.php" method="POST">
+		<label for="centerName">Detention Center Name:</label>
+		<input type="text" id="centerName" name="centerName" required><br><br>
+
+		<label for="location">Location:</label>
+		<input type="text" id="location" name="location" required><br><br>
+
+		<label for="description">Description:</label><br>
+		<textarea id="description" name="description" rows="4" required></textarea><br><br>
+
+		<label for="image">Image:</label>
+		<input type="file" id="image" name="image" accept="image/*"><br><br>
+
+		<button type="submit">Submit</button>
+	</form>
+</div>
+
+<footer>
+	<p>&copy; 2024 Detention Centers. All rights reserved.</p>
+</footer>
+</body>
+</html>
