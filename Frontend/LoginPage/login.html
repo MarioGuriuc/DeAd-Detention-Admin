@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detention Center Login</title>
+    <link rel="stylesheet" href="style_login.css">
+</head>
+<body>
+<header>
+    <div class="header-content">
+        <h1>Detention Center Login</h1>
+        <div class="login-register">
+            <a href="../LoginPage/login.html">
+                <button>Login</button>
+            </a>
+            <a href="../RegisterPage/register.html">
+                <button>Register</button>
+            </a>
+        </div>
+    </div>
+</header>
+
+<main>
+    <section class="login-section">
+        <div class="login-container">
+            <h2>Detention Center</h2>
+            <form action="../DetentionCentersPage/detention_centers.html" method="POST">
+                <div class="input-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+            <p class="register-link">Don't have an account? <a href="../RegisterPage/register.html">Register here</a>
+            </p>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2024 Detention Center. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>
