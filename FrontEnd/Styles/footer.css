@@ -10,3 +10,33 @@ footer {
     font-size: 14px;
     z-index: 999;
 }
+
+@media screen and (max-width: 768px) {
+    footer {
+        font-size: 12px;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    footer {
+        font-size: 16px;
+    }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1200px) {
+    footer {
+        font-size: 27px;
+    }
+}
+
+@media screen and (min-width: 280px) and (max-width: 320px) {
+    footer {
+        font-size: 10px;
+    }
+}
+
+@media screen and (min-width: 1024px) and (max-height: 600px) {
+    footer {
+        font-size: 16px;
+    }
+}
