@@ -1,23 +1,14 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
 .inmates-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
+    gap: 10px;
 }
 
 .inmate {
     display: flex;
     align-items: center;
+    text-align: center;
     width: 300px;
     background-color: #f9f9f9;
     border-radius: 10px;
@@ -51,4 +42,93 @@ button:hover {
 
 button:active {
     background-color: #3e8e41;
+}
+
+div.add-inmate {
+    text-align: center;
+    margin: 40px auto;
+    padding: 50px;
+}
+
+#add-inmate {
+    font: inherit;
+    margin-top: 20px;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+    .inmate {
+        text-align: center;
+        width: 100%;
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+
+    .inmates-container {
+        padding: 30px;
+        margin: 20px auto;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .inmate {
+        text-align: center;
+        width: calc((100% - 40px) / 4);
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1200px) {
+    .inmate {
+        text-align: center;
+        width: calc((100% - 40px) / 4);
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+}
+
+@media screen and (min-width: 280px) and (max-width: 320px) {
+    .inmate {
+        text-align: center;
+        width: 80%;
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+
+    .inmates-container {
+        padding: 30px;
+        margin: 20px auto;
+    }
+}
+
+@media screen and (min-width: 1024px) and (max-height: 600px) {
+    .inmate {
+        text-align: center;
+        width: calc((100% - 40px) / 4);
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-bottom: 20px;
+    }
 }
