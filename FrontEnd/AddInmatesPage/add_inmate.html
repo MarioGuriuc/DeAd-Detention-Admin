@@ -3,27 +3,41 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Add Detention Center</title>
-	<link rel="stylesheet" href="add_center.css">
+	<title>Add Inmate</title>
+	<link rel="stylesheet" href="add_inmate.css">
 	<link rel="stylesheet" href="../Styles/footer.css">
 	<link rel="stylesheet" href="../Styles/header.css">
 	<link rel="stylesheet" href="../Styles/home-logout-buttons.css">
+	<link rel="stylesheet" href="../Styles/body-style.css">
 </head>
 <body>
 <header>
-	<h1>Add Detention Center</h1>
+	<div class="header-content">
+		<h1>Add Inmate</h1>
+		<div class="home-logout">
+			<a href="../HomePage/home.html">
+				<button>Home</button>
+			</a>
+			<a href="../HomePage/home.html">
+				<button>Logout</button>
+			</a>
+		</div>
+	</div>
 </header>
 
 <div class="container">
-	<form action="submit_center.php" method="POST">
-		<label for="centerName">Detention Center Name:</label>
-		<input type="text" id="centerName" name="centerName" required><br><br>
+	<form action="submit_inmate.php" method="POST">
+		<label for="inmateName">Inmate name:</label>
+		<input type="text" id="inmateName" name="inmateName" required><br><br>
 
-		<label for="location">Location:</label>
-		<input type="text" id="location" name="location" required><br><br>
+		<label for="age">Age:</label>
+		<input type="text" id="age" name="age" required><br><br>
 
-		<label for="description">Description:</label><br>
-		<textarea id="description" name="description" rows="4" required></textarea><br><br>
+		<label for="crime">Crime:</label><br>
+		<input type="text" id="crime" name="crime" required><br><br>
+
+		<label for="sentence">Sentence:</label>
+		<input type="text" id="sentence" name="sentence" required><br><br>
 
 		<label for="image">Image:</label>
 		<input type="file" id="image" name="image" accept="image/*"><br><br>
