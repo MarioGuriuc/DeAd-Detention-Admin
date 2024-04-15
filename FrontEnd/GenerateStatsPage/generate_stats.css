@@ -1,0 +1,157 @@
+.generate-stats-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+}
+
+.generate-stats-container {
+    background: linear-gradient(rgba(131, 208, 93, 0.7), rgba(242, 242, 242, 0.7));
+    padding: 10px 30px 25px 30px;
+    margin-top: 10%;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.generate-stats-container h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.generate-stats-container .input-group {
+    margin-bottom: 20px;
+}
+
+.generate-stats-container .input-group label {
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.generate-stats-container p {
+    color: #333;
+}
+
+.generate-stats-container button {
+    width: 100%;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    background-color: #4CAF50;
+    color: white;
+}
+
+.generate-stats-container .input-group select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="#555" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>'); /* Custom arrow */
+    background-repeat: no-repeat;
+    background-position: right 10px top 50%;
+    background-size: 16px;
+    background-color: #fff;
+    font-size: 16px;
+}
+
+.generate-stats-container .input-group select:focus {
+    outline: none;
+    border-color: #4CAF50;
+}
+
+.generate-stats-container .input-group select option {
+    color: #333;
+}
+
+.generate-stats-container .input-group select option:checked {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.generate-stats-container .input-group input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-right: 10px;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+.generate-stats-container .input-group label {
+    cursor: pointer;
+    color: #333;
+    vertical-align: middle;
+    display: inline-block;
+    margin-bottom: 5px;
+    font-size: 20px;
+}
+
+.generate-stats-container .input-group input[type="checkbox"]:checked {
+    background-color: #4CAF50;
+    border-color: #4CAF50;
+}
+
+.generate-stats-container .input-group input[type="checkbox"] + label:hover {
+    font-size: 20px;
+}
+
+@media screen and (max-width: 768px) {
+    .generate-stats-section {
+        flex-direction: column;
+        align-items: center;
+        height: 70vh;
+        margin: 5px 30px;
+    }
+    .generate-stats-container {
+        width: 100%;
+        margin: 10px 15px;
+    }
+    .generate-stats-container .input-group select {
+        width: 100%;
+        font-size: 14px;
+    }
+    .generate-stats-container button {
+        font-size: 14px;
+    }
+    .generate-stats-container .input-group label {
+        font-size: 14px;
+    }
+    .generate-stats-container .input-group input[type="checkbox"] {
+        font-size: 14px;
+    }
+}
+    @media screen and (min-width: 1023px) and (max-height: 600px) {
+        .generate-stats-section {
+            height: 55vh;
+        }
+        .generate-stats-container {
+            width: 100%;
+        }
+        .generate-stats-container .input-group select {
+            width: 100%;
+            font-size: 14px;
+        }
+        .generate-stats-container button {
+            font-size: 14px;
+        }
+        .generate-stats-container .input-group label {
+            font-size: 14px;
+        }
+        .generate-stats-container .input-group input[type="checkbox"] {
+            font-size: 14px;
+        }
+    }

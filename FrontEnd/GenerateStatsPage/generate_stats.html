@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Generate Stats</title>
+  <link href="../Styles/footer.css" rel="stylesheet">
+  <link href="../Styles/header.css" rel="stylesheet">
+  <link href="../Styles/home-account-buttons.css" rel="stylesheet">
+  <link href="../Styles/body-style.css" rel="stylesheet">
+  <link href="../Styles/media-styles.css">
+  <link href="generate_stats.css" rel="stylesheet">
+</head>
+<body>
+<header>
+  <div class="header-content">
+    <h1>Generate Statistics</h1>
+    <div class="home-account">
+      <a href="../DetentionCentersPage/detention_centers.html">
+        <button>Home</button>
+      </a>
+      <a href="../LoginPage/login.html">
+        <button>Account</button>
+      </a>
+    </div>
+    </div>
+</header>
+
+<main>
+  <section class="generate-stats-section">
+    <div class="generate-stats-container">
+      <h1>Generate Stats</h1>
+      <form action="../DetentionCentersPage/detention_centers.html" method="POST">
+        <div class="input-group">
+          <label for="detention-center">Detention Center:</label>
+          <select id="detention-center" name="detention-center" required>
+            <option value="1">Detention Center 1</option>
+            <option value="2">Detention Center 2</option>
+            <option value="3">Detention Center 3</option>
+            <option value="4">Detention Center 4</option>
+            <option value="5">Detention Center 5</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label for="inmates-checkboxes">Inmate/s:</label>
+          <div id="inmates-checkboxes">
+            <input type="checkbox" id="all-inmates" name="inmate" value="0">
+            <label for="all-inmates">All Inmates</label><br>
+            <input type="checkbox" id="inmate1" name="inmate" value="1">
+            <label for="inmate1">Inmate 1</label><br>
+            <input type="checkbox" id="inmate2" name="inmate" value="2">
+            <label for="inmate2">Inmate 2</label><br>
+          </div>
+        </div>
+        <div class="input-group">
+          <label for="start-date">Start Date:</label>
+          <input id="start-date" name="start-date" required type="date">
+        </div>
+        <div class="input-group">
+          <label for="end-date">End Date:</label>
+          <input id="end-date" name="end-date" required type="date">
+        </div>
+        <button type="submit">Generate Stats</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2024 Detention Center. All rights reserved.</p>
+  </footer>
+</main>
+</body>
+</html>
