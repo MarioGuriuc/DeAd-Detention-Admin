@@ -1,4 +1,4 @@
-.home-logout button {
+.home-account button {
     background-color: #4CAF50;
     color: white;
     padding: 15px 50px;
@@ -13,13 +13,13 @@
     margin-bottom: 10px;
 }
 
-div.home-logout {
+div.home-account {
     display: flex;
     flex-wrap: wrap;
 }
 
 @media screen and (max-width: 768px) {
-    div.home-logout {
+    div.home-account {
         flex-direction: column;
         align-items: center;
         margin-top: 20px;
@@ -27,51 +27,51 @@ div.home-logout {
 }
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {
-    .home-logout {
+    .home-account {
         flex-direction: column;
         align-items: center;
         margin-top: 20px;
     }
 
-    .home-logout button {
+    .home-account button {
         font-size: 16px;
         padding: 10px 30px;
     }
 }
 
 @media screen and (min-width: 1024px) and (max-width: 1200px) {
-    .home-logout {
+    .home-account {
         flex-direction: column;
         align-items: center;
         margin-top: 20px;
     }
 
-    .home-logout button {
+    .home-account button {
         font-size: 35px;
         padding: 10px 30px;
     }
 }
 
 @media screen and (min-width: 280px) and (max-width: 320px) {
-    div.home-logout {
+    div.home-account {
         flex-direction: column;
         align-items: center;
     }
 
-    .home-logout button {
+    .home-account button {
         width: 100%;
         padding: 10px 20px;
     }
 }
 
 @media screen and (min-width: 1024px) and (max-height: 600px) {
-    .home-logout {
+    .home-account {
         flex-direction: column;
         align-items: center;
         margin-top: -10px;
     }
 
-    .home-logout button {
+    .home-account button {
         font-size: 16px;
         padding: 10px 30px;
     }

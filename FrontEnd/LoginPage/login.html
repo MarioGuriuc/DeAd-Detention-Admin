@@ -2,13 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Detention Center Login</title>
-    <link rel="stylesheet" href="style_login.css">
-    <link rel="stylesheet" href="../Styles/footer.css">
-    <link rel="stylesheet" href="../Styles/header.css">
-    <link rel="stylesheet" href="../Styles/login-register-buttons.css">
-    <link rel="stylesheet" href="../Styles/body-style.css">
+    <link href="../Styles/footer.css" rel="stylesheet">
+    <link href="../Styles/header.css" rel="stylesheet">
+    <link href="../Styles/login-register-buttons.css" rel="stylesheet">
+    <link href="../Styles/body-style.css" rel="stylesheet">
+    <link href="../Styles/media-styles.css">
+    <link href="style_login.css" rel="stylesheet">
 </head>
 <body>
 <header>
@@ -31,16 +32,21 @@
             <h2>Welcome back!</h2>
             <form action="../DetentionCentersPage/detention_centers.html" method="POST">
                 <div class="input-group">
-                    <label for="username">Username:</label>
-                    <input type="text" id="username" name="username" required>
+                    <label for="username">Username/E-mail:</label>
+                    <input id="username" name="username" required type="text">
                 </div>
                 <div class="input-group">
                     <label for="password">Password:</label>
-                    <input type="password" id="password" name="password" required>
+                    <input id="password" name="password" required type="password">
+                </div>
+                <div class="input-group">
+                    <label for="remember-me">Remember me:</label>
+                    <input id="remember-me" name="remember-me" type="checkbox">
                 </div>
                 <button type="submit">Login</button>
             </form>
-            <p class="register-link">Don't have an account? <a href="../RegisterPage/register.html">Register here</a>
+            <p>Don't have an account? <a href="../RegisterPage/register.html">Register here</a>
+            <p>Forgot your password? <a href="../ForgotPasswordPage/forgot_password.html">Click here</a>
             </p>
         </div>
     </section>
