@@ -68,7 +68,7 @@ div.home-logout {
     .home-logout {
         flex-direction: column;
         align-items: center;
-        margin-top: -10px;
+        margin-top: -1px;
     }
 
     .home-logout button {

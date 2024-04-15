@@ -1,10 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+    <link rel="stylesheet" href="admin_page.css">
+    <link rel="stylesheet" href="../Styles/footer.css">
+    <link rel="stylesheet" href="../Styles/header.css">
+    <link rel="stylesheet" href="../Styles/home-logout-buttons.css">
+    <link rel="stylesheet" href="../Styles/body-style.css">
 </head>
-<body>
 
+<body>
+<header>
+    <div class="header-content">
+        <h1>Admin Page</h1>
+        <div class="home-logout">
+            <a href="../HomePage/home.html">
+                <button>Home</button>
+            </a>
+            <a href="../HomePage/home.html">
+                <button>Logout</button>
+            </a>
+        </div>
+    </div>
+</header>
+
+<div class="admin-content">
+    <div class="admin-box">
+        <a href = "../AddCenterPage/add_center.html">
+        <button class="admin-btn">Add More Centers</button>
+        </a>
+        <p>Add new detention centers to the database.</p>
+
+        <a href = "../AddInmatesPage/add_inmate.html">
+        <button class="admin-btn">Add More Inmates</button>
+        </a>
+        <p>Add new inmates to existing or new detention centers.</p>
+
+        <a href = "../AllVisitsPage/all_visits.html">
+        <button class="admin-btn" >Approve Visits</button>
+        </a>
+        <p>Review and approve pending visit requests.</p>
+
+        <a href = "../AllVisitsPage/all_visits.html">
+            <button class="admin-btn" >Statistics</button>
+        </a>
+        <p>Generate statistics for inmates.</p>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2024 Detention Centers. All rights reserved.</p>
+</footer>
 </body>
+
 </html>
