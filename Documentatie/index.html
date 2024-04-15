@@ -1,323 +1,474 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Detention Admin Website</title>
-  <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      background-color: #f4f4f4;
-      color: #333;
-      margin: 0;
-      padding: 0;
-    }
-    .container {
-      max-width: 900px;
-      margin: 20px auto;
-      padding: 20px;
-      background-color: #fff;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    h1, h2, h3, h4 {
-      color: #555;
-      margin-bottom: 20px;
-    }
-    h1 {
-      text-align: center;
-      border-bottom: 2px solid #ddd;
-      padding-bottom: 10px;
-    }
-    h2 {
-      margin-top: 30px;
-    }
-    h3 {
-      margin-top: 25px;
-      border-bottom: 1px solid #ddd;
-      padding-bottom: 5px;
-    }
-    section {
-      margin-bottom: 40px;
-    }
-    ul {
-      list-style-type: none;
-      padding-left: 20px;
-    }
-    li {
-      margin-bottom: 10px;
-    }
-    .authors {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-    .authors strong {
-      color: #666;
-    }
-    .section-title {
-      border-bottom: 2px solid #ddd;
-      margin-bottom: 20px;
-      padding-bottom: 10px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Detention Admin Website</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2, h3, h4 {
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            margin-top: 30px;
+        }
+
+        h3 {
+            margin-top: 25px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+
+        section {
+            margin-bottom: 40px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        .authors {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .authors strong {
+            color: #666;
+        }
+
+        .section-title {
+            border-bottom: 2px solid #ddd;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
 
 <div class="container">
 
-<h1>Detention Admin Website</h1>
+    <h1>Detention Admin Website</h1>
 
-<div class="authors">
-  <p><strong>Mario Guriuc, Vlad Spiridon</strong></p>
-</div>
-<section>
-  <h2>Introduction</h2>
-
-  <section>
-    <h3>Purpose</h3>
-    <p>The primary objective of this document is to delineate the comprehensive requirements and specifications for the design and development of a sophisticated web-based application tailored for the efficient management of visitation processes within correctional facilities, encompassing both prisons and correctional homes. This advanced application aims to offer a robust suite of features to meticulously record, manage, and analyze visitor interactions, ensuring transparency, security, and adherence to established protocols.</p>
-  </section>
-
-  <section>
-    <h3>Scope</h3>
-    <p>Specifically, the application will be designed to:</p>
-
-    <ul>
-      <li>Accurately capture and store detailed information about visitors, including their personal details, contact information, photographic identification, and relationship status with the incarcerated individual.</li>
-      <li>Systematically record comprehensive visitation data, encompassing essential details such as visitation dates, duration, nature of the visit, items exchanged during the visit, summaries of discussions, and evaluations of the inmate's health and mood during the interaction.</li>
-      <li>Facilitate seamless integration of visitor and inmate records, enabling administrators to efficiently manage and associate visitors with specific inmates, ensuring proper tracking and monitoring of all visitation activities.</li>
-      <li>Empower authorized personnel with robust reporting tools to generate in-depth statistical reports, offering valuable insights into visitation trends, patterns, and behaviors over specified time periods, thereby facilitating informed decision-making and policy formulation.</li>
-      <li>Implement a secure, user-friendly interface accessible via standard web browsers on various computing devices, ensuring widespread accessibility while maintaining stringent security measures to safeguard sensitive data and protect user privacy.</li>
-    </ul>
-    </section>
-
-</section>
-
-<section>
-  <h2>Overall Description</h2>
-
-  <section>
-    <h3>Product Features</h3>
-    <ul>
-      <li><strong>Visitor Management:</strong> Recording visitor details including identity, photograph, relationship with the inmate.</li>
-      <li><strong>Visit Information:</strong> Capturing data such as visit date, duration, nature of visit, items exchanged, discussions summary, inmate's health and mood, witnesses, etc.</li>
-      <li><strong>Statistical Reporting:</strong> Generating reports in HTML, CSV, and JSON formats based on various criteria such as individual visits, time periods, types of offenses, etc.</li>
-      <li><strong>API Access:</strong> Providing essential functionalities through a REST/GraphQL API for seamless integration with other systems or external applications.</li>
-    </ul>
-  </section>
-
-<section>
-  <h2>System Features</h2>
-
-  <section>
-    <h3>Visitor Management</h3>
+    <div class="authors">
+        <p><strong>Mario Guriuc, Vlad Spiridon</strong></p>
+    </div>
     <section>
-      <h4>Description</h4>
-      <p>This feature allows users to manage visitor information, including identity, photograph, and relationship with the inmate.</p>
-    </section>
-    <section>
-      <h4>Inputs</h4>
-      <ul>
-        <li>Visitor details: Name, contact information, photograph, relationship with the inmate.</li>
-        <li>Inmate details: Identification number, name, facility location, crime committed.</li>
-      </ul>
-    </section>
-    <section>
-      <h4>Outputs</h4>
-      <ul>
-        <li>Visitor records stored in the database for future reference.</li>
-        <li>Ability to associate visitors with specific inmates.</li>
-      </ul>
-    </section>
-  </section>
+        <h2>Introduction</h2>
 
-  <section>
-    <h3>Admin Control</h3>
+        <section>
+            <h3>Purpose</h3>
+            <p>The primary objective of this document is to delineate the comprehensive requirements and specifications
+                for the design and development of a sophisticated web-based application tailored for the efficient
+                management of visitation processes within correctional facilities, encompassing both prisons and
+                correctional homes. This advanced application aims to offer a robust suite of features to meticulously
+                record, manage, and analyze visitor interactions, ensuring transparency, security, and adherence to
+                established protocols.</p>
+        </section>
 
-    <section>
-      <h4>Description</h4>
-      <p>The Admin Control feature provides system administrators with tools to manage and oversee various aspects of the detention center visitation system. This includes approving or denying visitor requests, adding new detention centers and inmates, and generating reports for analysis.</p>
+        <section>
+            <h3>Scope</h3>
+            <p>Specifically, the application will be designed to:</p>
+
+            <ul>
+                <li>Accurately capture and store detailed information about visitors, including their personal details,
+                    contact information, photographic identification, and relationship status with the incarcerated
+                    individual.
+                </li>
+                <li>Systematically record comprehensive visitation data, encompassing essential details such as
+                    visitation dates, duration, nature of the visit, items exchanged during the visit, summaries of
+                    discussions, and evaluations of the inmate's health and mood during the interaction.
+                </li>
+                <li>Facilitate seamless integration of visitor and inmate records, enabling administrators to
+                    efficiently manage and associate visitors with specific inmates, ensuring proper tracking and
+                    monitoring of all visitation activities.
+                </li>
+                <li>Empower authorized personnel with robust reporting tools to generate in-depth statistical reports,
+                    offering valuable insights into visitation trends, patterns, and behaviors over specified time
+                    periods, thereby facilitating informed decision-making and policy formulation.
+                </li>
+                <li>Implement a secure, user-friendly interface accessible via standard web browsers on various
+                    computing devices, ensuring widespread accessibility while maintaining stringent security measures
+                    to safeguard sensitive data and protect user privacy.
+                </li>
+            </ul>
+        </section>
+
     </section>
 
     <section>
-      <h4>Features</h4>
-      <ul>
-        <li><strong>Visitor Approval:</strong> Allows administrators to review and approve or deny visitor requests based on eligibility and compliance with visitation policies.</li>
-        <li><strong>Add Detention Centers:</strong> Enables administrators to add new detention centers to the system, specifying details such as location, capacity, and current occupancy status.</li>
-        <li><strong>Add Inmates:</strong> Provides functionality for administrators to add new inmates to the system, capturing essential details like name, identification, facility location, and crime committed.</li>
-        <li><strong>Generate Reports:</strong> Allows administrators to generate various reports for analysis, including visitor statistics, inmate details, and visitation trends.</li>
-      </ul>
+        <h2>Overall Description</h2>
+
+        <section>
+            <h3>Product Features</h3>
+            <ul>
+                <li><strong>Visitor Management:</strong> Recording visitor details including identity, photograph,
+                    relationship with the inmate.
+                </li>
+                <li><strong>Visit Information:</strong> Capturing data such as visit date, duration, nature of visit,
+                    items exchanged, discussions summary, inmate's health and mood, witnesses, etc.
+                </li>
+                <li><strong>Statistical Reporting:</strong> Generating reports in HTML, CSV, and JSON formats based on
+                    various criteria such as individual visits, time periods, types of offenses, etc.
+                </li>
+                <li><strong>API Access:</strong> Providing essential functionalities through a REST/GraphQL API for
+                    seamless integration with other systems or external applications.
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>System Features</h2>
+
+            <section>
+                <h3>Visitor Management</h3>
+                <section>
+                    <h4>Description</h4>
+                    <p>This feature allows users to manage visitor information, including identity, photograph, and
+                        relationship with the inmate.</p>
+                </section>
+                <section>
+                    <h4>Inputs</h4>
+                    <ul>
+                        <li>Visitor details: Name, contact information, photograph, relationship with the inmate.</li>
+                        <li>Inmate details: Identification number, name, facility location, crime committed.</li>
+                    </ul>
+                </section>
+                <section>
+                    <h4>Outputs</h4>
+                    <ul>
+                        <li>Visitor records stored in the database for future reference.</li>
+                        <li>Ability to associate visitors with specific inmates.</li>
+                    </ul>
+                </section>
+            </section>
+
+            <section>
+                <h3>Admin Control</h3>
+
+                <section>
+                    <h4>Description</h4>
+                    <p>The Admin Control feature provides system administrators with tools to manage and oversee various
+                        aspects of the detention center visitation system. This includes approving or denying visitor
+                        requests, adding new detention centers and inmates, and generating reports for analysis.</p>
+                </section>
+
+                <section>
+                    <h4>Features</h4>
+                    <ul>
+                        <li><strong>Visitor Approval:</strong> Allows administrators to review and approve or deny
+                            visitor requests based on eligibility and compliance with visitation policies.
+                        </li>
+                        <li><strong>Add Detention Centers:</strong> Enables administrators to add new detention centers
+                            to the system, specifying details such as location, capacity, and current occupancy status.
+                        </li>
+                        <li><strong>Add Inmates:</strong> Provides functionality for administrators to add new inmates
+                            to the system, capturing essential details like name, identification, facility location, and
+                            crime committed.
+                        </li>
+                        <li><strong>Generate Reports:</strong> Allows administrators to generate various reports for
+                            analysis, including visitor statistics, inmate details, and visitation trends.
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h4>Inputs</h4>
+                    <ul>
+                        <li>Visitor requests: Details of visitors requesting access, including name, contact
+                            information, relationship with the inmate, and purpose of visit.
+                        </li>
+                        <li>Detention center details: Information about new detention centers, such as location,
+                            capacity, and current occupancy status.
+                        </li>
+                        <li>Inmate details: Information about new inmates, including name, identification, facility
+                            location, and crime committed.
+                        </li>
+                        <li>Report criteria: Parameters for generating reports, such as date range, type of report, and
+                            specific data points to include.
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h4>Outputs</h4>
+                    <ul>
+                        <li>Visitor approval status: Confirmation of approved or denied visitor requests.</li>
+                        <li>New detention centers: Record of newly added detention centers in the system.</li>
+                        <li>New inmate records: Confirmation of successfully added new inmates to the system.</li>
+                        <li>Generated reports: Various reports in desired formats (HTML, CSV, JSON) providing insights
+                            and analysis of system data.
+                        </li>
+                    </ul>
+                </section>
+            </section>
+
+            <section>
+                <h3>Visit Information</h3>
+                <section>
+                    <h4>Description</h4>
+                    <p>This feature enables users to record detailed information about each visit, including date,
+                        duration, nature of visit, items exchanged, discussions summary, inmate's health and mood,
+                        witnesses, etc.</p>
+                </section>
+                <section>
+                    <h4>Inputs</h4>
+                    <ul>
+                        <li>Visit date and time.</li>
+                        <li>Duration of visit.</li>
+                        <li>Nature of visit (e.g., legal consultation, family visit).</li>
+                        <li>Items exchanged between visitor and inmate.</li>
+                        <li>Summary of discussions.</li>
+                        <li>Inmate's health and mood assessment.</li>
+                        <li>Witnesses present during the visit.</li>
+                    </ul>
+                </section>
+                <section>
+                    <h4>Outputs</h4>
+                    <ul>
+                        <li>Visitation records stored in the database.</li>
+                        <li>Ability to generate reports based on visitation data.</li>
+                    </ul>
+                </section>
+            </section>
+
+            <section>
+                <h3>Statistical Reporting</h3>
+                <section>
+                    <h4>Description</h4>
+                    <p>This feature allows users to generate statistical reports analyzing visitation trends and
+                        patterns over time.</p>
+                </section>
+                <section>
+                    <h4>Inputs</h4>
+                    <ul>
+                        <li>Criteria for report generation (e.g., individual visits, time periods, types of offenses).
+                        </li>
+                        <li>Output format (HTML, CSV, JSON).</li>
+                    </ul>
+                </section>
+                <section>
+                    <h4>Outputs</h4>
+                    <ul>
+                        <li>Statistical reports presented in the specified format.</li>
+                        <li>Insights into visitation patterns for decision-making purposes.</li>
+                    </ul>
+                </section>
+            </section>
+
+            <section>
+                <h3>API Access</h3>
+                <section>
+                    <h4>Description</h4>
+                    <p>This feature provides essential functionalities through a REST/GraphQL API for seamless
+                        integration with other systems or external applications.</p>
+                </section>
+                <section>
+                    <h4>Inputs</h4>
+                    <ul>
+                        <li>API requests for data retrieval, insertion, or modification.</li>
+                        <li>Authentication credentials for authorized access.</li>
+                    </ul>
+                </section>
+                <section>
+                    <h4>Outputs</h4>
+                    <ul>
+                        <li>Responses to API requests containing requested data or confirmation of successful
+                            operations.
+                        </li>
+                    </ul>
+                </section>
+            </section>
+
+        </section>
+
+
+        <section>
+            <h2>Backend and Database</h2>
+
+            <p>The backend of the application will be developed using PHP, a server-side scripting language known for
+                its versatility and ease of integration. PHP will handle the logic of the application, including data
+                processing, authentication, and communication with the database.</p>
+
+            <p>For the database management system, MongoDB will be utilized. MongoDB is a NoSQL database that offers
+                flexibility and scalability, making it suitable for storing and managing the diverse data structures
+                associated with visitation records. It provides features such as document-based storage, dynamic
+                schemas, and high availability, which are advantageous for the requirements of the detention
+                administration website.</p>
+
+        </section>
+
+        <section>
+            <h2>Detention Admin Pages</h2>
+
+            <section>
+                <h3>AddCenterPage</h3>
+                <p>The AddCenterPage is a dedicated interface designed to facilitate the addition, modification, and
+                    management of detention centers within the system. This page enables administrators to record and
+                    maintain comprehensive details about each detention center, including location, capacity, current
+                    occupancy status, and associated operational information. It provides a centralized platform for
+                    administrators to efficiently manage detention center data, ensuring accuracy, consistency, and
+                    compliance with established regulations and standards.</p>
+            </section>
+
+            <section>
+                <h3>AddInmatesPage</h3>
+                <p>The AddInmatesPage is specifically designed to streamline the process of adding, updating, and
+                    managing inmate records within the system. This page allows administrators to capture and store
+                    essential details about each inmate, such as name, identification number, facility location, crime
+                    committed, and current status within the facility. It offers a user-friendly interface with
+                    intuitive data entry fields and validation checks to ensure the accuracy and integrity of inmate
+                    records, facilitating effective monitoring, tracking, and management of inmate information.</p>
+            </section>
+
+            <section>
+                <h3>AdminPage</h3>
+                <p>The AdminPage serves as the central administrative dashboard for system administrators, providing a
+                    comprehensive overview of system activities, performance metrics, and user interactions. This page
+                    offers a range of administrative controls and functionalities, including managing user access and
+                    permissions, monitoring system health and performance, generating reports, and configuring system
+                    settings. It serves as a hub for administrators to efficiently oversee and manage all aspects of the
+                    web application, ensuring optimal functionality, security, and user satisfaction.</p>
+            </section>
+
+            <section>
+                <h3>AllVisitsPage</h3>
+                <p>The AllVisitsPage provides a comprehensive list and detailed overview of all recorded visits within
+                    the system, facilitating easy retrieval, viewing, and analysis of visitation data. This page allows
+                    administrators to filter and search visit records based on various criteria, such as visitor
+                    details, inmate information, visitation dates, and visitation rights. It offers interactive features
+                    and tools to assist administrators in analyzing visitation trends, patterns, and behaviors, enabling
+                    informed decision-making, policy formulation, and operational planning.</p>
+            </section>
+
+            <section>
+                <h3>ConfigureVisitPage</h3>
+                <p>The ConfigureVisitPage offers advanced functionality for configuring and customizing various visit
+                    parameters and settings within the system. This page enables administrators to define and manage
+                    visitation rules, schedules, visitation rights, and access levels for visitors and inmates. It
+                    provides a flexible and customizable platform for administrators to adapt and modify visitation
+                    parameters according to evolving requirements, regulations, and policies, ensuring compliance,
+                    consistency, and optimal management of visitation processes.</p>
+            </section>
+
+            <section>
+                <h3>DetentionCentersPage</h3>
+                <p>The DetentionCentersPage presents a comprehensive list and detailed profiles of all detention centers
+                    registered within the system. This page provides valuable information about each detention center,
+                    including location, capacity, current occupancy status, operational details, and contact
+                    information. It offers interactive features and tools to assist administrators in managing and
+                    monitoring detention center data, facilitating effective communication, coordination, and
+                    collaboration between different facilities and administrative personnel.</p>
+            </section>
+
+            <section>
+                <h3>HomePage</h3>
+                <p>The HomePage serves as the primary landing page for the web application, offering an engaging and
+                    informative overview of the system's features, functionalities, and capabilities. It serves as a
+                    user-friendly gateway to the web application, welcoming users and guiding them through the various
+                    sections, pages, and features available within the system, ensuring a seamless and intuitive user
+                    experience.</p>
+            </section>
+
+            <section>
+                <h3>InmatesPage</h3>
+                <p>The InmatesPage displays a comprehensive list and detailed profiles of all inmates registered within
+                    the system. This page showcases essential details about each inmate, including name, identification
+                    number, facility location, crime committed, current status within the facility, and visitation
+                    rights. It offers interactive features and tools to assist administrators in managing and monitoring
+                    inmate information, facilitating effective tracking, reporting, and communication between different
+                    facilities and administrative personnel.</p>
+            </section>
+
+            <section>
+                <h3>LoginPage</h3>
+                <p>The LoginPage provides a secure and user-friendly interface for users to access the web application,
+                    requiring authentication credentials for authorized access. This page incorporates robust security
+                    measures, encryption protocols, and validation checks to safeguard sensitive data, protect user
+                    privacy, and prevent unauthorized access. It offers a seamless and intuitive login experience,
+                    guiding users through the authentication process.</p>
+            </section>
+
+            <section>
+                <h3>RegisterPage</h3>
+                <p>The RegisterPage allows new users to create accounts for accessing the web application, capturing
+                    essential information and setting up user profiles. This page offers a user-friendly registration
+                    process, guiding users through the data entry fields, validation checks, and account creation steps.
+                    It incorporates robust security measures, encryption protocols, and privacy controls to safeguard
+                    sensitive information, protect user privacy, and ensure compliance with data protection regulations
+                    and policies.</p>
+            </section>
+
+            <section>
+                <h3>AccountPage</h3>
+                <p>The AccountPage serves as the personalized dashboard for registered users, providing them with their
+                    account information and settings. This page offers a user-friendly interface with intuitive data
+                    entry fields. Additionally, the AccountPage includes a secure logout functionality, enabling users
+                    to safely and securely log out of the web application, terminating their active session and
+                    protecting their account from unauthorized access.</p>
+            </section>
+
+            <section>
+                <h3>GenerateStatsPage</h3>
+                <p>The GenerateStatsPage is a powerful feature of the web application designed to generate comprehensive
+                    statistics and reports on the recorded visits. This page provides users with the capability to
+                    generate detailed statistical documents in various formats, including HTML, CSV, and JSON. Users can
+                    customize the generated reports based on specific criteria such as visits per individual, time
+                    period, type of offense committed, or other relevant categories. The GenerateStatsPage offers an
+                    intuitive interface with options to select and filter the desired data, facilitating insightful
+                    analysis and informed decision-making for administrators and authorized personnel.</p>
+            </section>
+
+            <section>
+                <h3>EditAccountPage</h3>
+                <p>
+                    The EditAccountPage allows registered users to modify and update their account information and
+                    settings within the web application. This page offers a user-friendly interface with data entry
+                    fields for users to edit their personal details and contact information. Users can
+                    update their account settings, change passwords, and manage privacy controls through the
+                    EditAccountPage, ensuring a seamless and personalized user experience within the system.
+                </p>
+            </section>
+            <section>
+                <h3>ChangePasswordPage</h3>
+                <p>
+                    The ChangePasswordPage provides users with a secure and user-friendly interface to change their
+                    account passwords within the web application. This page incorporates robust security measures,
+                    encryption protocols, and validation checks to safeguard sensitive data and protect user privacy.
+                    Users can update their passwords securely through the ChangePasswordPage, ensuring the integrity
+                    and security of their accounts.
+            </section>
+        </section>
+
     </section>
-
-    <section>
-      <h4>Inputs</h4>
-      <ul>
-        <li>Visitor requests: Details of visitors requesting access, including name, contact information, relationship with the inmate, and purpose of visit.</li>
-        <li>Detention center details: Information about new detention centers, such as location, capacity, and current occupancy status.</li>
-        <li>Inmate details: Information about new inmates, including name, identification, facility location, and crime committed.</li>
-        <li>Report criteria: Parameters for generating reports, such as date range, type of report, and specific data points to include.</li>
-      </ul>
-    </section>
-
-    <section>
-      <h4>Outputs</h4>
-      <ul>
-        <li>Visitor approval status: Confirmation of approved or denied visitor requests.</li>
-        <li>New detention centers: Record of newly added detention centers in the system.</li>
-        <li>New inmate records: Confirmation of successfully added new inmates to the system.</li>
-        <li>Generated reports: Various reports in desired formats (HTML, CSV, JSON) providing insights and analysis of system data.</li>
-      </ul>
-    </section>
-  </section>
-
-  <section>
-    <h3>Visit Information</h3>
-    <section>
-      <h4>Description</h4>
-      <p>This feature enables users to record detailed information about each visit, including date, duration, nature of visit, items exchanged, discussions summary, inmate's health and mood, witnesses, etc.</p>
-    </section>
-    <section>
-      <h4>Inputs</h4>
-      <ul>
-        <li>Visit date and time.</li>
-        <li>Duration of visit.</li>
-        <li>Nature of visit (e.g., legal consultation, family visit).</li>
-        <li>Items exchanged between visitor and inmate.</li>
-        <li>Summary of discussions.</li>
-        <li>Inmate's health and mood assessment.</li>
-        <li>Witnesses present during the visit.</li>
-      </ul>
-    </section>
-    <section>
-      <h4>Outputs</h4>
-      <ul>
-        <li>Visitation records stored in the database.</li>
-        <li>Ability to generate reports based on visitation data.</li>
-      </ul>
-    </section>
-  </section>
-
-  <section>
-    <h3>Statistical Reporting</h3>
-    <section>
-      <h4>Description</h4>
-      <p>This feature allows users to generate statistical reports analyzing visitation trends and patterns over time.</p>
-    </section>
-    <section>
-      <h4>Inputs</h4>
-      <ul>
-        <li>Criteria for report generation (e.g., individual visits, time periods, types of offenses).</li>
-        <li>Output format (HTML, CSV, JSON).</li>
-      </ul>
-    </section>
-    <section>
-      <h4>Outputs</h4>
-      <ul>
-        <li>Statistical reports presented in the specified format.</li>
-        <li>Insights into visitation patterns for decision-making purposes.</li>
-      </ul>
-    </section>
-  </section>
-
-  <section>
-    <h3>API Access</h3>
-    <section>
-      <h4>Description</h4>
-      <p>This feature provides essential functionalities through a REST/GraphQL API for seamless integration with other systems or external applications.</p>
-    </section>
-    <section>
-      <h4>Inputs</h4>
-      <ul>
-        <li>API requests for data retrieval, insertion, or modification.</li>
-        <li>Authentication credentials for authorized access.</li>
-      </ul>
-    </section>
-    <section>
-      <h4>Outputs</h4>
-      <ul>
-        <li>Responses to API requests containing requested data or confirmation of successful operations.</li>
-      </ul>
-    </section>
-  </section>
-
-</section>
-
-
-<section>
-  <h2>Backend and Database</h2>
-
-  <p>The backend of the application will be developed using PHP, a server-side scripting language known for its versatility and ease of integration. PHP will handle the logic of the application, including data processing, authentication, and communication with the database.</p>
-
-  <p>For the database management system, MongoDB will be utilized. MongoDB is a NoSQL database that offers flexibility and scalability, making it suitable for storing and managing the diverse data structures associated with visitation records. It provides features such as document-based storage, dynamic schemas, and high availability, which are advantageous for the requirements of the detention administration website.</p>
-
-</section>
-
-  <section>
-    <h2>Detention Admin Pages</h2>
-
-    <section>
-      <h3>AddCenterPage</h3>
-      <p>The AddCenterPage is a dedicated interface designed to facilitate the addition, modification, and management of detention centers within the system. This page enables administrators to record and maintain comprehensive details about each detention center, including location, capacity, current occupancy status, and associated operational information. It provides a centralized platform for administrators to efficiently manage detention center data, ensuring accuracy, consistency, and compliance with established regulations and standards.</p>
-    </section>
-
-    <section>
-      <h3>AddInmatesPage</h3>
-      <p>The AddInmatesPage is specifically designed to streamline the process of adding, updating, and managing inmate records within the system. This page allows administrators to capture and store essential details about each inmate, such as name, identification number, facility location, crime committed, and current status within the facility. It offers a user-friendly interface with intuitive data entry fields and validation checks to ensure the accuracy and integrity of inmate records, facilitating effective monitoring, tracking, and management of inmate information.</p>
-    </section>
-
-    <section>
-      <h3>AdminPage</h3>
-      <p>The AdminPage serves as the central administrative dashboard for system administrators, providing a comprehensive overview of system activities, performance metrics, and user interactions. This page offers a range of administrative controls and functionalities, including managing user access and permissions, monitoring system health and performance, generating reports, and configuring system settings. It serves as a hub for administrators to efficiently oversee and manage all aspects of the web application, ensuring optimal functionality, security, and user satisfaction.</p>
-    </section>
-
-    <section>
-      <h3>AllVisitsPage</h3>
-      <p>The AllVisitsPage provides a comprehensive list and detailed overview of all recorded visits within the system, facilitating easy retrieval, viewing, and analysis of visitation data. This page allows administrators to filter and search visit records based on various criteria, such as visitor details, inmate information, visitation dates, and visitation rights. It offers interactive features and tools to assist administrators in analyzing visitation trends, patterns, and behaviors, enabling informed decision-making, policy formulation, and operational planning.</p>
-    </section>
-
-    <section>
-      <h3>ConfigureVisitPage</h3>
-      <p>The ConfigureVisitPage offers advanced functionality for configuring and customizing various visit parameters and settings within the system. This page enables administrators to define and manage visitation rules, schedules, visitation rights, and access levels for visitors and inmates. It provides a flexible and customizable platform for administrators to adapt and modify visitation parameters according to evolving requirements, regulations, and policies, ensuring compliance, consistency, and optimal management of visitation processes.</p>
-    </section>
-
-    <section>
-      <h3>DetentionCentersPage</h3>
-      <p>The DetentionCentersPage presents a comprehensive list and detailed profiles of all detention centers registered within the system. This page provides valuable information about each detention center, including location, capacity, current occupancy status, operational details, and contact information. It offers interactive features and tools to assist administrators in managing and monitoring detention center data, facilitating effective communication, coordination, and collaboration between different facilities and administrative personnel.</p>
-    </section>
-
-    <section>
-      <h3>HomePage</h3>
-      <p>The HomePage serves as the primary landing page for the web application, offering an engaging and informative overview of the system's features, functionalities, and capabilities. It serves as a user-friendly gateway to the web application, welcoming users and guiding them through the various sections, pages, and features available within the system, ensuring a seamless and intuitive user experience.</p>
-    </section>
-
-    <section>
-      <h3>InmatesPage</h3>
-      <p>The InmatesPage displays a comprehensive list and detailed profiles of all inmates registered within the system. This page showcases essential details about each inmate, including name, identification number, facility location, crime committed, current status within the facility, and visitation rights. It offers interactive features and tools to assist administrators in managing and monitoring inmate information, facilitating effective tracking, reporting, and communication between different facilities and administrative personnel.</p>
-    </section>
-
-    <section>
-      <h3>LoginPage</h3>
-      <p>The LoginPage provides a secure and user-friendly interface for users to access the web application, requiring authentication credentials for authorized access. This page incorporates robust security measures, encryption protocols, and validation checks to safeguard sensitive data, protect user privacy, and prevent unauthorized access. It offers a seamless and intuitive login experience, guiding users through the authentication process.</p>
-    </section>
-
-    <section>
-      <h3>RegisterPage</h3>
-      <p>The RegisterPage allows new users to create accounts for accessing the web application, capturing essential information and setting up user profiles. This page offers a user-friendly registration process, guiding users through the data entry fields, validation checks, and account creation steps. It incorporates robust security measures, encryption protocols, and privacy controls to safeguard sensitive information, protect user privacy, and ensure compliance with data protection regulations and policies.</p>
-    </section>
-
-    <section>
-      <h3>UserPage</h3>
-      <p>The UserPage serves as the personalized dashboard for registered users, providing them with the ability to modify and update their account information and settings. This page offers a user-friendly interface with intuitive data entry fields and validation checks, allowing users to easily edit and manage their profile details, such as name, contact information, and password. Additionally, the UserPage includes a secure logout functionality, enabling users to safely and securely log out of the web application, terminating their active session and protecting their account from unauthorized access.</p>
-    </section>
-
-    <section>
-      <h3>GenerateStatsPage</h3>
-      <p>The GenerateStatsPage is a powerful feature of the web application designed to generate comprehensive statistics and reports on the recorded visits. This page provides users with the capability to generate detailed statistical documents in various formats, including HTML, CSV, and JSON. Users can customize the generated reports based on specific criteria such as visits per individual, time period, type of offense committed, or other relevant categories. The GenerateStatsPage offers an intuitive interface with options to select and filter the desired data, facilitating insightful analysis and informed decision-making for administrators and authorized personnel.</p>
-    </section>
-
-  </section>
-
-</section>
 
 </div>
 
