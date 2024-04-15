@@ -30,7 +30,7 @@
     color: #999;
 }
 
-.register-container button {
+.edit-account-container button {
     background-color: #4CAF50;
     color: white;
     padding: 15px 50px;
@@ -44,17 +44,17 @@
     margin: 10px 0;
 }
 
-.register-container {
+.edit-account-container {
     text-align: center;
     background: linear-gradient(rgba(131, 208, 93, 0.7), rgba(242, 242, 242, 0.7));
-    padding: 20px;
+    padding: 1%;
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     max-width: 500px;
-    margin: 20px auto;
+    margin: 10px auto;
 }
 
-.register-container h2 {
+.edit-account-container h2 {
     margin: 0;
     color: #333;
 }
@@ -74,16 +74,15 @@
 }
 
 @media screen and (max-width: 768px) {
-    .register-container {
-        padding: 10px;
+    .edit-account-container {
         margin: 60px 20px;
     }
 
-    .register-container h2 {
+    .edit-account-container h2 {
         font-size: 20px;
     }
 
-    .register-container button {
+    .edit-account-container button {
         font-size: 14px;
         padding: 10px 20px;
     }
@@ -107,16 +106,15 @@
 }
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {
-    .register-container {
-        padding: 30px;
+    .edit-account-container {
         margin: 70px auto;
     }
 
-    .register-container h2 {
+    .edit-account-container h2 {
         font-size: 34px;
     }
 
-    .register-container button {
+    .edit-account-container button {
         font-size: 35px;
         padding: 10px 20px;
     }
@@ -141,16 +139,15 @@
 }
 
 @media screen and (min-width: 1024px) and (max-width: 1200px) {
-    .register-container {
-        padding: 40px;
+    .edit-account-container {
         margin: 20px auto;
     }
 
-    .register-container h2 {
+    .edit-account-container h2 {
         font-size: 35px;
     }
 
-    .register-container button {
+    .edit-account-container button {
         font-size: 30px;
         padding: 10px 20px;
     }
@@ -175,16 +172,15 @@
 }
 
 @media screen and (min-width: 280px) and (max-width: 320px) {
-    .register-container {
-        padding: 10px;
+    .edit-account-container {
         margin: 8px auto;
     }
 
-    .register-container h2 {
+    .edit-account-container h2 {
         font-size: 20px;
     }
 
-    .register-container button {
+    .edit-account-container button {
         font-size: 14px;
         padding: 10px 20px;
     }
@@ -208,15 +204,16 @@
 }
 
 @media screen and (min-width: 1024px) and (max-height: 600px) {
-    .register-container {
-        margin: 0 auto;
+    .edit-account-container {
+        padding: 30px;
+        margin: 0 auto 20px auto;
     }
 
-    .register-container h2 {
+    .edit-account-container h2 {
         font-size: 20px;
     }
 
-    .register-container button {
+    .edit-account-container button {
         font-size: 14px;
         padding: 10px 20px;
     }
@@ -236,12 +233,5 @@
         padding: 5px;
         border: 1px solid #ccc;
         box-sizing: border-box;
-    }
-}
-
-@media screen and (max-width: 375px) {
-    .register-container {
-        padding: 10px;
-        margin: 20px;
     }
 }
