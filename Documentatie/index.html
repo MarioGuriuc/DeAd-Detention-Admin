@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detention Admin Website</title>
+<style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+.container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+ h1, h2, h3, h4 {
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+    }
+    h2 {
+      margin-top: 30px;
+    }
+    h3 {
+      margin-top: 20px;
+    }
+    h4 {
+      margin-top: 15px;
+    }
+    section {
+      margin-bottom: 40px;
+    }
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    li {
+      margin-bottom: 5px;
+    }
+.authors {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+<h1>Detention Admin Website</h1>
+
+<div class="authors">
+  <p><strong>Mario Guriuc, Vlad Spiridon</strong></p>
+</div>
+<section>
+  <h2>Introduction</h2>
+
+  <section>
+    <h3>Purpose</h3>
+    <p>The purpose of this document is to outline the requirements for the development of a web application for managing visits received by individuals sentenced to serve time in a correctional facility, whether it be a prison or a correctional home. The application will provide functionality to record visitor details, visit information, and generate statistical reports for analysis.</p>
+  </section>
+
+  <section>
+    <h3>Scope</h3>
+    <p>The application will allow authorized personnel to record and manage visitation data efficiently. It will facilitate the entry and retrieval of information related to visitors, including their identity, photograph, relationship with the inmate, nature of the visit, and associated details. Additionally, the application will generate statistical reports to analyze visitation trends and patterns over time.</p>
+  </section>
+
+  <section>
+    <h3>Definitions, Acronyms, and Abbreviations</h3>
+    <ul>
+      <li><strong>API:</strong> Application Programming Interface</li>
+      <li><strong>CSV:</strong> Comma-Separated Values</li>
+      <li><strong>JSON:</strong> JavaScript Object Notation</li>
+      <li><strong>HTML:</strong> HyperText Markup Language</li>
+      <li><strong>REST:</strong> Representational State Transfer</li>
+      <li><strong>GraphQL:</strong> Graph Query Language</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Overview</h3>
+    <p>This document will cover the functional and non-functional requirements of the web application, including user roles, system features, data management, security measures, and interfaces. It aims to provide a comprehensive guide for the development team to implement the system effectively.</p>
+  </section>
+</section>
+
+<section>
+  <h2>Overall Description</h2>
+
+  <section>
+    <h3>Product Perspective</h3>
+    <p>The web application will function as a standalone system, providing a user-friendly interface for managing visitation data.</p>
+  </section>
+
+  <section>
+    <h3>Product Features</h3>
+    <ul>
+      <li><strong>Visitor Management:</strong> Recording visitor details including identity, photograph, relationship with the inmate.</li>
+      <li><strong>Visit Information:</strong> Capturing data such as visit date, duration, nature of visit, items exchanged, discussions summary, inmate's health and mood, witnesses, etc.</li>
+      <li><strong>Statistical Reporting:</strong> Generating reports in HTML, CSV, and JSON formats based on various criteria such as individual visits, time periods, types of offenses, etc.</li>
+      <li><strong>API Access:</strong> Providing essential functionalities through a REST/GraphQL API for seamless integration with other systems or external applications.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>User Classes and Characteristics</h3>
+    <ul>
+      <li><strong>Prison Administrators:</strong> Responsible for overall management and supervision of the application.</li>
+      <li><strong>Correctional Officers:</strong> Enter visitation data and generate reports.</li>
+      <li><strong>Legal Advisors:</strong> Access visitation records for legal purposes.</li>
+      <li><strong>Visitors:</strong> Provide information about themselves and their relationship with the inmate before scheduling a visit.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Operating Environment</h3>
+    <p>The application will be web-based and accessible through modern web browsers such as Google Chrome, Mozilla Firefox, and Safari. It will be hosted on a secure server infrastructure compliant with institutional security standards.</p>
+  </section>
+
+  <section>
+    <h3>Design and Implementation Constraints</h3>
+    <p>The system should adhere to relevant legal regulations regarding data privacy and confidentiality.</p>
+  </section>
+
+  <section>
+    <h3>Assumptions and Dependencies</h3>
+    <p>It is assumed that users have basic computer literacy and internet access. The system depends on reliable network connectivity for real-time data entry and retrieval.</p>
+  </section>
+</section>
+
+<section>
+  <h2>System Features</h2>
+
+  <section>
+    <h3>Visitor Management</h3>
+    <section>
+      <h4>Description</h4>
+      <p>This feature allows users to manage visitor information, including identity, photograph, and relationship with the inmate.</p>
+    </section>
+    <section>
+      <h4>Inputs</h4>
+      <ul>
+        <li>Visitor details: Name, contact information, photograph, relationship with the inmate.</li>
+        <li>Inmate details: Identification number, name, facility location.</li>
+      </ul>
+    </section>
+    <section>
+      <h4>Outputs</h4>
+      <ul>
+        <li>Visitor records stored in the database for future reference.</li>
+        <li>Ability to associate visitors with specific inmates.</li>
+      </ul>
+    </section>
+  </section>
+
+  <section>
+    <h3>Visit Information</h3>
+    <section>
+      <h4>Description</h4>
+      <p>This feature enables users to record detailed information about each visit, including date, duration, nature of visit, items exchanged, discussions summary, inmate's health and mood, witnesses, etc.</p>
+    </section>
+    <section>
+      <h4>Inputs</h4>
+      <ul>
+        <li>Visit date and time.</li>
+        <li>Duration of visit.</li>
+        <li>Nature of visit (e.g., legal consultation, family visit).</li>
+        <li>Items exchanged between visitor and inmate.</li>
+        <li>Summary of discussions.</li>
+        <li>Inmate's health and mood assessment.</li>
+        <li>Witnesses present during the visit.</li>
+      </ul>
+    </section>
+    <section>
+      <h4>Outputs</h4>
+      <ul>
+        <li>Visitation records stored in the database.</li>
+        <li>Ability to generate reports based on visitation data.</li>
+      </ul>
+    </section>
+  </section>
+
+  <section>
+    <h3>Statistical Reporting</h3>
+    <section>
+      <h4>Description</h4>
+      <p>This feature allows users to generate statistical reports analyzing visitation trends and patterns over time.</p>
+    </section>
+    <section>
+      <h4>Inputs</h4>
+      <ul>
+        <li>Criteria for report generation (e.g., individual visits, time periods, types of offenses).</li>
+        <li>Output format (HTML, CSV, JSON).</li>
+      </ul>
+    </section>
+    <section>
+      <h4>Outputs</h4>
+      <ul>
+        <li>Statistical reports presented in the specified format.</li>
+        <li>Insights into visitation patterns for decision-making purposes.</li>
+      </ul>
+    </section>
+  </section>
+
+  <section>
+    <h3>API Access</h3>
+    <section>
+      <h4>Description</h4>
+      <p>This feature provides essential functionalities through a REST/GraphQL API for seamless integration with other systems or external applications.</p>
+    </section>
+    <section>
+      <h4>Inputs</h4>
+      <ul>
+        <li>API requests for data retrieval, insertion, or modification.</li>
+        <li>Authentication credentials for authorized access.</li>
+      </ul>
+    </section>
+    <section>
+      <h4>Outputs</h4>
+      <ul>
+        <li>Responses to API requests containing requested data or confirmation of successful operations.</li>
+      </ul>
+    </section>
+  </section>
+</section>
+
+<section>
+  <h2>External Interface Requirements</h2>
+
+  <section>
+    <h3>User Interfaces</h3>
+    <p>The application will feature intuitive user interfaces for data entry, retrieval, and report generation. It will include forms, tables, and interactive elements for ease of use.</p>
+  </section>
+
+  <section>
+    <h3>Hardware Interfaces</h3>
+    <p>The system will be accessible via standard computing devices with internet connectivity, including desktop computers, laptops, tablets, and smartphones.</p>
+  </section>
+
+  <section>
+    <h3>Software Interfaces</h3>
+    <p>The application may interface with external systems for authentication purposes or data integration. It should be compatible with commonly used web browsers and operating systems.</p>
+  </section>
+
+  <section>
+    <h3>Communication Interfaces</h3>
+    <p>The system will communicate with users through web-based interfaces and may utilize email notifications for important updates or reminders.</p>
+  </section>
+</section>
+
+<section>
+  <h2>Backend and Database</h2>
+
+  <p>The backend of the application will be developed using PHP, a server-side scripting language known for its versatility and ease of integration. PHP will handle the logic of the application, including data processing, authentication, and communication with the database.</p>
+
+  <p>For the database management system, MongoDB will be utilized. MongoDB is a NoSQL database that offers flexibility and scalability, making it suitable for storing and managing the diverse data structures associated with visitation records. It provides features such as document-based storage, dynamic schemas, and high availability, which are advantageous for the requirements of the detention administration website.</p>
+</section>
+
+</body>
+</html>
