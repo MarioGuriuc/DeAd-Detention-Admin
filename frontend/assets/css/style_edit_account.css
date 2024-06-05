@@ -1,0 +1,238 @@
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.input-group input[type="text"],
+.input-group input[type="email"],
+.input-group input[type="password"],
+.input-group input[type="tel"],
+.input-group input[type="date"],
+.input-group input[type="time"],
+.input-group input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.input-group input[type="tel"] {
+    width: calc(100% - 22px);
+}
+
+.input-group small {
+    color: #999;
+}
+
+.edit-account-container button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 50px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin: 10px 0;
+}
+
+.edit-account-container {
+    text-align: center;
+    background: linear-gradient(rgba(131, 208, 93, 0.7), rgba(242, 242, 242, 0.7));
+    padding: 2%;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: 40px auto;
+    font-size: 20px;
+}
+
+.edit-account-container h2 {
+    margin: 0;
+    color: #333;
+}
+
+.register-link {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.register-link a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+@media screen and (max-width: 768px) {
+    .edit-account-container {
+        margin: 60px 20px;
+    }
+
+    .edit-account-container h2 {
+        font-size: 20px;
+    }
+
+    .edit-account-container button {
+        font-size: 14px;
+        padding: 10px 20px;
+    }
+
+    .input-group {
+        margin-bottom: 5px;
+    }
+
+    .input-group input[type="text"],
+    .input-group input[type="email"],
+    .input-group input[type="password"],
+    .input-group input[type="tel"],
+    .input-group input[type="date"],
+    .input-group input[type="time"],
+    .input-group input[type="number"] {
+        width: 100%;
+        padding: 5px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .edit-account-container {
+        margin: 70px auto;
+    }
+
+    .edit-account-container h2 {
+        font-size: 34px;
+    }
+
+    .edit-account-container button {
+        font-size: 35px;
+        padding: 10px 20px;
+    }
+
+    .input-group {
+        margin-bottom: 5px;
+        font-size: 36px;
+    }
+
+    .input-group input[type="text"],
+    .input-group input[type="email"],
+    .input-group input[type="password"],
+    .input-group input[type="tel"],
+    .input-group input[type="date"],
+    .input-group input[type="time"],
+    .input-group input[type="number"] {
+        width: 100%;
+        padding: 15px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1200px) {
+    .edit-account-container {
+        margin: 20px auto;
+    }
+
+    .edit-account-container h2 {
+        font-size: 35px;
+    }
+
+    .edit-account-container button {
+        font-size: 30px;
+        padding: 10px 20px;
+    }
+
+    .input-group {
+        margin-bottom: 5px;
+        font-size: 40px;
+    }
+
+    .input-group input[type="text"],
+    .input-group input[type="email"],
+    .input-group input[type="password"],
+    .input-group input[type="tel"],
+    .input-group input[type="date"],
+    .input-group input[type="time"],
+    .input-group input[type="number"] {
+        width: 100%;
+        padding: 15px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+}
+
+@media screen and (min-width: 280px) and (max-width: 320px) {
+    .edit-account-container {
+        margin: 8px auto;
+    }
+
+    .edit-account-container h2 {
+        font-size: 20px;
+    }
+
+    .edit-account-container button {
+        font-size: 14px;
+        padding: 10px 20px;
+    }
+
+    .input-group {
+        margin-bottom: 5px;
+    }
+
+    .input-group input[type="text"],
+    .input-group input[type="email"],
+    .input-group input[type="password"],
+    .input-group input[type="tel"],
+    .input-group input[type="date"],
+    .input-group input[type="time"],
+    .input-group input[type="number"] {
+        width: 100%;
+        padding: 5px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+}
+
+@media screen and (min-width: 1024px) and (max-height: 600px) {
+    .edit-account-container {
+        padding: 30px;
+        margin: 0 auto 20px auto;
+    }
+
+    .edit-account-container h2 {
+        font-size: 20px;
+    }
+
+    .edit-account-container button {
+        font-size: 14px;
+        padding: 10px 20px;
+    }
+
+    .input-group {
+        font-size: 20px;
+    }
+
+    .input-group input[type="text"],
+    .input-group input[type="email"],
+    .input-group input[type="password"],
+    .input-group input[type="tel"],
+    .input-group input[type="date"],
+    .input-group input[type="time"],
+    .input-group input[type="number"] {
+        width: 100%;
+        padding: 5px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+}

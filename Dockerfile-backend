@@ -1,0 +1,40 @@
+# Author: Mario Guriuc
+
+FROM php:8.3-apache
+
+COPY backend/ /var/www/html/backend/
+
+RUN a2enmod rewrite headers
+
+COPY apache.conf /etc/apache2/sites-available/000-default.conf
+
+RUN apt-get update && apt-get install -y \
+    libpng-dev \
+    libjpeg-dev \
+    libfreetype6-dev \
+    libonig-dev \
+    libzip-dev \
+    unzip \
+    curl \
+    gnupg \
+    python3 \
+    python3-venv \
+    python3-pip \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install -j$(nproc) gd mbstring zip \
+    && apt-get clean
+
+
+RUN pecl channel-update pecl.php.net \
+    && pecl install mongodb \
+    && docker-php-ext-enable mongodb
+
+RUN python3 -m venv /usr/local/bin/venv
+COPY Database/req.txt /usr/local/bin/req.txt
+RUN /usr/local/bin/venv/bin/pip install -r /usr/local/bin/req.txt
+
+COPY Database/db_script.py /usr/local/bin/db_script.py
+
+EXPOSE 80
+
+CMD ["sh", "-c", "/usr/local/bin/venv/bin/python /usr/local/bin/db_script.py && exec apache2-foreground"]

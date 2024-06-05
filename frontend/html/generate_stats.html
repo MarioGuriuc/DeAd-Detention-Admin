@@ -1,0 +1,68 @@
+<!-- Author: Vlad-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Generate Stats</title>
+    <base href="/">
+    <link href="../assets/css/footer.css" rel="stylesheet">
+    <link href="../assets/css/header.css" rel="stylesheet">
+    <link href="../assets/css/nav-bar-buttons.css" rel="stylesheet">
+    <link href="../assets/css/body_style.css" rel="stylesheet">
+    <link href="../assets/css/generate_stats.css" rel="stylesheet">
+</head>
+<body>
+<header>
+    <div class="header-content">
+        <h1>Generate Statistics</h1>
+        <div class="nav-bar"></div>
+    </div>
+</header>
+
+<main>
+    <section class="generate-stats-section">
+        <div class="generate-stats-container">
+            <h1>Generate Stats</h1>
+            <form onsubmit="return false">
+                <div class="input-group">
+                    <label for="detention-center">Detention Center:</label>
+                    <select id="detention-center" name="detention-center" required>
+                        <option value="1">Detention Center 1</option>
+                        <option value="2">Detention Center 2</option>
+                        <option value="3">Detention Center 3</option>
+                        <option value="4">Detention Center 4</option>
+                        <option value="5">Detention Center 5</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="inmates-checkboxes">Inmate/s:</label>
+                    <div id="inmates-checkboxes">
+                        <input id="all-inmates" name="inmate" type="checkbox" value="0">
+                        <label for="all-inmates">All Inmates</label><br>
+                        <input id="inmate1" name="inmate" type="checkbox" value="1">
+                        <label for="inmate1">Inmate 1</label><br>
+                        <input id="inmate2" name="inmate" type="checkbox" value="2">
+                        <label for="inmate2">Inmate 2</label><br>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="start-date">Start Date:</label>
+                    <input id="start-date" name="start-date" required type="date">
+                </div>
+                <div class="input-group">
+                    <label for="end-date">End Date:</label>
+                    <input id="end-date" name="end-date" required type="date">
+                </div>
+                <button type="submit">Generate Stats</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Detention Center. All rights reserved.</p>
+    </footer>
+</main>
+</body>
+</html>

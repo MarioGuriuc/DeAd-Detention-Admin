@@ -1,0 +1,64 @@
+<!-- Author: Mario Guriuc-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Detention Center Login</title>
+    <link href="../assets/css/footer.css" rel="stylesheet">
+    <link href="../assets/css/header.css" rel="stylesheet">
+    <link href="../assets/css/nav-bar-buttons.css" rel="stylesheet">
+    <link href="../assets/css/body_style.css" rel="stylesheet">
+    <link href="../assets/css/style_login.css" rel="stylesheet">
+    <link href="../assets/css/popup.css" rel="stylesheet">
+
+    <script src="../assets/script/handle_navbar.js" type="module"></script>
+    <script src="../assets/script/constants.js" type="module"></script>
+    <script src="../assets/script/popup.js" type="module"></script>
+    <script src="../assets/script/login.js" type="module"></script>
+</head>
+<body>
+
+<header>
+    <div class="header-content">
+        <h1>Login Page</h1>
+        <div class="nav-bar"></div>
+    </div>
+</header>
+
+<main>
+    <section class="login-section">
+        <div class="login-container">
+            <h2>Welcome back!</h2>
+            <form onsubmit="return false">
+                <div class="input-group">
+                    <label for="username">Username:</label>
+                    <input id="username" name="username" required type="text">
+                </div>
+                <div class="input-group">
+                    <label for="password">Password:</label>
+                    <input id="password" name="password" required type="password">
+                </div>
+                <div class="input-group">
+                    <label for="remember-me">Remember me:</label>
+                    <input id="remember-me" name="remember-me" type="checkbox">
+                </div>
+                <div class="pop-up-container" id="login-button">
+                    <button class="button-pop-up">Login</button>
+                    <span class="pop-up-message" id="message">p</span>
+                </div>
+            </form>
+            <p>Don't have an account? <a href="/register">Register here</a></p>
+            <p>Forgot your password? <a href="/forgot-password">Click here</a></p>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2024 Detention Center. All rights reserved.</p>
+</footer>
+</body>
+
+</html>

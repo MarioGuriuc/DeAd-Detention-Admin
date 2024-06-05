@@ -1,0 +1,82 @@
+<!-- Author: Mario Guriuc-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Edit account</title>
+    <base href="/">
+    <link href="../assets/css/footer.css" rel="stylesheet">
+    <link href="../assets/css/header.css" rel="stylesheet">
+    <link href="../assets/css/nav-bar-buttons.css" rel="stylesheet">
+    <link href="../assets/css/body_style.css" rel="stylesheet">
+    <link href="../assets/css/style_edit_account.css" rel="stylesheet">
+    <link href="../assets/css/popup.css" rel="stylesheet">
+
+    <script src="../assets/script/handle_navbar.js" type="module"></script>
+    <script src="../assets/script/handle_navbar.js" type="module"></script>
+    <script src="../assets/script/popup.js" type="module"></script>
+    <script src="../assets/script/edit_account.js" type="module"></script>
+</head>
+
+<body>
+<header>
+    <div class="header-content">
+        <h1>Edit account</h1>
+        <div class="nav-bar"></div>
+    </div>
+</header>
+
+<main>
+    <div class="edit-account-container">
+        <form onsubmit="return false">
+            <div class="input-group">
+                <label for="first-name">First name:</label>
+                <input id="first-name" name="firstName" placeholder="Leave missing to not be changed..."
+                       type="text">
+            </div>
+            <div class="input-group">
+                <label for="last-name">Last name:</label>
+                <input id="last-name" name="lastName" placeholder="Leave missing to not be changed..."
+                       type="text">
+            </div>
+            <div class="input-group">
+                <label for="username">Username:</label>
+                <input id="username" name="username" placeholder="Leave missing to not be changed..."
+                       type="text">
+            </div>
+            <div class="input-group">
+                <label for="email">E-mail:</label>
+                <input id="email" name="email" placeholder="Leave missing to not be changed..."
+                       type="email">
+            </div>
+            <div class="input-group">
+                <label for="phone">Phone number:</label>
+                <input id="phone" name="phone" placeholder="Leave missing to not be changed..."
+                       type="tel">
+            </div>
+            <div class="input-group">
+                <label for="password">Password:</label>
+                <input id="password" name="password" placeholder="Leave missing to not be changed..."
+                       type="password">
+            </div>
+            <div class="input-group">
+                <label for="confirm-password">Confirm password:</label>
+                <input id="confirm-password" name="confirmPassword" placeholder="Leave missing to not be changed..."
+                       type="password">
+            </div>
+            <div class="pop-up-container" id="save-button">
+                <button class="button-pop-up">Save changes</button>
+                <span class="pop-up-message" id="message">p</span>
+            </div>
+        </form>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2024 Detention Center. All rights reserved.</p>
+</footer>
+</body>
+</html>

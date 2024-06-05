@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Delete account</title>
+    <base href="/">
+    <link href="../assets/css/footer.css" rel="stylesheet">
+    <link href="../assets/css/header.css" rel="stylesheet">
+    <link href="../assets/css/nav-bar-buttons.css" rel="stylesheet">
+    <link href="../assets/css/body_style.css" rel="stylesheet">
+    <link href="../assets/css/style_delete_account.css" rel="stylesheet">
+    <link href="../assets/css/popup.css" rel="stylesheet">
+
+    <script src="../assets/script/popup.js" type="module"></script>
+    <script src="../assets/script/delete_account.js" type="module"></script>
+</head>
+
+<body>
+<header>
+    <div class="header-content">
+        <h1>Delete account</h1>
+        <div class="nav-bar"></div>
+    </div>
+</header>
+
+<main>
+    <section class="delete-account-section">
+        <div class="delete-account-container">
+            <h2>Delete account</h2>
+            <form onsubmit="return false">
+                <div class="input-group">
+                    <label for="password">Password:</label>
+                    <input id="password" name="password" placeholder="Please enter your password..." type="password">
+                </div>
+                <div class="pop-up-container" onclick="deleteAccount()">
+                    <button class="button-pop-up">Delete account</button>
+                    <span class="pop-up-message" id="message">p</span>
+                </div>
+            </form>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2024 Detention Center. All rights reserved.</p>
+</footer>
+</body>
+</html>

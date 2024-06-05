@@ -1,0 +1,13 @@
+# Author: Mario Guriuc
+
+FROM php:8.3-apache
+
+COPY frontend/ /var/www/html/frontend/
+
+RUN a2enmod rewrite headers
+
+COPY apache.conf /etc/apache2/sites-available/000-default.conf
+
+EXPOSE 80
+
+CMD ["apache2-foreground"]

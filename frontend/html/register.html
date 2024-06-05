@@ -1,0 +1,79 @@
+<!-- Author: Mario Guriuc-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Detention Center Registration</title>
+    <base href="/">
+    <link href="../assets/css/style_register.css" rel="stylesheet">
+    <link href="../assets/css/footer.css" rel="stylesheet">
+    <link href="../assets/css/header.css" rel="stylesheet">
+    <link href="../assets/css/nav-bar-buttons.css" rel="stylesheet">
+    <link href="../assets/css/body_style.css" rel="stylesheet">
+    <link href="../assets/css/popup.css" rel="stylesheet">
+
+    <script src="../assets/script/constants.js" type="module"></script>
+    <script src="../assets/script/popup.js" type="module"></script>
+    <script src="../assets/script/handle_navbar.js" type="module"></script>
+    <script src="../assets/script/register.js" type="module"></script>
+</head>
+
+<body>
+<header>
+    <div class="header-content">
+        <h1>Register Page</h1>
+        <div class="nav-bar">
+        </div>
+    </div>
+</header>
+
+<div class="register-container">
+    <h2 id="info-txt">Enter your information</h2>
+    <form onsubmit="return false">
+        <div class="input-group">
+            <label for="firstName">First Name:</label>
+            <input id="firstName" name="firstName" required type="text">
+        </div>
+        <div class="input-group">
+            <label for="lastName">Last Name:</label>
+            <input id="lastName" name="lastName" required type="text">
+        </div>
+        <div class="input-group">
+            <label for="username">Username:</label>
+            <input id="username" name="username" required type="text">
+        </div>
+        <div class="input-group">
+            <label for="email">Email:</label>
+            <input id="email" name="email" required type="email">
+        </div>
+        <div class="input-group">
+            <label for="password">Password:</label>
+            <input id="password" name="password" required type="password">
+        </div>
+        <div class="input-group">
+            <label for="confirmPassword">Confirm Password:</label>
+            <input id="confirmPassword" name="confirmPassword" required type="password">
+        </div>
+        <div class="input-group">
+            <label for="phone">Phone Number:</label>
+            <input id="phone" name="phone" required type="tel">
+            <small>Format: +40 770-128-115</small>
+        </div>
+        <div class="input-group">
+            <label for="dob">Date of Birth:</label>
+            <input id="dob" name="dob" required type="date">
+        </div>
+        <div class="pop-up-container" id="register-button">
+            <button class="button-pop-up">Register</button>
+            <span class="pop-up-message" id="message"></span>
+        </div>
+    </form>
+</div>
+
+<footer>
+    <p>&copy; 2024 Detention Center. All rights reserved.</p>
+</footer>
+</body>
+</html>
