@@ -5,13 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="727244fc-fc79-4c8f-a87d-8e810b2fd93b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/DeAd-Detention-Admin.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/discord.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/assets/script/account.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/assets/script/constants.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/assets/script/delete_account.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/assets/script/edit_account.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/assets/script/forgot_password.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/assets/script/login.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/assets/script/popup.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/assets/script/register.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/assets/script/utils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/assets/script/handle_navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/script/handle_navbar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/assets/script/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/script/home.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +85,7 @@
     "DefaultHtmlFileTemplate": "HTML File",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "user__service",
+    "git-widget-placeholder": "#16 on user__service",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "/home/mario/Desktop/web_original/DeAd-Detention-Admin",
     "list.type.of.created.stylesheet": "CSS",
@@ -118,7 +122,7 @@
       <workItem from="1713033375057" duration="8083000" />
       <workItem from="1713042399399" duration="54000" />
       <workItem from="1713115738506" duration="4489000" />
-      <workItem from="1717605613845" duration="999000" />
+      <workItem from="1717605613845" duration="1322000" />
     </task>
     <servers />
   </component>
