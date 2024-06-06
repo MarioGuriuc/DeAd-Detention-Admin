@@ -1,7 +1,5 @@
 // Author: Mario Guriuc
 
-"use strict";
-
 import {FRONT_ACCOUNT_URL} from "./constants.js";
 import {getUsernameFromJwt} from "./jwt.js";
 
@@ -17,7 +15,8 @@ export const handleNavbar = (page, loggedIn = false) => {
         switch (page) {
             case "editAccount":
             case "deleteAccount":
-            case "centers": {
+            case "centers":
+            case "changePassword": {
                 appendHomeAccountButtons(navBar);
                 break;
             }
@@ -25,7 +24,7 @@ export const handleNavbar = (page, loggedIn = false) => {
                 appendCentersAccountButtons(navBar);
                 break;
             }
-            case "add-center":
+            case "addCenter":
             case "account": {
                 appendHomeCentersButtons(navBar);
                 break;

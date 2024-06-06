@@ -1,7 +1,5 @@
 <?php
 
-// Author: Mario Guriuc
-
 function is_data_empty(array $data, array $fields): string
 {
     $result = "";
@@ -14,10 +12,14 @@ function is_data_empty(array $data, array $fields): string
     return $result;
 }
 
-function sanitize_data(array &$data): void
+function sanitize_data(array | string &$data): void
 {
-    foreach ($data as $key => $value) {
-        $data[$key] = htmlspecialchars(strip_tags($value));
+    if (is_array($data)) {
+        foreach ($data as $key => $value) {
+            $data[$key] = htmlspecialchars(strip_tags($value));
+        }
+    } else {
+        $data = htmlspecialchars(strip_tags($data));
     }
 }
 

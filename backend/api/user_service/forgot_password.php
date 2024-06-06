@@ -13,9 +13,11 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     send_response('Method not allowed', 405);
 }
 
-$data = recieve_json();
+$data = receive_json();
 
-$empty_field = is_data_empty($data, ['email']);
+$empty_field = is_data_empty($data, [
+    'email' => 'Email field is empty'
+]);
 
 if ($empty_field) {
     send_response($empty_field, 400);
@@ -51,7 +53,7 @@ try {
     $mail->Body = get_email_body($password);
 
     $mail->send();
-    echo json_encode(['result' => 'Password sent successfully']);
+    send_response('Password sent, check your e-mail', 200);
 } catch (Exception) {
-    send_response('Password could not be sent', 500);
+    send_response('Password could not be sent, try again later', 500);
 }

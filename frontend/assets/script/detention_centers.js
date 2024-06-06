@@ -1,17 +1,27 @@
 //Author: Mario Guriuc
 
-"use strict";
-
 import {API_CENTERS_COUNT_URL, API_CENTERS_URL, FRONT_INMATES_URL} from "./constants.js";
 import {handleNavbar} from "./handle_navbar.js";
 import {isLogged} from "./jwt.js";
-import {setHeaders} from "./utils.js";
+import {isAdmin, setHeaders} from "./utils.js";
 
 if (!isLogged()) {
     window.location.assign("/");
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+    if (isAdmin()) {
+        const addCenterDiv = document.createElement('div');
+        addCenterDiv.classList.add('add-center');
+        const addCenterLink = document.createElement('a');
+        addCenterLink.setAttribute('href', '/add-center');
+        const addCenterButton = document.createElement('button');
+        addCenterButton.setAttribute('id', 'add-center-btn');
+        addCenterButton.textContent = 'Add More Centers';
+        addCenterLink.appendChild(addCenterButton);
+        addCenterDiv.appendChild(addCenterLink);
+        document.querySelector('.centers-wrapper').appendChild(addCenterDiv);
+    }
     handleNavbar("centers", isLogged());
     const searchBar = document.getElementById('search');
     const centersContainer = document.querySelector('.centers');
@@ -128,7 +138,6 @@ document.addEventListener('DOMContentLoaded', function () {
             button.addEventListener('click', () => {
                 fetchCenters(i);
                 history.pushState(null, null, '/centers/p' + i);
-                window.location.reload();
             });
             navigationButtons.appendChild(button);
         }

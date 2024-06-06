@@ -1,7 +1,5 @@
 // Author: Mario Guriuc
 
-"use strict";
-
 import {API_FORGOT_PASSWORD_URL} from "./constants.js";
 import {handleNavbar} from "./handle_navbar.js";
 import {openPopup} from "./popup.js";
@@ -27,13 +25,12 @@ function sendPassword() {
 
         http.onreadystatechange = function () {
             if (http.readyState === 4) {
-                console.log(http.responseText);
                 const response = JSON.parse(http.responseText);
                 switch (http.status) {
                     case 200:
                         openPopup(response['result']);
                         setTimeout(function () {
-                            window.location.href = "login.html";
+                            window.location.href = "/login";
                         }, 3000);
                         break;
                     default:

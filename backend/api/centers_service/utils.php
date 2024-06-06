@@ -22,10 +22,6 @@ function send_centers_count(int $count): void
 
 function validate_center_data(array $data, array $checks): void
 {
-    if (array_key_exists("image", $data) && $data["image"]->type !== 0) {
-        send_response("Invalid image", 400);
-    }
-
     foreach ($data as $key => $value) {
         if (array_key_exists($key, $checks)) {
             validate_string($value, $checks[$key]);

@@ -7,17 +7,20 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Detention Center Registration</title>
     <base href="/">
-    <link href="../assets/css/style_register.css" rel="stylesheet">
+    <link href="../assets/images/icon.png" rel="icon">
+    <link href="../assets/css/register.css" rel="stylesheet">
     <link href="../assets/css/footer.css" rel="stylesheet">
     <link href="../assets/css/header.css" rel="stylesheet">
     <link href="../assets/css/nav-bar-buttons.css" rel="stylesheet">
     <link href="../assets/css/body_style.css" rel="stylesheet">
     <link href="../assets/css/popup.css" rel="stylesheet">
+    <link href="../assets/css/toggle-password.css" rel="stylesheet">
 
     <script src="../assets/script/constants.js" type="module"></script>
     <script src="../assets/script/popup.js" type="module"></script>
     <script src="../assets/script/handle_navbar.js" type="module"></script>
     <script src="../assets/script/register.js" type="module"></script>
+    <script src="../assets/script/toggle_password.js" type="module"></script>
 </head>
 
 <body>
@@ -34,36 +37,38 @@
     <form onsubmit="return false">
         <div class="input-group">
             <label for="firstName">First Name:</label>
-            <input id="firstName" name="firstName" required type="text">
+            <input id="firstName" name="firstName" type="text">
         </div>
         <div class="input-group">
             <label for="lastName">Last Name:</label>
-            <input id="lastName" name="lastName" required type="text">
+            <input id="lastName" name="lastName" type="text">
         </div>
         <div class="input-group">
             <label for="username">Username:</label>
-            <input id="username" name="username" required type="text">
+            <input id="username" name="username" type="text">
         </div>
         <div class="input-group">
             <label for="email">Email:</label>
-            <input id="email" name="email" required type="email">
+            <input id="email" name="email" type="email">
         </div>
         <div class="input-group">
             <label for="password">Password:</label>
-            <input id="password" name="password" required type="password">
+            <input id="password" name="password" type="password">
+            <span class="toggle-password" id="togglePassword">👁️</span>
         </div>
         <div class="input-group">
             <label for="confirmPassword">Confirm Password:</label>
-            <input id="confirmPassword" name="confirmPassword" required type="password">
+            <input id="confirmPassword" name="confirmPassword" type="password">
+            <span class="toggle-password" id="togglePasswordConfirm">👁️</span>
         </div>
         <div class="input-group">
             <label for="phone">Phone Number:</label>
-            <input id="phone" name="phone" required type="tel">
+            <input id="phone" name="phone" type="tel">
             <small>Format: +40 770-128-115</small>
         </div>
         <div class="input-group">
             <label for="dob">Date of Birth:</label>
-            <input id="dob" name="dob" required type="date">
+            <input id="dob" name="dob" type="date">
         </div>
         <div class="pop-up-container" id="register-button">
             <button class="button-pop-up">Register</button>

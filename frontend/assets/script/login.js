@@ -4,7 +4,10 @@ import {API_LOGIN_URL} from "./constants.js";
 import {handleNavbar} from "./handle_navbar.js";
 import {isLogged} from "./jwt.js";
 import {openPopup} from "./popup.js";
+import {handleTogglePassword} from "./toggle_password.js";
 import {setHeaders} from "./utils.js";
+
+handleTogglePassword();
 
 if (isLogged()) {
     window.location.assign("/");
@@ -40,7 +43,7 @@ function sendLoginRequest(data) {
 
     const json = JSON.stringify(data);
 
-    http.onreadystatechange = function () {
+    http.onreadystatechange = () => {
         if (http.readyState === 4) {
             if (http.responseText === "") {
                 openPopup("An error occurred. Please try again.");

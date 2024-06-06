@@ -4,7 +4,10 @@ import {API_REGISTER_URL} from "./constants.js";
 import {handleNavbar} from "./handle_navbar.js";
 import {isLogged} from "./jwt.js";
 import {openPopup} from "./popup.js";
+import {handleTogglePassword} from "./toggle_password.js";
 import {setHeaders} from "./utils.js";
+
+handleTogglePassword();
 
 if (isLogged()) {
     window.location.assign("/");

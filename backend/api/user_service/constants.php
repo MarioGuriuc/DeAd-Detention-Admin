@@ -1,6 +1,6 @@
 <?php
 
-const register_required_fields = [
+const user_required_fields = [
     "firstName" => "Please enter a valid first name",
     "lastName" => "Please enter a valid last name",
     "username" => "Please enter a valid username",
@@ -51,4 +51,10 @@ const REGISTER_CHECKS = [
     "password" => PASSWORD_VALIDATION,
     "phone" => PHONE_VALIDATION,
     "email" => EMAIL_VALIDATION,
+];
+
+const CHANGE_CHECKS = [
+    "phone" => PHONE_VALIDATION,
+    "email" => EMAIL_VALIDATION,
+    "username" => USERNAME_VALIDATION
 ];

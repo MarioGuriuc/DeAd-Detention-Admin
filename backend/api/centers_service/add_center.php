@@ -26,9 +26,9 @@ $empty_fields = is_data_empty($data, CENTER_REQUIRED_FIELDS);
 if ($empty_fields) {
     send_response($empty_fields, 400);
 }
-$image = null;
-if ($data['image']) {
-    $image = new Binary($data['image']);
+
+if (empty($data['image'])) {
+    send_response(CENTER_REQUIRED_FIELDS['image'], 400);
 }
 
 validate_center_data($data, CENTER_CHECKS);
@@ -44,6 +44,10 @@ $database = get_db_conn();
 
 $centers_collection = $database->selectCollection('centers');
 
-$centers_collection->insertOne($center);
+$result = $centers_collection->insertOne($center);
+
+if (!$result->getInsertedCount()) {
+    send_response("Center could not be added", 500);
+}
 
 send_response("Center added", 201);

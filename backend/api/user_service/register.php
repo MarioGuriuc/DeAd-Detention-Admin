@@ -19,7 +19,7 @@ if ($jwt) {
 
 $data = receive_json();
 
-$empty_field = is_data_empty($data, register_required_fields);
+$empty_field = is_data_empty($data, user_required_fields);
 
 if ($empty_field) {
     send_response($empty_field, 400);

@@ -14,6 +14,15 @@ $route = $_GET['route'] ?? '';
 
 $method = $_SERVER['REQUEST_METHOD'];
 
+header("Access-Control-Allow-Origin: " . $_ENV["FRONTEND_URL"]);
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS, PATCH");
+header("Access-Control-Allow-Headers: Content-Type, Authorization");
+
+if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+    http_response_code(200);
+    exit();
+}
+
 $api_routes = [
     'GET' => [
         'api/centers' => 'api/centers_service/get_detention_centers.php',
@@ -25,13 +34,18 @@ $api_routes = [
     'POST' => [
         'api/login' => 'api/user_service/login.php',
         'api/register' => 'api/user_service/register.php',
-        'api/add-center' => 'api/centers_service/add_center.php',
+        'api/forgot-password' => 'api/user_service/forgot_password.php',
+        'api/verify-password' => 'api/user_service/verify_password.php',
+        'api/{username}/change-password' => 'api/user_service/change_password.php',
     ],
     'PATCH' => [
         'api/account/{username}' => 'api/user_service/update_account.php',
     ],
     'DELETE' => [
         'api/account/{username}' => 'api/user_service/delete_account.php',
+    ],
+    'PUT' => [
+        'api/centers' => 'api/centers_service/add_center.php',
     ],
 ];
 
@@ -50,19 +64,10 @@ function match_route($route, $routes, &$params): bool|string
 
 $params = [];
 
-$file_to_include = match_route($route, $api_routes[$method] ?? [], $params);
+$file_to_include = match_route($route, $api_routes[$method], $params);
 
 foreach ($params as $key => $value) {
-    $params[$key] = $value;
-}
-
-header("Access-Control-Allow-Origin:" . $_ENV["FRONTEND_URL"]);
-header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
-header("Access-Control-Allow-Headers: Content-Type, Authorization");
-
-if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
-    http_response_code(200);
-    exit();
+    $params[$key] = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
 }
 
 if (!$file_to_include) {

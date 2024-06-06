@@ -15,6 +15,15 @@ function validate_register_data(array $data, array $checks): void
     }
 }
 
+function validate_user_data(array $data, array $checks): void
+{
+    foreach ($data as $key => $value) {
+        if (array_key_exists($key, $checks)) {
+            validate_string($value, $checks[$key]);
+        }
+    }
+}
+
 function validate_string(string $data, array $checks): void
 {
     $len = strlen($data) ?? 0;
@@ -43,10 +52,9 @@ function generate_jwt(object $user, mixed $time, mixed $exp): string
     return JWT::encode($tokenPayload, $jwt_secret_key, 'HS256');
 }
 
-function send_response_with_jwt(string $jwt): void
+function send_response_with_jwt($message, string $jwt): void
 {
-    $result = "Login successful";
-    $json = json_encode(["result" => $result, "jwt" => $jwt]);
+    $json = json_encode(["result" => $message, "jwt" => $jwt]);
     http_response_code(200);
     echo $json;
 }
@@ -75,4 +83,15 @@ function generate_random_password($length = 10): string
         $password .= $characters[rand(0, strlen($characters) - 1)];
     }
     return $password;
+}
+
+function get_password_from_headers()
+{
+    $headers = apache_request_headers();
+
+    if (!isset($headers["Password"])) {
+        return "";
+    }
+
+    return $headers["Password"];
 }

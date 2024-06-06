@@ -1,11 +1,15 @@
-//Author: Mario Guriuc
+// Author: Mario Guriuc
 
-"use strict";
-
-import {API_ACCOUNT_URL, FRONT_ADMIN_URL, FRONT_DELETE_ACCOUNT_URL, FRONT_EDIT_ACCOUNT_URL} from "./constants.js";
+import {
+    API_ACCOUNT_URL,
+    FRONT_ADMIN_URL,
+    FRONT_CHANGE_PASSWORD_URL,
+    FRONT_DELETE_ACCOUNT_URL,
+    FRONT_EDIT_ACCOUNT_URL
+} from "./constants.js";
 import {handleNavbar} from "./handle_navbar.js";
 import {isLogged} from "./jwt.js";
-import {getButton, getUsernameFromUrl, logout} from "./utils.js";
+import {getButton, getUsernameFromUrl, logout, setHeaders} from "./utils.js";
 
 if (!isLogged()) {
     window.location.assign("/");
@@ -19,11 +23,12 @@ function appendButtons(isAdmin) {
     const accountButtons = document.getElementById("account-buttons");
     accountButtons.appendChild(getButton("Edit Account", FRONT_EDIT_ACCOUNT_URL.replace("{username}", getUsernameFromUrl())));
     accountButtons.appendChild(getButton("Delete Account", FRONT_DELETE_ACCOUNT_URL.replace("{username}", getUsernameFromUrl())));
+    accountButtons.appendChild(getButton("Change Password", FRONT_CHANGE_PASSWORD_URL.replace("{username}", getUsernameFromUrl())));
+    accountButtons.appendChild(getButton("Logout", ""));
+    accountButtons.lastChild.addEventListener("click", logout);
     if (isAdmin) {
         accountButtons.appendChild(getButton("Admin Page", FRONT_ADMIN_URL.replace("{username}", getUsernameFromUrl())));
     }
-    accountButtons.appendChild(getButton("Logout", ""));
-    accountButtons.lastChild.addEventListener("click", logout);
 }
 
 function fetchUserInfo() {
@@ -32,10 +37,9 @@ function fetchUserInfo() {
     const url = API_ACCOUNT_URL.replace("{username}", username);
     http.open('GET', url, true);
 
-    http.setRequestHeader('Content-Type', 'application/json');
-    http.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem("JWT"));
+    setHeaders(http);
 
-    http.onreadystatechange = function () {
+    http.onreadystatechange = () => {
         if (http.readyState === 4) {
             switch (http.status) {
                 case 200:
@@ -64,7 +68,8 @@ function fetchUserInfo() {
                     handleNavbar("account", true);
                     appendButtons(accountInfo.role === "admin");
                     break;
-                case 401:
+                default:
+                    logout();
                     window.location.assign("/");
                     break;
             }

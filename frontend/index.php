@@ -19,6 +19,7 @@ $dynamic_web_routes = [
     'account/{username}/edit-account' => 'html/edit_account.html',
     'account/{username}/delete-account' => 'html/delete_account.html',
     'account/{username}/admin-page' => 'html/admin_page.html',
+    'account/{username}/change-password' => 'html/change_password.html',
     'centers' => 'html/detention_centers.html',
     'centers/{page_number}' => 'html/detention_centers.html',
     'centers/{center_id}/inmates' => 'html/inmates.html',

@@ -8,17 +8,20 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Edit account</title>
     <base href="/">
+    <link href="../assets/images/icon.png" rel="icon">
     <link href="../assets/css/footer.css" rel="stylesheet">
     <link href="../assets/css/header.css" rel="stylesheet">
     <link href="../assets/css/nav-bar-buttons.css" rel="stylesheet">
     <link href="../assets/css/body_style.css" rel="stylesheet">
-    <link href="../assets/css/style_edit_account.css" rel="stylesheet">
+    <link href="../assets/css/edit_account.css" rel="stylesheet">
     <link href="../assets/css/popup.css" rel="stylesheet">
+    <link href="../assets/css/toggle-password.css" rel="stylesheet">
 
     <script src="../assets/script/handle_navbar.js" type="module"></script>
     <script src="../assets/script/handle_navbar.js" type="module"></script>
     <script src="../assets/script/popup.js" type="module"></script>
     <script src="../assets/script/edit_account.js" type="module"></script>
+    <script src="../assets/script/toggle_password.js" type="module"></script>
 </head>
 
 <body>
@@ -61,15 +64,17 @@
                 <label for="password">Password:</label>
                 <input id="password" name="password" placeholder="Leave missing to not be changed..."
                        type="password">
+                <span class="toggle-password" id="togglePassword">👁️</span>
             </div>
             <div class="input-group">
-                <label for="confirm-password">Confirm password:</label>
-                <input id="confirm-password" name="confirmPassword" placeholder="Leave missing to not be changed..."
+                <label for="confirmPassword">Confirm password:</label>
+                <input id="confirmPassword" name="confirmPassword" placeholder="Leave missing to not be changed..."
                        type="password">
+                <span class="toggle-password" id="togglePasswordConfirm">👁️</span>
             </div>
             <div class="pop-up-container" id="save-button">
                 <button class="button-pop-up">Save changes</button>
-                <span class="pop-up-message" id="message">p</span>
+                <span class="pop-up-message" id="message"></span>
             </div>
         </form>
     </div>

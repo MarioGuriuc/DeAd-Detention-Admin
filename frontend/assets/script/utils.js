@@ -1,4 +1,4 @@
-//Author: Mario Guriuc
+// Author: Mario Guriuc
 
 export function getUsernameFromUrl() {
     const url = window.location.href;
@@ -27,4 +27,12 @@ export function logout() {
 export function setHeaders(http) {
     http.setRequestHeader('Content-Type', 'application/json');
     http.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem("JWT"));
+}
+
+export function isAdmin() {
+    const jwt = localStorage.getItem("JWT");
+    if (jwt === null) return false;
+    const payload = jwt.split(".")[1];
+    const data = JSON.parse(atob(payload));
+    return data["role"] === "admin";
 }

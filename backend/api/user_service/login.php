@@ -51,4 +51,4 @@ if (isset($data["rememberMe"]) && $data["rememberMe"] === true) {
 
 $jwt = generate_jwt($user, $time, $exp);
 
-send_response_with_jwt($jwt);
+send_response_with_jwt("Login successful", $jwt);

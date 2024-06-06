@@ -7,17 +7,21 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Detention Center Login</title>
+    <base href="/">
+    <link href="../assets/images/icon.png" rel="icon">
     <link href="../assets/css/footer.css" rel="stylesheet">
     <link href="../assets/css/header.css" rel="stylesheet">
     <link href="../assets/css/nav-bar-buttons.css" rel="stylesheet">
     <link href="../assets/css/body_style.css" rel="stylesheet">
-    <link href="../assets/css/style_login.css" rel="stylesheet">
+    <link href="../assets/css/login.css" rel="stylesheet">
     <link href="../assets/css/popup.css" rel="stylesheet">
+    <link href="../assets/css/toggle-password.css" rel="stylesheet">
 
     <script src="../assets/script/handle_navbar.js" type="module"></script>
     <script src="../assets/script/constants.js" type="module"></script>
     <script src="../assets/script/popup.js" type="module"></script>
     <script src="../assets/script/login.js" type="module"></script>
+    <script src="../assets/script/toggle_password.js" type="module"></script>
 </head>
 <body>
 
@@ -40,14 +44,15 @@
                 <div class="input-group">
                     <label for="password">Password:</label>
                     <input id="password" name="password" required type="password">
+                    <span class="toggle-password" id="togglePassword">👁️</span>
                 </div>
                 <div class="input-group">
-                    <label for="remember-me">Remember me:</label>
-                    <input id="remember-me" name="remember-me" type="checkbox">
+                    <label for="rememberMe">Remember me:</label>
+                    <input id="rememberMe" name="rememberMe" type="checkbox">
                 </div>
                 <div class="pop-up-container" id="login-button">
                     <button class="button-pop-up">Login</button>
-                    <span class="pop-up-message" id="message">p</span>
+                    <span class="pop-up-message" id="message"></span>
                 </div>
             </form>
             <p>Don't have an account? <a href="/register">Register here</a></p>
