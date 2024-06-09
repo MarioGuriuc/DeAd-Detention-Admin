@@ -32,6 +32,20 @@ services:
     networks:
       - mongoNetwork
 
+  mongo-script:
+    image: python:3.9
+    build:
+      context: .
+      dockerfile: Dockerfile-mongo
+    volumes:
+      - ./Database:/Database
+    networks:
+        - mongoNetwork
+    depends_on:
+        - mongo-dead
+    command: python /Database/db_script.py
+
+
 networks:
   mongoNetwork:
     driver: bridge

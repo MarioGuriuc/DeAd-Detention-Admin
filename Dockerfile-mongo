@@ -1,0 +1,9 @@
+FROM python:3.9
+
+COPY Database /Database
+
+RUN . /Database/venv/bin/activate
+
+RUN pip install -r /Database/req.txt
+
+CMD ["python", "/Database/db_script.py"]
