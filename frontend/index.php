@@ -23,7 +23,11 @@ $dynamic_web_routes = [
     'centers' => 'html/detention_centers.html',
     'centers/{page_number}' => 'html/detention_centers.html',
     'centers/{center_id}/inmates' => 'html/inmates.html',
-    'centers/{center_id}/inmates/{inmate_id}' => 'html/inmates.html',
+    'centers/{center_id}/inmates/{inmate_id}' => 'html/inmates.html',//Vlad
+    'centers/{center_id}/add-inmate' => 'html/add_inmate.html',//Vlad
+    'account/{username}/visits' => 'html/visits.html',//Vlad
+    'centers/{center_id}/inmates/{inmate_id}/add-visit' => 'html/add_visit.html',//Vlad
+    'account/{username}/visits/{visit_id}' => 'html/edit_visit.html',//Vlad
 ];
 
 function match_route($route, $routes, &$params): bool|string

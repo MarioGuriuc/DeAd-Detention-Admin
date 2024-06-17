@@ -8,7 +8,9 @@
     <title>Add Inmate</title>
     <base href="/">
     <link href="../assets/images/icon.png" rel="icon">
-    <link href="../assets/css/inmates.css" rel="stylesheet">
+    <script src="../assets/script/handle_navbar.js" type="module"></script>
+    <script src="../assets/script/add_inmate.js" type="module"></script>
+    <link href="../assets/css/add_inmate.css" rel="stylesheet">
     <link href="../assets/css/footer.css" rel="stylesheet">
     <link href="../assets/css/header.css" rel="stylesheet">
     <link href="../assets/css/nav-bar-buttons.css" rel="stylesheet">
@@ -27,9 +29,6 @@
         <label for="inmateName">Inmate name:</label>
         <input id="inmateName" name="inmateName" required type="text"><br><br>
 
-        <label for="age">Age:</label>
-        <input id="age" name="age" required type="text"><br><br>
-
         <label for="crime">Crime:</label><br>
         <input id="crime" name="crime" required type="text"><br><br>
 
@@ -39,7 +38,7 @@
         <label for="image">Image:</label>
         <input accept="image/*" id="image" name="image" type="file"><br><br>
 
-        <button type="submit">Submit</button>
+        <button id="submit" type="submit">Submit</button>
     </form>
 </div>
 

@@ -1,0 +1,75 @@
+<!DOCTYPE html> <!-- Spiridon Vlad -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Edit Visit</title>
+  <base href="/">
+  <link href="../assets/images/icon.png" rel="icon">
+  <script src="../assets/script/handle_navbar.js" type="module"></script>
+  <script src="../assets/script/edit_visit.js" type="module"></script>
+  <link href="../assets/css/configure_visit.css" rel="stylesheet">
+  <link href="../assets/css/footer.css" rel="stylesheet">
+  <link href="../assets/css/header.css" rel="stylesheet">
+  <link href="../assets/css/nav-bar-buttons.css" rel="stylesheet">
+  <link href="../assets/css/body_style.css" rel="stylesheet">
+</head>
+<body>
+
+<header>
+  <div class="header-content">
+    <h1>Edit Visit</h1>
+    <div class="nav-bar"></div>
+  </div>
+</header>
+
+<div class="config-container">
+  <form onsubmit="return false">
+    <div class="input-group">
+      <label for="date">Date of Visit:</label>
+      <input class="datepicker" id="date" name="date" required type="date" value="2024-06-15">
+    </div>
+    <div class="input-group">
+      <label for="time">Time of Visit:</label>
+      <input id="time" name="time" required type="time" value="14:30">
+    </div>
+    <div class="input-group">
+      <label for="duration">Duration of Visit (hours):</label>
+      <input id="duration" max="24" min="1" name="duration" required step="1" type="number" value="2">
+    </div>
+    <div class="input-group">
+      <label for="nature">Nature of Visit:</label>
+      <select id="nature" name="nature" required>
+        <option value="">Select nature</option>
+        <option value="Official" selected>Official Visit</option>
+        <option value="Personal">Personal Visit</option>
+        <option value="Legal">Legal Consultation</option>
+        <option value="Medical">Medical Visit</option>
+      </select>
+    </div>
+    <div class="input-group">
+      <label for="objects_exchanged">Objects Exchanged:</label>
+      <textarea id="objects_exchanged" name="objects_exchanged" required rows="4">Documents, Personal items</textarea>
+    </div>
+    <div class="input-group">
+      <label for="summary">Summary of Discussions:</label>
+      <textarea id="summary" name="summary" required rows="4">Discussed legal strategy and personal matters</textarea>
+    </div>
+    <div class="input-group">
+      <label for="health">Health and Mood of Detainee:</label>
+      <input id="health" name="health" required type="text" value="Good health, calm mood">
+    </div>
+    <div class="input-group">
+      <label for="witnesses">Number of Witnesses:</label>
+      <input id="witnesses" name="witnesses" required type="number" min="0" value="1">
+    </div>
+    <button type="submit">Save Changes</button>
+  </form>
+</div>
+
+<footer>
+  <p>&copy; 2024 Detention Centers. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
