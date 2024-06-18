@@ -12,10 +12,10 @@ if (!isLogged()) {
 document.addEventListener("DOMContentLoaded", function () {
     handleNavbar("addVisit", isLogged());
     const submitButton = document.querySelector("button[type='submit']");
-    submitButton.addEventListener("click", submitForm);
+    submitButton.addEventListener("click", submitNewVisit);
 });
 
-function submitForm(event) {
+function submitNewVisit(event) {
     event.preventDefault();
 
     const date = document.getElementById("date").value;
