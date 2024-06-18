@@ -3,7 +3,7 @@
 import {API_ADD_VISIT_URL, FRONT_VISITS_URL} from "./constants.js";
 import {handleNavbar} from "./handle_navbar.js";
 import {isLogged, getUsernameFromJwt} from "./jwt.js";
-import {extractCenterIdFromUrl, extractInmateIdFromUrl} from "./utils.js";
+import {extractCenterIdFromUrl, extractInmateIdFromUrl, setHeaders} from "./utils.js";
 
 if (!isLogged()) {
     window.location.assign("/");
@@ -55,7 +55,7 @@ function submitForm(event) {
         time: time,
         duration: duration,
         nature: nature,
-        objects_exchanged: objectsExchanged,
+        objectsExchanged: objectsExchanged,
         summary: summary,
         health: health,
         witnesses: witnesses,
@@ -70,8 +70,7 @@ function addVisit(formData) {
     const centerId = extractCenterIdFromUrl();
     http.open("PUT", API_ADD_VISIT_URL.replace("{center_id}", centerId).replace("{inmate_id}", extractInmateIdFromUrl), true);
 
-    http.setRequestHeader("Content-Type", "application/json");
-    http.setRequestHeader("Authorization", "Bearer " + localStorage.getItem("JWT"));
+    setHeaders(http)
 
     http.onreadystatechange = function () {
         if (http.readyState === 4) {

@@ -1,7 +1,5 @@
 <?php
 
-use JetBrains\PhpStorm\NoReturn;
-
 function extract_inmate_id_from_url(): ?string
 {
     $url = $_SERVER['REQUEST_URI'];
@@ -24,9 +22,10 @@ function extract_center_id_from_url(): ?string
     return $urlParts[3] ?? null;
 }
 
-#[NoReturn] function send_response_with_visits(array $visits)
+function send_response_with_visits(array $visits): void
 {
     header('Content-Type: application/json');
+    http_response_code(200);
     echo json_encode(['visits' => $visits]);
     exit;
 }

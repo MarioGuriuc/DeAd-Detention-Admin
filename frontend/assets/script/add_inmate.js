@@ -5,7 +5,7 @@
 import {API_ADD_INMATES_URL, FRONT_INMATES_URL} from "./constants.js";
 import {handleNavbar} from "./handle_navbar.js";
 import {isLogged} from "./jwt.js";
-import {extractCenterIdFromUrl} from "./utils.js";
+import {extractCenterIdFromUrl, setHeaders} from "./utils.js";
 
 if (!isLogged()) {
     window.location.assign("/");
@@ -14,12 +14,11 @@ if (!isLogged()) {
 document.addEventListener("DOMContentLoaded", function () {
     handleNavbar("addInmate", isLogged());
     const submitButton = document.getElementById("submit");
-    submitButton.addEventListener("click", submitForm);
+    submitButton.addEventListener("click", submitNewInmate);
 });
 
-function submitForm() {
+function submitNewInmate() {
     const inmateName = document.getElementById("inmateName").value;
-    console.log(inmateName);
     const crime = document.getElementById("crime").value;
     const sentence = document.getElementById("sentence").value;
     const image = document.getElementById("image").files[0];
@@ -57,9 +56,7 @@ function addInmate(formData) {
     const http = new XMLHttpRequest();
     const centerId = extractCenterIdFromUrl();
     http.open("PUT", API_ADD_INMATES_URL.replace("{center_id}", centerId), true);
-
-    http.setRequestHeader("Content-Type", "application/json");
-    http.setRequestHeader("Authorization", "Bearer " + localStorage.getItem("JWT"));
+    setHeaders(http)
 
     http.onreadystatechange = function () {
         if (http.readyState === 4) {

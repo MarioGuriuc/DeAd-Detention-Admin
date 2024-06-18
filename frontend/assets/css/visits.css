@@ -4,9 +4,8 @@
     align-items: flex-start;
     justify-content: center;
     width: 100%;
-    margin: 2rem auto;
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background: linear-gradient(rgba(110, 208, 93, 0.38), rgba(242, 242, 242, 0.7));
 }
 
 .visit-entry {
@@ -16,7 +15,7 @@
     justify-content: space-between;
     padding: 2rem;
     margin: 1rem;
-    background-color: #ffffff;
+    background: white;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-align: left;
@@ -58,6 +57,7 @@
 
 .approved-btn {
     background-color: #4CAF50;
+    cursor: pointer;
     color: white;
 }
 
@@ -121,7 +121,7 @@
     padding: 10px 20px;
     margin-top: 1rem;
     cursor: default;
-    background-color: grey; /* Red color */
+    background-color: grey;
     color: white;
     border: none;
     border-radius: 5px;
@@ -130,14 +130,14 @@
 }
 
 .expired-btn:hover {
-    background-color: grey; /* Darker red on hover */
+    background-color: grey;
 }
 
 .attended-btn {
     padding: 10px 20px;
     margin-top: 1rem;
     cursor: default;
-    background-color: grey; /* Red color */
+    background-color: grey;
     color: white;
     border: none;
     border-radius: 5px;
@@ -146,9 +146,14 @@
 }
 
 .attended-btn:hover {
-    background-color: grey; /* Darker red on hover */
+    background-color: grey;
 }
-
+.no-visits {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 20px;
+    color: #555;
+}
 @media (max-width: 992px) {
     .visit-entry {
         flex-basis: calc(50% - 2rem);

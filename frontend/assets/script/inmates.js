@@ -2,10 +2,16 @@
 
 "use strict";
 
-import {API_INMATES_COUNT_URL, API_INMATES_URL, FRONT_ADD_INMATE_URL, FRONT_ADD_VISIT_URL} from "./constants.js";
+import {
+    API_INMATES_COUNT_URL,
+    API_INMATES_URL,
+    FRONT_ADD_INMATE_URL,
+    FRONT_ADD_VISIT_URL,
+    FRONT_INMATES_URL
+} from "./constants.js";
 import {handleNavbar} from "./handle_navbar.js";
 import {isLogged} from "./jwt.js";
-import {extractCenterIdFromUrl, setHeaders} from "./utils.js";
+import {extractCenterIdFromUrl, getButton, isAdmin, setHeaders} from "./utils.js";
 
 if (!isLogged()) {
     window.location.assign("/");
@@ -14,20 +20,19 @@ if (!isLogged()) {
 document.addEventListener('DOMContentLoaded', function () {
     handleNavbar("inmates", isLogged());
     const searchBar = document.getElementById('search');
-    const inmatesContainer = document.querySelector('.inmates-container');
-    const navigationButtons = document.querySelector('.navigation-buttons');
 
     let inmatesData = [];
 
     function renderInmates(data) {
         if (data.length === 0) {
             const noInmatesDiv = document.createElement('div');
-            const inmatesContainer = document.querySelector('.inmates-container');
+            const inmatesContainer = document.querySelector('.inmates-wrapper');
             inmatesContainer.style.justifyContent = 'center';
             noInmatesDiv.textContent = 'No inmates found';
             noInmatesDiv.classList.add('no-inmates');
             inmatesContainer.appendChild(noInmatesDiv);
         } else {
+            const inmatesContainer = document.querySelector('.inmates-wrapper');
             inmatesContainer.innerHTML = '';
             data.forEach(function (inmate) {
                 const inmateDiv = document.createElement('div');
@@ -80,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function fetchInmates(pageNumber) {
         const http = new XMLHttpRequest();
-        http.open('GET', API_INMATES_URL.replace('{page_number}', pageNumber).replace('{center_id}', extractCenterIdFromUrl), true);
+        http.open('GET', API_INMATES_URL.replace('{center_id}', extractCenterIdFromUrl), true);
         setHeaders(http);
 
         http.onreadystatechange = function () {
@@ -102,6 +107,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function fetchInmatesCount() {
         const http = new XMLHttpRequest();
         http.open('GET', API_INMATES_COUNT_URL.replace('{center_id}', extractCenterIdFromUrl), true);
+        console.log(API_INMATES_COUNT_URL.replace('{center_id}', extractCenterIdFromUrl));
         setHeaders(http);
 
         let count = 0;
@@ -111,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 switch (http.status) {
                     case 200:
                         count = JSON.parse(http.responseText).count;
-                        createNavigationButtons(Math.ceil(count / 15));
+                        createNavigationButtons(Math.ceil(count / 10));
                         break;
                     case 401:
                         window.location.assign("/login");
@@ -126,22 +132,30 @@ document.addEventListener('DOMContentLoaded', function () {
             const button = document.createElement('button');
             button.textContent = i.toString();
             button.addEventListener('click', () => {
+                history.pushState(null, null, FRONT_INMATES_URL.replace('{center_id}',extractCenterIdFromUrl)+ '/p'+i);
                 fetchInmates(i);
-                history.pushState(null, null, '/inmates/p' + i);
                 window.location.reload();
             });
-            navigationButtons.appendChild(button);
+            //document.querySelector('.navigation-buttons').appendChild(button); FOR LATER USE FOR PAGINATION
         }
     }
 
-    const pageNumber = window.location.href.split('/').pop().slice(1) || 1;
-    fetchInmates(pageNumber);
-    fetchInmatesCount();
+    if (isAdmin()){
+        const addInmateDiv = document.createElement('div');
+        addInmateDiv.classList.add('add-center');
+        const addInmateLink = document.createElement('a');
+        addInmateLink.addEventListener('click', () => {
+            window.location.assign(FRONT_ADD_INMATE_URL.replace('{center_id}', extractCenterIdFromUrl));
+        });
+        const addInmateButton = document.createElement('button');
+        addInmateButton.setAttribute('id', 'add-inmate-btn');
+        addInmateButton.textContent = 'Add More Inmates';
+        addInmateLink.appendChild(addInmateButton);
+        addInmateDiv.appendChild(addInmateLink);
+        document.querySelector('.inmates-container').appendChild(addInmateDiv);
+    }
 
-    const centerId = extractCenterIdFromUrl();
-    const addInmateButton = document.getElementById('add-inmate')
-    addInmateButton.addEventListener("click", (event) => {
-        event.preventDefault();
-        window.location.assign(FRONT_ADD_INMATE_URL.replace('{center_id}', centerId));
-    });
+    const pageNumber = window.location.href.split('/').pop().slice(1) || 1;
+    fetchInmatesCount();
+    fetchInmates(pageNumber);
 });

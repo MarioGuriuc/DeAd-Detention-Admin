@@ -22,28 +22,14 @@ $inmates_collection = $database->selectCollection('inmates');
 
 $url = $_SERVER['REQUEST_URI'];
 
-$page_number = $params[0] ?? 1;
 
-if (!is_numeric($page_number) || $page_number < 1) {
-    $page_number = 1;
-}
-
-$limit = 12;
-$skip = ($page_number - 1) * $limit;
-
-$center_id = extract_center_id_from_url();
-$centerObjectId = new ObjectId($center_id);
+$center_id = $params[0] ?? null;
 
 $cursor = $inmates_collection->find([
-    'center' => $centerObjectId
-], [
-    'skip' => $skip,
-    'limit' => $limit
+    'center' => new ObjectId($center_id)
 ]);
 
 $inmates = [];
-
-$center_id = extract_center_id_from_url();
 
 foreach ($cursor as $inmate) {
     $filtered_inmate = [

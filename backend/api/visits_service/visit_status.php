@@ -3,6 +3,7 @@
 
 require_once 'utils.php';
 require_once 'constants.php';
+use MongoDB\BSON\ObjectId;
 
 if ($_SERVER["REQUEST_METHOD"] !== "PATCH") {
     send_response("Method not allowed", 405);
@@ -28,22 +29,21 @@ if (empty($data["status"])) {
     send_response("Status is required", 400);
 }
 
-$allowed_statuses = ["pending", "approved", "denied","attended"];
-if (!in_array($data["status"], $allowed_statuses)) {
+if (!in_array($data["status"], VISIT_STATUSES)) {
     send_response("Invalid status", 400);
 }
 
 $database = get_db_conn();
 $visits_collection = $database->selectCollection('visits');
 
-$visit = $visits_collection->findOne(["_id" => new MongoDB\BSON\ObjectId($visit_id)]);
+$visit = $visits_collection->findOne(["_id" => new ObjectId($visit_id)]);
 
 if (!$visit) {
     send_response("Visit not found", 404);
 }
 
 $updateResult = $visits_collection->updateOne(
-    ["_id" => new MongoDB\BSON\ObjectId($visit_id)],
+    ["_id" => new ObjectId($visit_id)],
     ['$set' => ["status" => $data["status"]]]
 );
 

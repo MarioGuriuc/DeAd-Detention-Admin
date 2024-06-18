@@ -22,7 +22,6 @@ if ($jwt->role !== 'admin') {
 
 $data = receive_json();
 
-
 $empty_fields = is_data_empty($data, INMATE_REQUIRED_FIELDS);
 
 if ($empty_fields) {
@@ -36,7 +35,7 @@ if (!empty($data['image'])) {
     $image = new Binary($data['image']);
 }
 
-$center_id = extract_center_id_from_url();
+$center_id = $params[0] ?? null;
 $inmate = [
     'image' => new Binary($data['image']),
     'fullName' => $data['name'],

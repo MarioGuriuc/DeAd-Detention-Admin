@@ -40,7 +40,7 @@ export {
     FRONT_CHANGE_PASSWORD_URL,
 };
 
-//VLAD --------------------------------------------------------------------------------------------------------------
+//VLAD -----------------------------------------------------------WORKING ON
 //BACKEND
 const API_INMATES_COUNT_URL = `${API_URL}/centers/{center_id}/inmates/count`;
 const API_INMATES_URL = `${API_URL}/centers/{center_id}/inmates`;

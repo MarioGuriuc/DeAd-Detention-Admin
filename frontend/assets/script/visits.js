@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function () {
             `;
 
                 visitDiv.appendChild(createTextElement('Nature', visit.nature));
-                visitDiv.appendChild(createTextElement('Objects Exchanged', visit.objects_exchanged));
+                visitDiv.appendChild(createTextElement('Objects Exchanged', visit.objectsExchanged));
                 visitDiv.appendChild(createTextElement('Summary', visit.summary));
                 visitDiv.appendChild(createTextElement('Health and Mood', visit.health));
                 visitDiv.appendChild(createTextElement('Witnesses', visit.witnesses));

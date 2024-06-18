@@ -1,9 +1,9 @@
 "use strict";
 
-import { API_EDIT_VISIT_URL, FRONT_VISITS_URL ,API_VISITS_URL} from "./constants.js";
-import { handleNavbar } from "./handle_navbar.js";
-import { isLogged, getUsernameFromJwt } from "./jwt.js";
-import { extractVisitIdFromUrl } from "./utils.js";
+import {API_EDIT_VISIT_URL, FRONT_VISITS_URL, API_VISITS_URL} from "./constants.js";
+import {handleNavbar} from "./handle_navbar.js";
+import {isLogged, getUsernameFromJwt} from "./jwt.js";
+import {extractVisitIdFromUrl, setHeaders} from "./utils.js";
 
 if (!isLogged()) {
     window.location.assign("/");
@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
     loadVisitData();
 
     const submitButton = document.querySelector("button[type='submit']");
-    submitButton.addEventListener("click", submitForm);
+    submitButton.addEventListener("click", submitEditedVisit);
 });
 
 function loadVisitData() {
@@ -23,7 +23,7 @@ function loadVisitData() {
     const http = new XMLHttpRequest();
     http.open("GET", API_VISITS_URL.replace("{username}", username), true);
 
-    http.setRequestHeader("Authorization", "Bearer " + localStorage.getItem("JWT"));
+    setHeaders(http);
 
     http.onreadystatechange = function () {
         if (http.readyState === 4 && http.status === 200) {
@@ -35,10 +35,20 @@ function loadVisitData() {
                 document.getElementById("time").value = visitData.time;
                 document.getElementById("duration").value = visitData.duration;
                 document.getElementById("nature").value = visitData.nature;
-                document.getElementById("objects_exchanged").value = visitData.objects_exchanged;
+                document.getElementById("objectsExchanged").value = visitData.objectsExchanged;
                 document.getElementById("summary").value = visitData.summary;
                 document.getElementById("health").value = visitData.health;
                 document.getElementById("witnesses").value = visitData.witnesses;
+
+                if (visitData.status === "attended") {
+                    document.getElementById("date").disabled = true;
+                    document.getElementById("time").disabled = true;
+                    document.getElementById("duration").disabled = true;
+                    document.getElementById("nature").disabled = true;
+                    document.getElementById("objectsExchanged").disabled = true;
+                    document.getElementById("health").disabled = true;
+                    document.getElementById("witnesses").disabled = true;
+                }
             } else {
                 alert("Visit not found.");
             }
@@ -48,14 +58,14 @@ function loadVisitData() {
     http.send();
 }
 
-function submitForm(event) {
+function submitEditedVisit(event) {
     event.preventDefault();
 
     const date = document.getElementById("date").value;
     const time = document.getElementById("time").value;
     const duration = parseFloat(document.getElementById("duration").value);
     const nature = document.getElementById("nature").value;
-    const objectsExchanged = document.getElementById("objects_exchanged").value;
+    const objectsExchanged = document.getElementById("objectsExchanged").value;
     const summary = document.getElementById("summary").value;
     const health = document.getElementById("health").value;
     const witnesses = parseInt(document.getElementById("witnesses").value, 10);
@@ -88,7 +98,7 @@ function submitForm(event) {
         time: time,
         duration: duration,
         nature: nature,
-        objects_exchanged: objectsExchanged,
+        objectsExchanged: objectsExchanged,
         summary: summary,
         health: health,
         witnesses: witnesses
@@ -100,10 +110,8 @@ function submitForm(event) {
 function editVisit(formData) {
     const http = new XMLHttpRequest();
     const visitId = extractVisitIdFromUrl();
-    http.open("PUT", API_EDIT_VISIT_URL.replace("{visit_id}", visitId), true);
-
-    http.setRequestHeader("Content-Type", "application/json");
-    http.setRequestHeader("Authorization", "Bearer " + localStorage.getItem("JWT"));
+    http.open("PATCH", API_EDIT_VISIT_URL.replace("{visit_id}", visitId), true);
+    setHeaders(http);
 
     http.onreadystatechange = function () {
         if (http.readyState === 4) {

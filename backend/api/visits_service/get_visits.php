@@ -26,7 +26,7 @@ $username = extract_username_from_url();
 
 $url = $_SERVER['REQUEST_URI'];
 
-$cursor = $visits_collection->find(['created_by' => $username]);
+$cursor = $visits_collection->find(['creator' => $username]);
 
 $visits = [];
 
@@ -56,11 +56,11 @@ foreach ($cursor as $visit) {
         'time' => $visit['time'],
         'duration' => $visit['duration'],
         'nature' => $visit['nature'],
-        'objects_exchanged' => $visit['objects_exchanged'],
+        'objectsExchanged' => $visit['objectsExchanged'],
         'summary' => $visit['summary'],
         'health' => $visit['health'],
         'witnesses' => $visit['witnesses'],
-        'created_by' => $visit['created_by'],
+        'creator' => $visit['creator'],
         'center' => [
             'name' => $center['title']
         ],

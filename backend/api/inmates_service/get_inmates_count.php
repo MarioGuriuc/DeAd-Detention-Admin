@@ -4,6 +4,7 @@
 
 declare(strict_types=1);
 
+use MongoDB\BSON\ObjectId;
 require_once "utils.php";
 
 if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
@@ -19,13 +20,13 @@ if (!$jwt) {
 $database = get_db_conn();
 $inmates = $database->selectCollection('inmates');
 
-$center_id = extract_center_id_from_url();
+$center_id = $params[0] ?? null;
 
 if (!$center_id) {
-    send_response('Bad Request: Missing center_id', 400);
+    send_response('Missing center_id', 400);
 }
 
-$inmates_cursor = $inmates->find(['center' => $center_id]);
+$inmates_cursor = $inmates->find(['center' => new ObjectId($center_id)]);
 $inmates_list = iterator_to_array($inmates_cursor);
 
 send_inmates_count(count($inmates_list));
