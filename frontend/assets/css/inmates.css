@@ -36,15 +36,23 @@
     max-width: 1000px;
     margin: 30px auto;
     text-align: center;
-    display: flex;
     flex-wrap: wrap;
     justify-content: center;
+}
+.main-content {
+    display: flex;
+    flex-direction: column;
+    min-height: 100px;
+    justify-content: center;
+    align-items: center;
 }
 
 div.inmates-wrapper {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    min-width: 300px;
+    justify-content: space-evenly;
+    align-content: center;
 }
 
 .no-inmates {
@@ -71,6 +79,7 @@ div.inmates-wrapper {
     text-align: left;
     display: flex;
     align-items: center;
+    align-content: center;
     justify-content: space-between;
 }
 

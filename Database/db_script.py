@@ -84,7 +84,109 @@ center_schema = {
     }
 }
 
+inmates_schema = {
+    "$jsonSchema": {
+        "bsonType": "object",
+        "required": ["image", "fullName", "crime", "sentence", "center"],
+        "properties": {
+            "image": {
+                "bsonType": "binData",
+                "description": "Please provide a valid image in binary format"
+            },
+            "fullName": {
+                "bsonType": "string",
+                "minLength": 5,
+                "maxLength": 50,
+                "description": "Please enter the full name of the inmate"
+            },
+            "crime": {
+                "bsonType": "string",
+                "minLength": 10,
+                "maxLength": 50,
+                "description": "Please enter the crime committed by the inmate"
+            },
+            "sentence": {
+                "bsonType": "string",
+                "minLength": 10,
+                "maxLength": 50,
+                "description": "Please enter the sentence of the inmate"
+            },
+            "center": {
+                "bsonType": "objectId",
+                "description": "Please provide a valid ObjectId for the center"
+            }
+        }
+    }
+}
+
+visits_schema = {
+    "$jsonSchema": {
+        "bsonType": "object",
+        "required": ["center", "inmate", "date", "time", "duration", "nature", "objectsExchanged", "summary", "health", "witnesses", "status", "creator"],
+        "properties": {
+            "center": {
+                "bsonType": "objectId",
+                "description": "Please provide a valid ObjectId for the center"
+            },
+            "inmate": {
+                 "bsonType": "objectId",
+                 "description": "Please provide a valid ObjectId for the inmate"
+            },
+            "date": {
+                  "bsonType": "string",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                  "description": "Please enter a valid date in YYYY-MM-DD format"
+            },
+            "time": {
+                  "bsonType": "string",
+                  "pattern": "^\\d{2}:\\d{2}$",
+                  "description": "Please enter a valid time in HH:MM format"
+            },
+            "duration": {
+                  "bsonType": "int",
+                  "minimum": 1,
+                  "description": "Please enter a valid duration in hours"
+            },
+            "nature": {
+                  "bsonType": "string",
+                  "enum": ["Official", "Personal", "Legal", "Medical"],
+                  "description": "Nature must be one of the allowed values: Official, Personal, Legal, Medical"
+            },
+            "objectsExchanged": {
+                  "bsonType": "string",
+                  "description": "Please describe the objects exchanged during the visit"
+            },
+            "summary": {
+                  "bsonType": "string",
+                  "description": "Please provide a summary of the visit"
+            },
+            "health": {
+                  "bsonType": "string",
+                  "description": "Please provide health details discussed during the visit"
+            },
+            "witnesses": {
+                  "bsonType": "int",
+                  "minimum": 1,
+                  "maximum": 10,
+                  "description": "Please provide the number of witnesses, must be a positive integer"
+            },
+            "status": {
+                  "bsonType": "string",
+                  "enum": ["pending", "attended", "denied"],
+                  "description": "Status must be one of the allowed values: pending, attended, cancelled"
+            },
+            "creator": {
+                  "bsonType": "string",
+                  "description": "Please provide the creator of the visit record"
+            }
+        }
+    }
+}
+
+
 db.create_collection("users", validator=user_schema)
 db.create_collection("centers", validator=center_schema)
+db.create_collection("inmates", validator=inmates_schema)
+db.create_collection("visits", validator=visits_schema)
 
 print("Database and collections created successfully with validation schemas.")

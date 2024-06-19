@@ -11,7 +11,7 @@ import {
 } from "./constants.js";
 import {handleNavbar} from "./handle_navbar.js";
 import {isLogged} from "./jwt.js";
-import {extractCenterIdFromUrl, getButton, isAdmin, setHeaders} from "./utils.js";
+import {extractCenterIdFromUrl, isAdmin, setHeaders} from "./utils.js";
 
 if (!isLogged()) {
     window.location.assign("/");
@@ -72,10 +72,13 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function filterInmates(searchTerm) {
-        const filteredInmates = inmatesData.filter(function (inmate) {
+        const filteredInmates = inmatesData.filter(inmate => {
             return inmate.name.toLowerCase().includes(searchTerm.toLowerCase());
         });
-        renderInmates(filteredInmates);
+        console.log(filteredInmates);
+        if (filteredInmates.length > 0) {
+            renderInmates(filteredInmates);
+        }
     }
 
     searchBar.addEventListener('input', function (event) {
@@ -152,7 +155,7 @@ document.addEventListener('DOMContentLoaded', function () {
         addInmateButton.textContent = 'Add More Inmates';
         addInmateLink.appendChild(addInmateButton);
         addInmateDiv.appendChild(addInmateLink);
-        document.querySelector('.inmates-container').appendChild(addInmateDiv);
+        document.querySelector('.main-content').appendChild(addInmateDiv);
     }
 
     const pageNumber = window.location.href.split('/').pop().slice(1) || 1;

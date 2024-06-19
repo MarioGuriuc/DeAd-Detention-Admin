@@ -47,6 +47,9 @@ $inmate = [
 $database = get_db_conn();
 $inmates_collection = $database->selectCollection('inmates');
 
-$inmates_collection->insertOne($inmate);
+$result = $inmates_collection->insertOne($inmate);
 
+if(!$result->getInsertedCount()) {
+    send_response("Inmate not added", 500);
+}
 send_response("Inmate added", 201);
