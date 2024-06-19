@@ -49,14 +49,22 @@ const API_EDIT_VISIT_URL = `${API_URL}/visits/{visit_id}`;
 const API_VISIT_STATUS_URL = `${API_URL}/visits/{visit_id}/status`;
 const API_VISITS_URL = `${API_URL}/account/{username}/visits`;
 const API_ADD_VISIT_URL = `${API_URL}/centers/{center_id}/inmates/{inmate_id}/add-visit`;
+const API_STATISTICS_URL = `${API_URL}/statistics/{center_id}/{inmate_id}/{start_date}/{end_date}`;
+
 //FRONTEND
 const FRONT_VISITS_URL = `${FRONTEND_URL}/account/{username}/visits`;
 const FRONT_ADD_VISIT_URL = `${FRONTEND_URL}/centers/{center_id}/inmates/{inmate_id}/add-visit`;
 const FRONT_EDIT_VISIT_URL = `${FRONTEND_URL}/account/{username}/visits/{visit_id}`;
 const FRONT_ADD_INMATE_URL = `${FRONTEND_URL}/centers/{center_id}/add-inmate`;
 const FRONT_INMATES_URL = `${FRONTEND_URL}/centers/{center_id}/inmates`;
+const FRONT_ADD_CENTER_URL = `${FRONTEND_URL}/add-center`;
+const FRONT_ADD_INMATE_ADMIN_URL = `${FRONTEND_URL}/add-inmate`;
+const FRONT_STATISTICS_URL = `${FRONTEND_URL}/statistics`;
 
 export {
+    API_STATISTICS_URL,
+    FRONT_STATISTICS_URL,
+    FRONT_ADD_INMATE_ADMIN_URL,
     API_EDIT_VISIT_URL,
     FRONT_EDIT_VISIT_URL,
     FRONT_ADD_VISIT_URL,
@@ -69,4 +77,5 @@ export {
     API_INMATES_COUNT_URL,
     API_ADD_INMATES_URL,
     FRONT_ADD_INMATE_URL,
+    FRONT_ADD_CENTER_URL,
 };

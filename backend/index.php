@@ -32,6 +32,7 @@ $api_routes = [
         'api/centers/{center_id}/inmates' => 'api/inmates_service/get_inmates.php',//Vlad
         'api/centers/{center_id}/inmates/count' => 'api/inmates_service/get_inmates_count.php',//Vlad
         'api/account/{username}/visits' => 'api/visits_service/get_visits.php',//Vlad
+        'api/statistics/{center_id}/{inmate_id}/{start_date}/{end_date}' => 'api/admin_service/get_statistics.php',//Vlad
     ],
     'POST' => [
         'api/login' => 'api/user_service/login.php',

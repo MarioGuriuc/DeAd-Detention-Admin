@@ -13,7 +13,7 @@ if (!isLogged()) {
 
 document.addEventListener('DOMContentLoaded', function () {
     handleNavbar("visits", isLogged());
-
+    const searchBar = document.getElementById('search');
     document.querySelector('.visits-container').addEventListener('click', function (event) {
         if (event.target && event.target.classList.contains('edit-btn')) {
             const visitId = event.target.dataset.id;
@@ -145,6 +145,23 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
     }
+
+    function filterVisits(searchTerm) {
+        const filteredVisits = visitsData.visits.filter(visit => {
+            return visit.inmate.fullName.toLowerCase().includes(searchTerm.toLowerCase());
+        });
+        const searchedVisits = JSON.parse(JSON.stringify({visits: filteredVisits}));
+        if (searchedVisits.visits.length > 0) {
+            {
+                renderVisits(searchedVisits);
+            }
+        }
+    }
+
+    searchBar.addEventListener('input', function (event) {
+        const searchTerm = event.target.value.trim();
+        filterVisits(searchTerm);
+    });
 
     function handleEdit(visitId) {
         const username = getUsernameFromJwt();

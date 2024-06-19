@@ -13,6 +13,8 @@
     <link href="../assets/css/nav-bar-buttons.css" rel="stylesheet">
     <link href="../assets/css/body_style.css" rel="stylesheet">
     <link href="../assets/css/generate_stats.css" rel="stylesheet">
+    <script defer src="../assets/script/stats.js" type="module"></script>
+    <script defer src="../assets/script/handle_navbar.js" type="module"></script>
 </head>
 <body>
 <header>
@@ -23,43 +25,41 @@
 </header>
 
 <main>
-    <section class="generate-stats-section">
-        <div class="generate-stats-container">
-            <h1>Generate Stats</h1>
-            <form onsubmit="return false">
-                <div class="input-group">
-                    <label for="detention-center">Detention Center:</label>
-                    <select id="detention-center" name="detention-center" required>
-                        <option value="1">Detention Center 1</option>
-                        <option value="2">Detention Center 2</option>
-                        <option value="3">Detention Center 3</option>
-                        <option value="4">Detention Center 4</option>
-                        <option value="5">Detention Center 5</option>
-                    </select>
-                </div>
-                <div class="input-group">
-                    <label for="inmates-checkboxes">Inmate/s:</label>
-                    <div id="inmates-checkboxes">
-                        <input id="all-inmates" name="inmate" type="checkbox" value="0">
-                        <label for="all-inmates">All Inmates</label><br>
-                        <input id="inmate1" name="inmate" type="checkbox" value="1">
-                        <label for="inmate1">Inmate 1</label><br>
-                        <input id="inmate2" name="inmate" type="checkbox" value="2">
-                        <label for="inmate2">Inmate 2</label><br>
+    <div class="main-content">
+        <section class="generate-stats-section">
+            <div class="generate-stats-container">
+                <h1>Generate Stats</h1>
+                <form onsubmit="return false">
+                    <div class="input-group">
+                        <label for="detention-center">Detention Center:</label>
+                        <select id="detention-center" name="detention-center" required>
+                            <option value="all">All</option>
+                        </select>
                     </div>
-                </div>
-                <div class="input-group">
-                    <label for="start-date">Start Date:</label>
-                    <input id="start-date" name="start-date" required type="date">
-                </div>
-                <div class="input-group">
-                    <label for="end-date">End Date:</label>
-                    <input id="end-date" name="end-date" required type="date">
-                </div>
-                <button type="submit">Generate Stats</button>
-            </form>
+                    <div class="input-group">
+                        <label for="inmates">Inmate:</label>
+                        <select id="inmates" name="inmates" required>
+                            <option value="all">All</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="start-date">Start Date:</label>
+                        <input id="start-date" name="start-date" required type="date">
+                    </div>
+                    <div class="input-group">
+                        <label for="end-date">End Date:</label>
+                        <input id="end-date" name="end-date" required type="date">
+                    </div>
+                    <button type="submit">Generate Stats</button>
+                </form>
+                <button id="downloadHTML">Download HTML</button>
+                <button id="downloadCSV">Download CSV</button>
+                <button id="downloadJSON">Download JSON</button>
+            </div>
+        </section>
+        <div class="stats-container" id="stats-container">
         </div>
-    </section>
+    </div>
 
     <footer>
         <p>&copy; 2024 Detention Center. All rights reserved.</p>

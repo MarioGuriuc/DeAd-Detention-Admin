@@ -9,9 +9,10 @@ $web_routes = [
     'login' => 'html/login.html',
     'register' => 'html/register.html',
     'add-center' => 'html/add_center.html',
-    'add-inmate' => 'html/add_inmate.html',
+    'add-inmate' => 'html/add_inmate_admin.html',
     'centers' => 'html/detention_centers.html',
     'forgot-password' => 'html/forgot_password.html',
+    'statistics' => 'html/generate_stats.html',
 ];
 
 $dynamic_web_routes = [
