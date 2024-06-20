@@ -6,6 +6,7 @@ import {API_ADD_INMATES_URL, FRONT_INMATES_URL} from "./constants.js";
 import {handleNavbar} from "./handle_navbar.js";
 import {isLogged} from "./jwt.js";
 import {extractCenterIdFromUrl, setHeaders} from "./utils.js";
+import {openPopup} from "./popup.js";
 
 if (!isLogged()) {
     window.location.assign("/");
@@ -13,7 +14,7 @@ if (!isLogged()) {
 
 document.addEventListener("DOMContentLoaded", function () {
     handleNavbar("addInmate", isLogged());
-    const submitButton = document.getElementById("submit");
+    const submitButton = document.getElementById("add-inmate-btn");
     submitButton.addEventListener("click", submitNewInmate);
 });
 
@@ -27,7 +28,6 @@ function submitNewInmate() {
         const reader = new FileReader();
         reader.onload = function (event) {
             const imageData = event.target.result.split(',')[1];
-            console.log(imageData);
 
             const formData = {
                 name: inmateName,
@@ -47,7 +47,7 @@ function submitNewInmate() {
         };
         addInmate(formData);
     } else {
-        alert("All fields are required.");
+        openPopup("All fields are required.");
     }
 }
 
@@ -63,14 +63,16 @@ function addInmate(formData) {
             const response = JSON.parse(http.responseText);
             switch (http.status) {
                 case 201:
+                    openPopup(response["result"]);
                     setTimeout(() => {
                         window.location.assign(FRONT_INMATES_URL.replace("{center_id}", centerId));
                     }, 2000);
                     break;
                 case 401:
+                    openPopup(response["result"]);
                     break;
                 default:
-                    alert("Failed to add inmate. Please try again later.");
+                    openPopup(response["result"]);
             }
         }
     };

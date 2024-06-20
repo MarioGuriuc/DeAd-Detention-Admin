@@ -75,7 +75,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const filteredInmates = inmatesData.filter(inmate => {
             return inmate.name.toLowerCase().includes(searchTerm.toLowerCase());
         });
-        console.log(filteredInmates);
         if (filteredInmates.length > 0) {
             renderInmates(filteredInmates);
         }
@@ -110,7 +109,6 @@ document.addEventListener('DOMContentLoaded', function () {
     function fetchInmatesCount() {
         const http = new XMLHttpRequest();
         http.open('GET', API_INMATES_COUNT_URL.replace('{center_id}', extractCenterIdFromUrl), true);
-        console.log(API_INMATES_COUNT_URL.replace('{center_id}', extractCenterIdFromUrl));
         setHeaders(http);
 
         let count = 0;

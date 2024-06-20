@@ -114,7 +114,6 @@ function fetchStats() {
             if (http.status === 200) {
                 try {
                     let stats = JSON.parse(http.responseText);
-                    console.log(stats);
                     window.statsData = stats;
                     displayStats(stats);
                 } catch (error) {

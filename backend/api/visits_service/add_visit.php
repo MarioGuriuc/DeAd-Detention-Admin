@@ -45,8 +45,7 @@ if ($data['witnesses'] <= 0) {
     send_response("The number of witnesses must be a positive number.", 400);
 }
 
-$allowed_natures = ['Official','Personal Visit','Legal Consultation','Medical Visit','Religious Visit'];
-if (!in_array($data['nature'], $allowed_natures)) {
+if (!in_array($data['nature'], VISIT_ALLOWED_NATURES)) {
     send_response("Invalid nature of visit.", 400);
 }
 

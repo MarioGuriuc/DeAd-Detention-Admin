@@ -13,6 +13,7 @@
     <link href="../assets/css/header.css" rel="stylesheet">
     <link href="../assets/css/nav-bar-buttons.css" rel="stylesheet">
     <link href="../assets/css/body_style.css" rel="stylesheet">
+    <link href="../assets/css/popup.css" rel="stylesheet">
 </head>
 <body>
 
@@ -64,7 +65,10 @@
             <label for="witnesses">Number of Witnesses:</label>
             <input id="witnesses" name="witnesses" required type="number" min="0">
         </div>
-        <button type="submit">Confirm</button>
+        <div class="pop-up-container" id="add-visit-btn">
+            <button class="button-pop-up">Submit</button>
+            <span class="pop-up-message" id="message"></span>
+        </div>
     </form>
 </div>
 

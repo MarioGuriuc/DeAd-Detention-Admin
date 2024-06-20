@@ -15,6 +15,7 @@
     <link href="../assets/css/header.css" rel="stylesheet">
     <link href="../assets/css/nav-bar-buttons.css" rel="stylesheet">
     <link href="../assets/css/body_style.css" rel="stylesheet">
+    <link href="../assets/css/popup.css" rel="stylesheet">
 </head>
 <body>
 <header>
@@ -38,7 +39,10 @@
         <label for="image">Image:</label>
         <input accept="image/*" id="image" name="image" type="file"><br><br>
 
-        <button id="submit" type="submit">Submit</button>
+        <div class="pop-up-container" id="add-inmate-btn">
+            <button class="button-pop-up">Submit</button>
+            <span class="pop-up-message" id="message"></span>
+        </div>
     </form>
 </div>
 

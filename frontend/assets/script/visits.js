@@ -191,7 +191,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function handleApproval(visitId, status) {
-        console.log(status);
         const http = new XMLHttpRequest();
         const url = API_VISIT_STATUS_URL.replace('{visit_id}', visitId);
 

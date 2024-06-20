@@ -4,6 +4,7 @@ import {API_EDIT_VISIT_URL, FRONT_VISITS_URL, API_VISITS_URL} from "./constants.
 import {handleNavbar} from "./handle_navbar.js";
 import {isLogged, getUsernameFromJwt} from "./jwt.js";
 import {extractVisitIdFromUrl, setHeaders} from "./utils.js";
+import {openPopup} from "./popup.js";
 
 if (!isLogged()) {
     window.location.assign("/");
@@ -13,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
     handleNavbar("visits", isLogged());
     loadVisitData();
 
-    const submitButton = document.querySelector("button[type='submit']");
+    const submitButton = document.getElementById("add-visit-btn")
     submitButton.addEventListener("click", submitEditedVisit);
 });
 
@@ -50,7 +51,7 @@ function loadVisitData() {
                     document.getElementById("witnesses").disabled = true;
                 }
             } else {
-                alert("Visit not found.");
+                openPopup("Visit not found.");
             }
         }
     };
@@ -74,22 +75,22 @@ function submitEditedVisit(event) {
     const selectedDate = new Date(date);
 
     if (!date || !time || !duration || !nature || !objectsExchanged || !summary || !health || !witnesses) {
-        alert("All fields are required.");
+        openPopup("All fields are required.");
         return;
     }
 
     if (selectedDate <= currentDate) {
-        alert("The date of the visit must be in the future.");
+        openPopup("The date of the visit must be in the future.");
         return;
     }
 
     if (witnesses <= 0) {
-        alert("The number of witnesses must be a positive number.");
+        openPopup("The number of witnesses must be a positive number.");
         return;
     }
 
     if (duration <= 0) {
-        alert("The duration must be a positive number.");
+        openPopup("The duration must be a positive number.");
         return;
     }
 
@@ -118,16 +119,16 @@ function editVisit(formData) {
             const response = JSON.parse(http.responseText);
             switch (http.status) {
                 case 200:
-                    alert("Visit updated successfully.");
+                    openPopup(response["result"]);
                     setTimeout(() => {
                         window.location.assign(FRONT_VISITS_URL.replace("{username}", getUsernameFromJwt()));
                     }, 2000);
                     break;
                 case 401:
-                    alert("Unauthorized access. Please log in.");
+                    openPopup(response["result"]);
                     break;
                 default:
-                    alert("Failed to update visit. Please try again later.");
+                    openPopup(response["result"]);
             }
         }
     };
