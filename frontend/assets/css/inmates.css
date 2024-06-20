@@ -1,34 +1,100 @@
+.search-bar {
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.search-bar input[type="text"] {
+    width: calc(100% - 180px);
+    padding: 10px;
+    border-radius: 5px 0 0 5px;
+    border: 1px solid #ccc;
+    border-right: none;
+}
+
+.search-bar button {
+    width: 160px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+}
+
+.search-bar button:hover {
+    background-color: #45a049;
+}
+
 .inmates-container {
-    display: flex;
+    background: linear-gradient(rgba(110, 208, 93, 0.38), rgba(242, 242, 242, 0.7));
+    padding: 30px 30px 50px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 1000px;
+    margin: 30px auto;
+    text-align: center;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 10px;
+}
+.main-content {
+    display: flex;
+    flex-direction: column;
+    min-height: 100px;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 100px;
+}
+
+div.inmates-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    min-width: 300px;
+    justify-content: space-evenly;
+    align-content: center;
+}
+
+.no-inmates {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 20px;
+    color: #555;
 }
 
 .inmate {
     display: flex;
-    align-items: center;
-    text-align: center;
-    width: 300px;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.inmate {
     background-color: #f9f9f9;
+    padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+    width: calc((100% - 60px) / 4);
+    margin-bottom: 20px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: space-between;
 }
 
 .inmate img {
-    width: 100px;
-    height: auto;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
     border-radius: 10px;
     margin-right: 15px;
 }
 
 .inmate-info {
     flex-grow: 1;
-}
-
-.inmate-info h3 {
-    margin-top: 0;
+    text-align: left;
 }
 
 .inmate-info p {
@@ -50,7 +116,7 @@ div.add-inmate {
     padding: 50px;
 }
 
-#add-inmate {
+#add-inmate-btn {
     font: inherit;
     margin-top: 20px;
     display: inline-block;
@@ -64,13 +130,16 @@ div.add-inmate {
 
 @media screen and (max-width: 768px) {
     .inmate {
+        flex-direction: column;
         text-align: center;
         width: 100%;
-        background-color: #f9f9f9;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         padding: 20px;
         margin-bottom: 20px;
+    }
+
+    .inmate img {
+        margin-right: 0;
+        margin-bottom: 15px;
     }
 
     .inmates-container {
@@ -81,24 +150,17 @@ div.add-inmate {
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {
     .inmate {
-        text-align: center;
+        text-align: left;
         width: calc((100% - 40px) / 4);
-        background-color: #f9f9f9;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         padding: 20px;
         margin-bottom: 20px;
     }
-
 }
 
 @media screen and (min-width: 1024px) and (max-width: 1200px) {
     .inmate {
-        text-align: center;
+        text-align: left;
         width: calc((100% - 40px) / 4);
-        background-color: #f9f9f9;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         padding: 20px;
         margin-bottom: 20px;
     }
@@ -106,13 +168,16 @@ div.add-inmate {
 
 @media screen and (min-width: 280px) and (max-width: 320px) {
     .inmate {
+        flex-direction: column;
         text-align: center;
         width: 80%;
-        background-color: #f9f9f9;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         padding: 20px;
         margin-bottom: 20px;
+    }
+
+    .inmate img {
+        margin-right: 0;
+        margin-bottom: 15px;
     }
 
     .inmates-container {
@@ -123,11 +188,8 @@ div.add-inmate {
 
 @media screen and (min-width: 1024px) and (max-height: 600px) {
     .inmate {
-        text-align: center;
+        text-align: left;
         width: calc((100% - 40px) / 4);
-        background-color: #f9f9f9;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         padding: 20px;
         margin-bottom: 20px;
     }

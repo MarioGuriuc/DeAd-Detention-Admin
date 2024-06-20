@@ -36,3 +36,25 @@ export function isAdmin() {
     const data = JSON.parse(atob(payload));
     return data["role"] === "admin";
 }
+
+export function extractCenterIdFromUrl() {
+    const urlParts = window.location.pathname.split('/');
+    return urlParts[2];
+}
+
+export function extractInmateIdFromUrl() {
+    const url = window.location.href;
+    const regex = /inmates\/([a-f0-9]{24})\/add-visit/;
+    const match = url.match(regex);
+    if (match && match[1]) {
+        return match[1];
+    } else {
+        console.error("Inmate ID not found in the URL.");
+        return null;
+    }
+}
+
+export function extractVisitIdFromUrl() {
+    const urlParts = window.location.pathname.split('/');
+    return urlParts[4];
+}

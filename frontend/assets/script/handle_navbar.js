@@ -1,4 +1,4 @@
-// Author: Mario Guriuc
+// Author: Mario Guriuc and Vlad
 
 import {FRONT_ACCOUNT_URL} from "./constants.js";
 import {getUsernameFromJwt} from "./jwt.js";
@@ -18,6 +18,22 @@ export const handleNavbar = (page, loggedIn = false) => {
             case "centers":
             case "changePassword": {
                 appendHomeAccountButtons(navBar);
+                break;
+            }
+            case "inmates": {
+                appendCentersAccountButtons(navBar);
+                break;
+            }
+            case "addVisit":{
+                appendCentersAccountButtons(navBar);
+                break;
+            }
+            case "visits": {
+                appendCentersAccountButtons(navBar);
+                break;
+            }
+            case "addInmate": {
+                appendHomeCentersButtons(navBar);
                 break;
             }
             case "home": {

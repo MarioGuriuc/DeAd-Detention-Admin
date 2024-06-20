@@ -138,12 +138,14 @@ document.addEventListener('DOMContentLoaded', function () {
             button.addEventListener('click', () => {
                 fetchCenters(i);
                 history.pushState(null, null, '/centers/p' + i);
+                window.location.reload();
             });
             navigationButtons.appendChild(button);
         }
     }
 
     const pageNumber = window.location.href.split('/').pop().slice(1) || 1;
+
     fetchCenters(pageNumber);
     fetchCentersCount();
 });

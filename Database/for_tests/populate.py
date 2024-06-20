@@ -69,7 +69,7 @@ for _ in range(num_inmates):
     used_centers.append(center)
     inmate_data = {
         "_id": ObjectId(),
-        "image": fake.image_url(),
+        "image": image_binary,
         "fullName": fake.name(),
         "crime": fake.word(),
         "sentence": fake.sentence(),

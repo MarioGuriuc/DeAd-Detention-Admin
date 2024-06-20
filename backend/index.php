@@ -28,8 +28,11 @@ $api_routes = [
         'api/centers' => 'api/centers_service/get_detention_centers.php',
         'api/centers/count' => 'api/centers_service/get_centers_count.php',
         'api/centers/{page_number}' => 'api/centers_service/get_detention_centers.php',
-        'api/centers/{center_id}/inmates' => 'api/inmates_service/get_inmates.php',
         'api/account/{username}' => 'api/user_service/get_account_info.php',
+        'api/centers/{center_id}/inmates' => 'api/inmates_service/get_inmates.php',//Vlad
+        'api/centers/{center_id}/inmates/count' => 'api/inmates_service/get_inmates_count.php',//Vlad
+        'api/account/{username}/visits' => 'api/visits_service/get_visits.php',//Vlad
+        'api/statistics/{center_id}/{inmate_id}/{start_date}/{end_date}' => 'api/admin_service/get_statistics.php',//Vlad
     ],
     'POST' => [
         'api/login' => 'api/user_service/login.php',
@@ -40,19 +43,23 @@ $api_routes = [
     ],
     'PATCH' => [
         'api/account/{username}' => 'api/user_service/update_account.php',
+        'api/visits/{visit_id}/status' => 'api/visits_service/visit_status.php',//Vlad
+        'api/visits/{visit_id}' => 'api/visits_service/edit_visit.php',//Vlad
     ],
     'DELETE' => [
         'api/account/{username}' => 'api/user_service/delete_account.php',
     ],
     'PUT' => [
         'api/centers' => 'api/centers_service/add_center.php',
+        'api/centers/{center_id}/add-inmate' => 'api/inmates_service/add_inmate.php',//Vlad
+        'api/centers/{center_id}/inmates/{inmate_id}/add-visit' => 'api/visits_service/add_visit.php',//Vlad
     ],
 ];
 
 function match_route($route, $routes, &$params): bool|string
 {
     foreach ($routes as $pattern => $file) {
-        $pattern = preg_replace('/\{[a-zA-Z0-9_]+\}/', '([^/]+)', $pattern);
+        $pattern = preg_replace('/{[a-zA-Z0-9_]+}/', '([^/]+)', $pattern);
         if (preg_match('#^' . $pattern . '$#', $route, $matches)) {
             array_shift($matches);
             $params = $matches;
