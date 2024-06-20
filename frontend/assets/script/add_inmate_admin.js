@@ -50,8 +50,7 @@ function submitNewInmate() {
     const centerId = document.getElementById("center").value;
     const image = document.getElementById("image").files[0];
 
-    if (inmateName && crime && sentence && centerId) {
-        if (image) {
+    if (inmateName && crime && sentence && centerId && image) {
             const reader = new FileReader();
             reader.onload = function (event) {
                 const imageData = event.target.result.split(',')[1];
@@ -64,14 +63,6 @@ function submitNewInmate() {
                 addInmate(formData, centerId);
             };
             reader.readAsDataURL(image);
-        } else {
-            const formData = {
-                name: inmateName,
-                crime: crime,
-                sentence: sentence,
-            };
-            addInmate(formData, centerId);
-        }
     } else {
         alert("All fields are required.");
     }

@@ -74,7 +74,7 @@
     white-space: pre-wrap;
 }
 
-.approved-btn, .denied-btn {
+.approved-btn, .denied-btn, .pending-btn {
     padding: 10px 20px;
     margin-top: 1rem;
     cursor: default;

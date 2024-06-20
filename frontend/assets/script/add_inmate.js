@@ -39,13 +39,6 @@ function submitNewInmate() {
             addInmate(formData);
         };
         reader.readAsDataURL(image);
-    } else if (inmateName && crime && sentence) {
-        const formData = {
-            name: inmateName,
-            crime: crime,
-            sentence: sentence
-        };
-        addInmate(formData);
     } else {
         openPopup("All fields are required.");
     }

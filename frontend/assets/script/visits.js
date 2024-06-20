@@ -102,6 +102,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 visitDiv.appendChild(createTextElement('Summary', visit.summary));
                 visitDiv.appendChild(createTextElement('Health and Mood', visit.health));
                 visitDiv.appendChild(createTextElement('Witnesses', visit.witnesses));
+                if(visit.status === 'pending' && !isAdmin()){
+                    const statusButton = document.createElement('button');
+                    statusButton.classList.add(`${visit.status}-btn`);
+                    statusButton.textContent = visit.status.charAt(0).toUpperCase() + visit.status.slice(1);
+                    visitDiv.appendChild(statusButton);
+                }
 
                 if (visit.status === 'pending' && isAdmin()) {
                     const buttonsDiv = document.createElement('div');
