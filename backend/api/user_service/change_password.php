@@ -6,15 +6,11 @@ declare(strict_types=1);
 
 require_once 'utils.php';
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+if ($_SERVER['REQUEST_METHOD'] !== 'PATCH') {
     send_response("Method not allowed", 405);
 }
 
-$jwt = get_decoded_jwt();
-
-if (!$jwt) {
-    send_response("Unauthorized", 401);
-}
+$jwt = validate_and_return_jwt();
 
 $data = receive_json();
 
@@ -31,6 +27,14 @@ $users_collection = $database->selectCollection('users');
 if (empty($data['newPassword'])) {
     send_response("New password is required", 400);
 }
+
+$user_password = $users_collection->findOne(['username' => $username], ['projection' => ['password' => 1]])['password'];
+
+if (!password_verify($data['oldPassword'], $user_password)) {
+    send_response("Incorrect password", 400);
+}
+
+validate_string($data['newPassword'], PASSWORD_VALIDATION);
 
 $result = $users_collection->updateOne(
     ["username" => $username],

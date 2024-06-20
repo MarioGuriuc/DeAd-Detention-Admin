@@ -1,5 +1,7 @@
 <?php
 
+use PHPMailer\PHPMailer\PHPMailer;
+
 function is_data_empty(array $data, array $fields): string
 {
     $result = "";
@@ -12,13 +14,14 @@ function is_data_empty(array $data, array $fields): string
     return $result;
 }
 
-function sanitize_data(array | string &$data): void
+function sanitize_data(array|string &$data): void
 {
     if (is_array($data)) {
         foreach ($data as $key => $value) {
             $data[$key] = htmlspecialchars(strip_tags($value));
         }
-    } else {
+    }
+    else {
         $data = htmlspecialchars(strip_tags($data));
     }
 }
@@ -38,4 +41,28 @@ function receive_json(): array
         send_response("Invalid JSON", 400);
     }
     return $data;
+}
+
+/**
+ * @throws Exception
+ */
+function send_email(string $subject, string $body, string $email): void
+{
+    $mail = new PHPMailer(true);
+    $mail->isSMTP();
+    $mail->Host = $_ENV['SMTP_HOST'];
+    $mail->SMTPAuth = true;
+    $mail->Username = $_ENV['EMAIL'];
+    $mail->Password = $_ENV['EMAIL_PASSWORD'];
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+    $mail->Port = $_ENV['SMTP_PORT'];
+
+    $mail->setFrom('de-ad@gmail.com', 'DeAd');
+    $mail->addAddress($email);
+
+    $mail->isHTML();
+    $mail->Subject = $subject;
+    $mail->Body = $body;
+
+    $mail->send();
 }

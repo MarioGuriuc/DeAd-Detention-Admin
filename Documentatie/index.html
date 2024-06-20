@@ -288,21 +288,21 @@
                 <h3>API Access</h3>
                 <section>
                     <h4>Description</h4>
-                    <p>This feature provides essential functionalities through a REST/GraphQL API for seamless
-                        integration with other systems or external applications.</p>
+                    <p>This feature provides essential functionalities through a REST API written in PHP, running on an
+                        Apache2 server
+                        for seamless integration with other systems or external applications.</p>
                 </section>
                 <section>
                     <h4>Inputs</h4>
                     <ul>
                         <li>API requests for data retrieval, insertion, or modification.</li>
-                        <li>Authentication credentials for authorized access.</li>
+                        <li>Authentication credentials for authorized access. (JSON Web Token)</li>
                     </ul>
                 </section>
                 <section>
                     <h4>Outputs</h4>
                     <ul>
-                        <li>Responses to API requests containing requested data or confirmation of successful
-                            operations.
+                        <li>JSON's with the requested data or confirmation of successful operations.
                         </li>
                     </ul>
                 </section>
@@ -314,7 +314,7 @@
         <section>
             <h2>Backend and Database</h2>
 
-            <p>The backend of the application will be developed using PHP, a server-side scripting language known for
+            <p>The backend of the application is developed using PHP, a server-side scripting language known for
                 its versatility and ease of integration. PHP will handle the logic of the application, including data
                 processing, authentication, and communication with the database.</p>
 
@@ -327,7 +327,7 @@
         </section>
 
         <section>
-            <h2>Detention Admin Pages</h2>
+            <h2>Detention Admin Frontend Pages</h2>
 
             <section>
                 <h3>AddCenterPage</h3>
@@ -380,22 +380,21 @@
             </section>
 
             <section>
-                <h3>DetentionCentersPage</h3>
-                <p>The DetentionCentersPage presents a comprehensive list and detailed profiles of all detention centers
+                <h3>Centers Page</h3>
+                <p>The Centers Page presents a comprehensive list and detailed profiles of all detention centers
                     registered within the system. This page provides valuable information about each detention center,
-                    including location, capacity, current occupancy status, operational details, and contact
-                    information. It offers interactive features and tools to assist administrators in managing and
-                    monitoring detention center data, facilitating effective communication, coordination, and
-                    collaboration between different facilities and administrative personnel.</p>
+                    including the name, location, and a description. After selecting a center, the user is redirected to
+                    the inmates page.
+                    It offers the ability for administrators to add detention centers.</p>
             </section>
 
             <section>
-                <h3>HomePage</h3>
-                <p>The HomePage serves as the primary landing page for the web application, offering an engaging and
-                    informative overview of the system's features, functionalities, and capabilities. It serves as a
-                    user-friendly gateway to the web application, welcoming users and guiding them through the various
-                    sections, pages, and features available within the system, ensuring a seamless and intuitive user
-                    experience.</p>
+                <h3>Home Page</h3>
+                <p>The Home Page serves as the primary landing page for the web application, offering a short
+                    description
+                    about the application. It serves as a user-friendly gateway to the web application, providing
+                    visitors with the information they need to navigate the site effectively and access the various
+                    features and functionalities available within the system .</p>
             </section>
 
             <section>
@@ -409,17 +408,16 @@
             </section>
 
             <section>
-                <h3>LoginPage</h3>
-                <p>The LoginPage provides a secure and user-friendly interface for users to access the web application,
-                    requiring authentication credentials for authorized access. This page incorporates robust security
-                    measures, encryption protocols, and validation checks to safeguard sensitive data, protect user
-                    privacy, and prevent unauthorized access. It offers a seamless and intuitive login experience,
-                    guiding users through the authentication process.</p>
+                <h3>Login Page</h3>
+                <p>The Login Page provides a user-friendly interface for users to access the web application,
+                    requiring authentication credentials (username and password) for authorized access. This page
+                    incorporates robust security measures, encryption protocols, and validation checks to safeguard
+                    sensitive data, protect user privacy, and prevent unauthorized access. </p>
             </section>
 
             <section>
-                <h3>RegisterPage</h3>
-                <p>The RegisterPage allows new users to create accounts for accessing the web application, capturing
+                <h3>Register Page</h3>
+                <p>The Register Page allows new users to create accounts for accessing the web application, capturing
                     essential information and setting up user profiles. This page offers a user-friendly registration
                     process, guiding users through the data entry fields, validation checks, and account creation steps.
                     It incorporates robust security measures, encryption protocols, and privacy controls to safeguard
@@ -428,12 +426,13 @@
             </section>
 
             <section>
-                <h3>AccountPage</h3>
-                <p>The AccountPage serves as the personalized dashboard for registered users, providing them with their
+                <h3>Account Page</h3>
+                <p>The Account Page serves as the personalized dashboard for registered users, providing them with their
                     account information and settings. This page offers a user-friendly interface with intuitive data
-                    entry fields. Additionally, the AccountPage includes a secure logout functionality, enabling users
-                    to safely and securely log out of the web application, terminating their active session and
-                    protecting their account from unauthorized access.</p>
+                    entry fields. Additionally, the Account Page includes a logout functionality, enabling users
+                    to log out of the web application, terminating their active session.
+                    Users can also choose to edit their account information, change their password, delete their
+                    account, and if the user is an admin, they can redirect themselves to the Admin Page.</p>
             </section>
 
             <section>
@@ -448,28 +447,84 @@
             </section>
 
             <section>
-                <h3>EditAccountPage</h3>
+                <h3>Edit Account Page</h3>
                 <p>
-                    The EditAccountPage allows registered users to modify and update their account information and
-                    settings within the web application. This page offers a user-friendly interface with data entry
+                    The Edit Account Page allows registered users to modify and update their account information and
+                    settings within the web application. This page offers an interface with data entry
                     fields for users to edit their personal details and contact information. Users can
-                    update their account settings, change passwords, and manage privacy controls through the
-                    EditAccountPage, ensuring a seamless and personalized user experience within the system.
+                    update their account settings. The Edit Account Page incorporates validation checks and security
+                    measures to ensure the accuracy and integrity of user data, safeguarding sensitive information and
+                    protecting user privacy.
                 </p>
             </section>
             <section>
-                <h3>ChangePasswordPage</h3>
+                <h3>Change Password Page</h3>
                 <p>
-                    The ChangePasswordPage provides users with a secure and user-friendly interface to change their
+                    The Change Password Page provides users with an interface to change their
                     account passwords within the web application. This page incorporates robust security measures,
                     encryption protocols, and validation checks to safeguard sensitive data and protect user privacy.
-                    Users can update their passwords securely through the ChangePasswordPage, ensuring the integrity
-                    and security of their accounts.
+                    After updating their password, users receive a popup message, ensuring the successful
+                    completion of the password change process. After that, the user is logged out and redirected to the
+                    login page.
             </section>
         </section>
 
-    </section>
+        <section>
+            <h2>Detention Admin Backend Routes</h2>
 
+            <section>
+                <h3>GET /api/centers</h3>
+                <p>Route for retrieving a list of all detention centers registered within the system. Returns a JSON
+                    array of detention center objects containing details such as name, location, and description.</p>
+            </section>
+
+            <section>
+                <h3>GET /api/centers/count</h3>
+                <p>Route for retrieving the total count of detention centers registered within the system. Returns an
+                    integer value representing the total number of detention centers.</p>
+            </section>
+
+            <section>
+                <h3>GET /api/centers/{page_number}</h3>
+                <p>Route for retrieving a paginated list of detention centers registered within the system. Accepts a
+                    page number as input to fetch the corresponding subset of detention centers. Returns a JSON array of
+                    detention center objects for the specified page.</p>
+            </section>
+
+        <section>
+            <h3>GET /api/account/{username}</h3>
+            <p>Route for retrieving user account details based on the username. Returns a JSON object containing user
+                information such as name, email, and role.</p>
+        </section>
+
+            <section>
+                <h3>POST /api/login</h3>
+                <p>Route for user login. Requires username and password as input. Returns a JSON Web Token (JWT) for
+                    authentication.</p>
+            </section>
+
+            <section>
+                <h3>POST /api/register</h3>
+                <p>Route for user registration. Requires user details such as name, email, and password as input.
+                    Returns
+                    a success message upon successful registration.</p>
+            </section>
+
+            <section>
+                <h3>POST /api/forgot-password</h3>
+                <p>Route for resetting user password. Requires user email as input. Sends a new randomly generated
+                    password to the user's email.</p>
+            </section>
+
+            <section>
+                <h3>POST /api/{username}/change-password</h3>
+                <p>Route for changing user password. Requires user's current password and new password as input.
+                    Returns a success message upon successful password change.</p>
+            </section>
+
+
+        </section>
+    </section>
 </div>
 
 </body>

@@ -2,7 +2,7 @@
 
 import {API_ADD_CENTER_URL, FRONT_CENTERS_URL} from "./constants.js";
 import {handleNavbar} from "./handle_navbar.js";
-import {isLogged} from "./jwt.js";
+import {isLogged} from "./utils.js";
 import {openPopup} from "./popup.js";
 import {setHeaders} from "./utils.js";
 

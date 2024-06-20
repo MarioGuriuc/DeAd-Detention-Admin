@@ -1,3 +1,60 @@
+.stats-container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    width: 80%;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+.stats-container h1 {
+    text-align: center;
+    font-size: 1.8em;
+    color: #333;
+}
+
+.stats-container p {
+    text-align: center;
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: #555;
+}
+
+.stats-container p span {
+    font-weight: bold;
+    color: #000;
+}
+
+@media (max-width: 600px) {
+    .stats-container {
+        width: 95%;
+        padding: 10px;
+    }
+
+    .stats-container h1 {
+        font-size: 1.5em;
+    }
+
+    .stats-container p {
+        font-size: 1em;
+    }
+}
+
+.main-content {
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    height: 100vh;
+    background-color: #f9f9f9;
+}
+
+
 .generate-stats-section {
     display: flex;
     justify-content: center;
@@ -8,7 +65,6 @@
 .generate-stats-container {
     background: linear-gradient(rgba(131, 208, 93, 0.7), rgba(242, 242, 242, 0.7));
     padding: 10px 30px 25px 30px;
-    margin-top: 10%;
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     width: 100%;
@@ -40,6 +96,8 @@
 
 .generate-stats-container button {
     width: 100%;
+    align-content: center;
+    max-width: 256px;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -59,7 +117,7 @@
     border-radius: 5px;
     border: 1px solid #ccc;
     box-sizing: border-box;
-    background-image: url('data:image/svg+xml;utf8,<svg fill="#555" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>'); /* Custom arrow */
+    background-image: url('data:image/svg+xml;utf8,<svg fill="#555" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
     background-repeat: no-repeat;
     background-position: right 10px top 50%;
     background-size: 16px;
@@ -81,32 +139,40 @@
     color: white;
 }
 
-.generate-stats-container .input-group input[type="checkbox"] {
-    width: 20px;
-    height: 20px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    margin-right: 10px;
-    cursor: pointer;
-    vertical-align: middle;
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
 }
 
-.generate-stats-container .input-group label {
-    cursor: pointer;
+.input-group label {
+    font-size: 14px;
     color: #333;
-    vertical-align: middle;
-    display: inline-block;
     margin-bottom: 5px;
-    font-size: 20px;
+    font-weight: bold;
 }
 
-.generate-stats-container .input-group input[type="checkbox"]:checked {
-    background-color: #4CAF50;
-    border-color: #4CAF50;
+.input-group input[type="date"] {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    max-width: 300px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.generate-stats-container .input-group input[type="checkbox"] + label:hover {
-    font-size: 20px;
+.input-group input[type="date"]:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    outline: none;
+}
+
+@media (max-width: 768px) {
+    .input-group {
+        width: 100%;
+    }
 }
 
 @media screen and (max-width: 768px) {

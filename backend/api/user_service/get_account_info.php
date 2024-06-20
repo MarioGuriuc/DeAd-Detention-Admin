@@ -4,18 +4,20 @@
 
 declare(strict_types=1);
 
+require_once "utils.php";
+
 if ($_SERVER["REQUEST_METHOD"] !== "GET") {
     send_response("Method not allowed", 405);
 }
 
-$jwt = get_decoded_jwt();
+$jwt = validate_and_return_jwt();
 
-if (!$jwt) {
+if (is_null($jwt)) {
     send_response("Unauthorized", 401);
 }
 
 $username = $jwt->sub;
-$username_param = $params[0] ?? '';
+$username_param = $params['username'] ?? '';
 
 if ($username_param !== $username) {
     send_response("Unauthorized", 401);
@@ -30,7 +32,7 @@ if (!$user) {
     send_response("User not found", 404);
 }
 
-$filteredUser = [
+$filtered_user = [
     'username' => $user['username'],
     'email' => $user['email'],
     'firstName' => $user['firstName'],
@@ -40,4 +42,4 @@ $filteredUser = [
     'phone' => $user['phone']
 ];
 
-echo json_encode($filteredUser);
+send_response_with_user($filtered_user);

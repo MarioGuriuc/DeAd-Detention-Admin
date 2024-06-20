@@ -10,10 +10,10 @@ if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
     send_response('Method not allowed', 405);
 }
 
-$jwt = get_decoded_jwt();
+$jwt = validate_and_return_jwt();
 
-if (!$jwt) {
-    //send_response('Unauthorized', 401);
+if (is_null($jwt)) {
+    send_response('Unauthorized', 401);
 }
 
 $database = get_db_conn();
@@ -21,7 +21,7 @@ $detention_centers = $database->selectCollection('centers');
 
 $url = $_SERVER['REQUEST_URI'];
 
-$page_number = $params[0] ?? 1;
+$page_number = $params['page_number'] ?? 1;
 
 if (!is_numeric($page_number) || $page_number < 1) {
     $page_number = 1;

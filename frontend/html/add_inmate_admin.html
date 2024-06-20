@@ -1,0 +1,52 @@
+<!-- Author: Vlad-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Add Inmate</title>
+    <base href="/">
+    <link href="../assets/images/icon.png" rel="icon">
+    <link href="../assets/css/add_inmate.css" rel="stylesheet">
+    <link href="../assets/css/footer.css" rel="stylesheet">
+    <link href="../assets/css/header.css" rel="stylesheet">
+    <link href="../assets/css/nav-bar-buttons.css" rel="stylesheet">
+    <link href="../assets/css/body_style.css" rel="stylesheet">
+    <script src="../assets/script/add_inmate_admin.js" type="module"></script>
+    <script src="../assets/script/handle_navbar.js" type="module"></script>
+</head>
+<body>
+<header>
+    <div class="header-content">
+        <h1>Add Inmate</h1>
+        <div class="nav-bar"></div>
+    </div>
+</header>
+
+<div class="container">
+    <form id="addInmateForm">
+        <label for="inmateName">Inmate name:</label>
+        <input id="inmateName" name="inmateName" required type="text"><br><br>
+
+        <label for="crime">Crime:</label>
+        <input id="crime" name="crime" required type="text"><br><br>
+
+        <label for="sentence">Sentence:</label>
+        <input id="sentence" name="sentence" required type="text"><br><br>
+
+        <label for="center">Detention Center:</label>
+        <select id="center" name="center" required></select><br><br>
+
+        <label for="image">Image:</label>
+        <input accept="image/*" id="image" name="image" type="file"><br><br>
+
+        <button id="submit" type="submit">Submit</button>
+    </form>
+</div>
+
+<footer>
+    <p>&copy; 2024 Detention Centers. All rights reserved.</p>
+</footer>
+</body>
+</html>

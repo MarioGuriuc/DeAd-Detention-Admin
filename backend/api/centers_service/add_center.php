@@ -9,11 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'PUT') {
     send_response("Method not allowed", 405);
 }
 
-$jwt = get_decoded_jwt();
-
-if (!$jwt) {
-    send_response("Unauthorized", 401);
-}
+$jwt = validate_and_return_jwt();
 
 if ($jwt->role !== 'admin') {
     send_response("Unauthorized", 403);

@@ -8,12 +8,16 @@
     <title>Prison Inmates</title>
     <base href="/">
     <link href="../assets/images/icon.png" rel="icon">
+    <script src="../assets/script/handle_navbar.js" type="module"></script>
+    <script src="../assets/script/inmates.js" type="module"></script>
+
     <link href="../assets/css/inmates.css" rel="stylesheet">
     <link href="../assets/css/footer.css" rel="stylesheet">
     <link href="../assets/css/header.css" rel="stylesheet">
     <link href="../assets/css/nav-bar-buttons.css" rel="stylesheet">
     <link href="../assets/css/body_style.css" rel="stylesheet">
     <link href="../assets/css/search_bar.css" rel="stylesheet">
+
 </head>
 <body>
 
@@ -24,117 +28,19 @@
     </div>
 </header>
 
-<main>
-    <div class="search-bar">
-        <label for="search"></label><input id="search" placeholder="Search inmates..." type="text">
+<div class="search-bar">
+    <label for="search"></label><input id="search" placeholder="Search inmates..." type="text">
+</div>
+<div class="main-content">
+<div class="inmates-container">
+    <div class="inmates-wrapper">
+        <div class="inmates">
+        </div>
     </div>
-    <div class="inmates-container">
-        <a class="inmate">
-            <img alt="Inmate 1" src="..../assets/images/detention_center1.jpg">
-            <div class="inmate-info">
-                <h3>John Doe</h3>
-                <p>Age: 35</p>
-                <p>Crime: Theft</p>
-                <p>Sentence: 5 years</p>
-            </div>
-        </a>
-        <a class="inmate" href="">
-            <img alt="Inmate 1" src="..../assets/images/detention_center1.jpg">
-            <div class="inmate-info">
-                <h3>John Doe</h3>
-                <p>Age: 35</p>
-                <p>Crime: Theft</p>
-                <p>Sentence: 5 years</p>
-            </div>
-        </a>
-        <a class="inmate" href="">
-            <img alt="Inmate 1" src="..../assets/images/detention_center1.jpg">
-            <div class="inmate-info">
-                <h3>John Doe</h3>
-                <p>Age: 35</p>
-                <p>Crime: Theft</p>
-                <p>Sentence: 5 years</p>
-            </div>
-        </a>
-        <a class="inmate" href="">
-            <img alt="Inmate 1" src="..../assets/images/detention_center1.jpg">
-            <div class="inmate-info">
-                <h3>John Doe</h3>
-                <p>Age: 35</p>
-                <p>Crime: Theft</p>
-                <p>Sentence: 5 years</p>
-            </div>
-        </a>
-        <a class="inmate" href="">
-            <img alt="Inmate 1" src="..../assets/images/detention_center1.jpg">
-            <div class="inmate-info">
-                <h3>John Doe</h3>
-                <p>Age: 35</p>
-                <p>Crime: Theft</p>
-                <p>Sentence: 5 years</p>
-            </div>
-        </a>
-        <a class="inmate" href="">
-            <img alt="Inmate 1" src="..../assets/images/detention_center1.jpg">
-            <div class="inmate-info">
-                <h3>John Doe</h3>
-                <p>Age: 35</p>
-                <p>Crime: Theft</p>
-                <p>Sentence: 5 years</p>
-            </div>
-        </a>
-        <a class="inmate" href="">
-            <img alt="Inmate 1" src="..../assets/images/detention_center1.jpg">
-            <div class="inmate-info">
-                <h3>John Doe</h3>
-                <p>Age: 35</p>
-                <p>Crime: Theft</p>
-                <p>Sentence: 5 years</p>
-            </div>
-        </a>
-        <a class="inmate" href="">
-            <img alt="Inmate 1" src="..../assets/images/detention_center1.jpg">
-            <div class="inmate-info">
-                <h3>John Doe</h3>
-                <p>Age: 35</p>
-                <p>Crime: Theft</p>
-                <p>Sentence: 5 years</p>
-            </div>
-        </a>
-        <a class="inmate" href="">
-            <img alt="Inmate 1" src="..../assets/images/detention_center1.jpg">
-            <div class="inmate-info">
-                <h3>John Doe</h3>
-                <p>Age: 35</p>
-                <p>Crime: Theft</p>
-                <p>Sentence: 5 years</p>
-            </div>
-        </a>
-        <a class="inmate" href="">
-            <img alt="Inmate 1" src="..../assets/images/detention_center1.jpg">
-            <div class="inmate-info">
-                <h3>John Doe</h3>
-                <p>Age: 35</p>
-                <p>Crime: Theft</p>
-                <p>Sentence: 5 years</p>
-            </div>
-        </a>
-        <a class="inmate" href="">
-            <img alt="Inmate 1" src="..../assets/images/detention_center1.jpg">
-            <div class="inmate-info">
-                <h3>John Doe</h3>
-                <p>Age: 35</p>
-                <p>Crime: Theft</p>
-                <p>Sentence: 5 years</p>
-            </div>
-        </a>
+    <div class="navigation-buttons">
     </div>
-    <div class="add-inmate">
-        <a>
-            <button id="add-inmate">Add More Inmates</button>
-        </a>
-    </div>
-</main>
+</div>
+</div>
 
 <footer>
     <p>&copy; 2024 Detention Center. All rights reserved.</p>
