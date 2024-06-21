@@ -11,6 +11,10 @@ if ($_SERVER["REQUEST_METHOD"] !== "PATCH") {
 
 $jwt = validate_and_return_jwt();
 
+if (is_null($jwt)) {
+    send_response("Unauthorized", 401);
+}
+
 $username = $jwt->sub;
 $username_param = $params['username'] ?? '';
 

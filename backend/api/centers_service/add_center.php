@@ -11,6 +11,10 @@ if ($_SERVER['REQUEST_METHOD'] !== 'PUT') {
 
 $jwt = validate_and_return_jwt();
 
+if (is_null($jwt)) {
+    send_response("Unauthorized", 401);
+}
+
 if ($jwt->role !== 'admin') {
     send_response("Unauthorized", 403);
 }

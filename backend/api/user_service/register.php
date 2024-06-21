@@ -15,6 +15,10 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
 
 $jwt = validate_and_return_jwt();
 
+if ($jwt) {
+    send_response("Already logged in", 400);
+}
+
 $data = receive_json();
 
 $empty_field = is_data_empty($data, USER_REQUIRED_FIELDS);
