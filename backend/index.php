@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 $api_routes = [
     'GET' => [
         'api/centers' => 'api/centers_service/get_centers.php',
-        'api/centers/id/{center_id}' => 'api/centers_service/get_center.php',
+        'api/center/{center_id}' => 'api/centers_service/get_center.php',
         'api/centers/count' => 'api/centers_service/get_centers_count.php',
         'api/centers/page/{page_number}' => 'api/centers_service/get_centers_page.php',
         'api/account/{username}' => 'api/user_service/get_account_info.php',
