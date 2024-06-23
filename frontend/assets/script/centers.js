@@ -1,3 +1,5 @@
+// Author: Mario Guriuc
+
 import {API_CENTERS_COUNT_URL, API_CENTERS_URL, FRONT_INMATES_URL} from "./constants.js";
 import {handleNavbar} from "./handle_navbar.js";
 import {getHeaders, isAdmin, isLogged} from "./utils.js";
@@ -35,7 +37,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     noCentersDiv.textContent = 'No centers found';
                     noCentersDiv.classList.add('no-centers');
                     centersContainer.appendChild(noCentersDiv);
-                } else {
+                }
+                else {
                     data.forEach(function (center) {
                         const centerDiv = document.createElement('div');
                         centerDiv.classList.add('center');
@@ -92,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     })
                     .then(response => {
                         if (!response.ok) {
-                            return;
+                            window.location.assign("/login");
                         }
                         return response.json();
                     })
@@ -112,12 +115,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 })
                     .then(response => {
                         if (!response.ok) {
-                            throw new Error(`HTTP error! Status: ${response.status}`);
+                            window.location.assign("/login");
                         }
                         return response.json();
                     })
                     .then(data => {
-                        const pagesNumber = Math.ceil(data['count'] / 15);
+                        const pagesNumber = Math.ceil(data['count'] / 12);
                         createNavigationButtons(pagesNumber);
                     })
                     .catch(_ => {
@@ -132,6 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     button.addEventListener('click', () => {
                         fetchCenters(i);
                         history.pushState(null, null, '/centers/p' + i);
+                        window.scrollTo({top: 0, behavior: 'smooth'});
                     });
                     navigationButtons.appendChild(button);
                 }

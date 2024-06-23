@@ -19,8 +19,6 @@ if (is_null($jwt)) {
 $database = get_db_conn();
 $detention_centers = $database->selectCollection('centers');
 
-$url = $_SERVER['REQUEST_URI'];
-
 $page_number = $params['page_number'] ?? 1;
 
 if (!is_numeric($page_number) || $page_number < 1) {
