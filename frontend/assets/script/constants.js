@@ -40,8 +40,7 @@ export {
     FRONT_CHANGE_PASSWORD_URL,
 };
 
-//VLAD -----------------------------------------------------------WORKING ON
-//BACKEND
+//VLAD
 const API_INMATES_COUNT_URL = `${API_URL}/centers/{center_id}/inmates/count`;
 const API_INMATES_URL = `${API_URL}/centers/{center_id}/inmates`;
 const API_ADD_INMATES_URL = `${API_URL}/centers/{center_id}/add-inmate`;
@@ -50,8 +49,10 @@ const API_VISIT_STATUS_URL = `${API_URL}/visits/{visit_id}/status`;
 const API_VISITS_URL = `${API_URL}/account/{username}/visits`;
 const API_ADD_VISIT_URL = `${API_URL}/centers/{center_id}/inmates/{inmate_id}/add-visit`;
 const API_STATISTICS_URL = `${API_URL}/statistics/{center_id}/{inmate_id}/{start_date}/{end_date}`;
+const API_DELETE_INMATE_URL = `${API_URL}/centers/{center_id}/inmates/{inmate_id}/delete`;
+const API_TRANSFER_INMATE_URL = `${API_URL}/centers/{center_id}/inmates/{inmate_id}/transfer`;
+const API_EDIT_INMATE_URL = `${API_URL}/centers/{center_id}/inmates/{inmate_id}/edit`;
 
-//FRONTEND
 const FRONT_VISITS_URL = `${FRONTEND_URL}/account/{username}/visits`;
 const FRONT_ADD_VISIT_URL = `${FRONTEND_URL}/centers/{center_id}/inmates/{inmate_id}/add-visit`;
 const FRONT_EDIT_VISIT_URL = `${FRONTEND_URL}/account/{username}/visits/{visit_id}`;
@@ -60,22 +61,32 @@ const FRONT_INMATES_URL = `${FRONTEND_URL}/centers/{center_id}/inmates`;
 const FRONT_ADD_CENTER_URL = `${FRONTEND_URL}/add-center`;
 const FRONT_ADD_INMATE_ADMIN_URL = `${FRONTEND_URL}/add-inmate`;
 const FRONT_STATISTICS_URL = `${FRONTEND_URL}/statistics`;
+const FRONT_TRANSFER_INMATE_URL = `${FRONTEND_URL}/centers/{center_id}/inmates/{inmate_id}/transfer`;
+const FRONT_EDIT_INMATE_URL = `${FRONTEND_URL}/centers/{center_id}/inmates/{inmate_id}/edit`;
 
 export {
+    API_EDIT_INMATE_URL,
+    API_TRANSFER_INMATE_URL,
+    API_DELETE_INMATE_URL,
     API_STATISTICS_URL,
-    FRONT_STATISTICS_URL,
-    FRONT_ADD_INMATE_ADMIN_URL,
     API_EDIT_VISIT_URL,
-    FRONT_EDIT_VISIT_URL,
-    FRONT_ADD_VISIT_URL,
     API_VISITS_URL,
-    FRONT_VISITS_URL,
     API_ADD_VISIT_URL,
     API_VISIT_STATUS_URL,
-    FRONT_INMATES_URL,
     API_INMATES_URL,
     API_INMATES_COUNT_URL,
     API_ADD_INMATES_URL,
+};
+
+export {
     FRONT_ADD_INMATE_URL,
     FRONT_ADD_CENTER_URL,
+    FRONT_VISITS_URL,
+    FRONT_INMATES_URL,
+    FRONT_EDIT_VISIT_URL,
+    FRONT_ADD_VISIT_URL,
+    FRONT_STATISTICS_URL,
+    FRONT_ADD_INMATE_ADMIN_URL,
+    FRONT_TRANSFER_INMATE_URL,
+    FRONT_EDIT_INMATE_URL,
 };

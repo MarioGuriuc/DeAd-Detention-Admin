@@ -1,10 +1,10 @@
 <?php
 
 const INMATE_REQUIRED_FIELDS = [
-    'name' => 'Name is required',
-    'crime' => 'Description is required',
-    'sentence' => 'Location is required',
-    'image' => 'Image is required'
+    'name' => 'Inmate name is required.',
+    'crimes' => 'At least one crime is required.',
+    'sentences' => 'At least one sentence is required.',
+    'image' => 'Inmate image is required.',
 ];
 
 const INMATE_CHECKS = [

@@ -2,18 +2,20 @@
 
 import {API_ADD_VISIT_URL, FRONT_VISITS_URL} from "./constants.js";
 import {handleNavbar} from "./handle_navbar.js";
-import {isLogged, getUsernameFromJwt} from "./jwt.js";
-import {extractCenterIdFromUrl, extractInmateIdFromUrl, setHeaders} from "./utils.js";
+import {getUsernameFromJwt} from "./jwt.js";
+import {extractCenterIdFromUrl, extractInmateIdFromUrl, getHeaders,isLogged} from "./utils.js";
 import {openPopup} from "./popup.js";
 
-if (!isLogged()) {
-    window.location.assign("/");
-}
-
 document.addEventListener("DOMContentLoaded", function () {
-    handleNavbar("addVisit", isLogged());
-    const submitButton = document.getElementById("add-visit-btn");
-    submitButton.addEventListener("click", submitNewVisit);
+    isLogged((logged) => {
+        if (!logged) {
+            window.location.assign("/login");
+        } else {
+            handleNavbar("addVisit", logged);
+            const submitButton = document.getElementById("add-visit-btn");
+            submitButton.addEventListener("click", submitNewVisit);
+        }
+    });
 });
 
 function submitNewVisit(event) {
@@ -67,30 +69,32 @@ function submitNewVisit(event) {
 }
 
 function addVisit(formData) {
-    const http = new XMLHttpRequest();
     const centerId = extractCenterIdFromUrl();
-    http.open("PUT", API_ADD_VISIT_URL.replace("{center_id}", centerId).replace("{inmate_id}", extractInmateIdFromUrl), true);
+    const inmateId = extractInmateIdFromUrl();
+    const url = API_ADD_VISIT_URL.replace("{center_id}", centerId).replace("{inmate_id}", inmateId);
 
-    setHeaders(http)
-
-    http.onreadystatechange = function () {
-        if (http.readyState === 4) {
-            const response = JSON.parse(http.responseText);
-            switch (http.status) {
-                case 201:
-                    openPopup(response["result"]);
-                    setTimeout(() => {
-                        window.location.assign(FRONT_VISITS_URL.replace("{username}", getUsernameFromJwt));
-                    }, 2000);
-                    break;
-                case 401:
-                    openPopup(response["result"]);
-                    break;
-                default:
-                    openPopup(response["result"]);
+    fetch(url, {
+        method: 'PUT',
+        headers: getHeaders(),
+        body: JSON.stringify(formData)
+    })
+        .then(response => response.json()
+            .then(data => ({ status: response.status, body: data }))
+            .catch(() => ({ status: response.status, body: {} })))
+        .then(({ status, body }) => {
+            openPopup(body["result"]);
+            if (status === 201) {
+                setTimeout(() => {
+                    window.location.assign(FRONT_VISITS_URL.replace("{username}", getUsernameFromJwt()));
+                }, 2000);
+            } else if (status === 401) {
+                openPopup(body["result"]);
+            } else {
+                openPopup(body["result"]);
             }
-        }
-    };
-
-    http.send(JSON.stringify(formData));
+        })
+        .catch(_ => {
+            openPopup('An error occurred while adding the visit.');
+        });
 }
+

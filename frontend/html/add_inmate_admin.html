@@ -15,6 +15,8 @@
     <link href="../assets/css/body_style.css" rel="stylesheet">
     <script src="../assets/script/add_inmate_admin.js" type="module"></script>
     <script src="../assets/script/handle_navbar.js" type="module"></script>
+    <script src="../assets/script/popup.js" type="module"></script>
+    <link href="../assets/css/popup.css" rel="stylesheet">
 </head>
 <body>
 <header>
@@ -29,11 +31,19 @@
         <label for="inmateName">Inmate name:</label>
         <input id="inmateName" name="inmateName" required type="text"><br><br>
 
-        <label for="crime">Crime:</label>
-        <input id="crime" name="crime" required type="text"><br><br>
+        <label>Crimes:</label><br>
+        <div id="crimesContainer">
+            <input name="crime" required type="text"><br><br>
+        </div>
+        <button id="addCrimeButton" type="button">Add Crime</button>
+        <br><br>
 
-        <label for="sentence">Sentence:</label>
-        <input id="sentence" name="sentence" required type="text"><br><br>
+        <label>Sentences:</label><br>
+        <div id="sentencesContainer">
+            <input name="sentence" type="text" required><br><br>
+        </div>
+        <button id="addSentenceButton" type="button">Add Sentence</button>
+        <br><br>
 
         <label for="center">Detention Center:</label>
         <select id="center" name="center" required></select><br><br>
@@ -41,7 +51,11 @@
         <label for="image">Image:</label>
         <input accept="image/*" id="image" name="image" type="file"><br><br>
 
-        <button id="submit" type="submit">Submit</button>
+
+        <div class="pop-up-container" id="add-inmate-btn">
+            <button class="button-pop-up">Submit</button>
+            <span class="pop-up-message" id="message"></span>
+        </div>
     </form>
 </div>
 
