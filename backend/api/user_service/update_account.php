@@ -67,10 +67,14 @@ if (array_key_exists("username", $data)) {
     }
 }
 
+if (empty($data)) {
+    send_response("No changes were made", 400);
+}
+
 $result = $users_collection->updateOne(["username" => $jwt->sub], ['$set' => $data]);
 
 if ($result->getModifiedCount() !== 1) {
-    send_response("An error occurred while updating the account", 500);
+    send_response("No changes were made", 400);
 }
 
 send_response("Account updated successfully, please login again", 200);

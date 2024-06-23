@@ -23,7 +23,6 @@ const dynamicWebRoutes = {
     'account/{username}/admin-page': 'html/admin_page.html',
     'account/{username}/change-password': 'html/change_password.html',
     'account/{username}/change-role': 'html/change_role.html',
-    'centers': 'html/detention_centers.html',
     'centers/{page_number}': 'html/detention_centers.html',
     'centers/{center_id}/inmates': 'html/inmates.html',//Vlad
     'centers/{center_id}/inmates/{inmate_id}': 'html/inmates.html',//Vlad
@@ -37,7 +36,7 @@ const dynamicWebRoutes = {
 
 function matchRoute(route, routes) {
     for (const pattern in routes) {
-        const regexPattern = new RegExp('^' + pattern.replace(/\{[a-zA-Z0-9_]+\}/g, '([^/]+)') + '$');
+        const regexPattern = new RegExp('^' + pattern.replace(/\{[a-zA-Z0-9_]+}/g, '([^/]+)') + '$');
         if (regexPattern.test(route)) {
             return routes[pattern];
         }

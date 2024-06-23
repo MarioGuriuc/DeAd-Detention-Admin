@@ -10,7 +10,7 @@ require_once "inc/common.php";
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-$route = $_GET['route'] ?? '';
+$route = trim($_SERVER['REQUEST_URI'], '/');
 
 $method = $_SERVER['REQUEST_METHOD'];
 
@@ -26,9 +26,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 $api_routes = [
     'GET' => [
         'api/centers' => 'api/centers_service/get_centers.php',
-        //'api/centers/{center_id}' => 'api/centers_service/get_center.php',
+        'api/centers/id/{center_id}' => 'api/centers_service/get_center.php',
         'api/centers/count' => 'api/centers_service/get_centers_count.php',
-        'api/centers/{page_number}' => 'api/centers_service/get_centers_page.php',
+        'api/centers/page/{page_number}' => 'api/centers_service/get_centers_page.php',
         'api/account/{username}' => 'api/user_service/get_account_info.php',
         'api/verify-jwt' => 'api/user_service/verify_jwt.php',
         'api/centers/{center_id}/inmates' => 'api/inmates_service/get_inmates.php',//Vlad

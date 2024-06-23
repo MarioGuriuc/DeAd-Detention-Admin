@@ -26,20 +26,18 @@ document.addEventListener('DOMContentLoaded', () => {
                         lastName: document.getElementById("lastName").value,
                         email: document.getElementById("email").value,
                         phone: document.getElementById("phone").value,
-                        dob: document.getElementById("dob").value
+                        password: document.getElementById("password").value,
+                        confirmPassword: document.getElementById("confirmPassword").value
                     })
                 })
                     .then((response) => {
                         if (response.status === 200) {
-                            setTimeout(() => {
-                                window.location.assign('/account/' + getUsernameFromUrl());
-                            }, 1000);
+                            logout();
                         }
                         return response.json();
                     })
                     .then(json => {
                         openPopup(json["result"]);
-                        logout();
                     })
                     .catch(_ => {
                         openPopup("Unexpected error, please try again later.");

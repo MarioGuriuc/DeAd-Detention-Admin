@@ -5,7 +5,7 @@ const FRONTEND_URL = 'http://localhost:8001';
 
 const API_LOGIN_URL = `${API_URL}/login`;
 const API_REGISTER_URL = `${API_URL}/register`;
-const API_CENTERS_URL = `${API_URL}/centers/{page_number}`;
+const API_CENTERS_URL = `${API_URL}/centers/page/{page_number}`;
 const API_CENTERS_COUNT_URL = `${API_URL}/centers/count`;
 const API_ACCOUNT_URL = `${API_URL}/account/{username}`;
 const API_ADD_CENTER_URL = `${API_URL}/centers`;
