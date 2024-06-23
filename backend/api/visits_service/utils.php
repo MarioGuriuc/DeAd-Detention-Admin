@@ -41,3 +41,15 @@ function extract_username_from_url(): ?string
     }
     return null;
 }
+
+function extract_visit_id_from_url(): ?string
+{
+    $url = $_SERVER['REQUEST_URI'];
+    $regex = '/visits\/([a-f0-9]{24})/';
+    if (preg_match($regex, $url, $matches)) {
+        return $matches[1];
+    } else {
+        send_response("Visit ID not found in the URL", 400);
+    }
+    return null;
+}

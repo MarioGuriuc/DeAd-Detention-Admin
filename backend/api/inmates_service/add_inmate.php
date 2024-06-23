@@ -10,10 +10,10 @@ if ($_SERVER['REQUEST_METHOD'] !== 'PUT') {
     send_response("Method not allowed", 405);
 }
 
-$jwt = get_decoded_jwt();
+$jwt = validate_and_return_jwt();
 
-if (!$jwt) {
-    send_response("Unauthorized", 401);
+if (is_null($jwt)) {
+    send_response('Unauthorized', 401);
 }
 
 if ($jwt->role !== 'admin') {
@@ -30,17 +30,38 @@ if ($empty_fields) {
 
 validate_inmate_data($data, INMATE_CHECKS);
 
+if (!is_array($data['crimes']) || empty($data['crimes'])) {
+    send_response("Crimes must be a non-empty array", 400);
+}
+
+if (!is_array($data['sentences']) || empty($data['sentences'])) {
+    send_response("Sentences must be a non-empty array", 400);
+}
+
+foreach ($data['crimes'] as $crime) {
+    if (!is_string($crime) || empty($crime)) {
+        send_response("Each crime must be a non-empty string", 400);
+    }
+}
+
+foreach ($data['sentences'] as $sentence) {
+    if (!is_string($sentence) || empty($sentence)) {
+        send_response("Each sentence must be a non-empty string", 400);
+    }
+}
+
 $image = null;
 if (!empty($data['image'])) {
     $image = new Binary($data['image']);
 }
 
-$center_id = $params[0] ?? null;
+$center_id = extract_center_id_from_url();
+
 $inmate = [
-    'image' => new Binary($data['image']),
+    'image' => $image,
     'fullName' => $data['name'],
-    'crime' => $data['crime'],
-    'sentence' => $data['sentence'],
+    'crimes' => $data['crimes'],
+    'sentences' => $data['sentences'],
     'center' => new ObjectId($center_id)
 ];
 
@@ -49,7 +70,7 @@ $inmates_collection = $database->selectCollection('inmates');
 
 $result = $inmates_collection->insertOne($inmate);
 
-if(!$result->getInsertedCount()) {
+if (!$result->getInsertedCount()) {
     send_response("Inmate not added", 500);
 }
 send_response("Inmate added", 201);

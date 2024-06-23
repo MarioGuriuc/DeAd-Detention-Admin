@@ -91,6 +91,50 @@ div.inmates-wrapper {
     border-radius: 10px;
     margin-right: 15px;
 }
+.center-name-box {
+    font: inherit;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.button-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.button-container .delete-button,
+.button-container .transfer-button,
+.button-container .edit-button {
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 4px;
+}
+
+.button-container .delete-button {
+    background-color: #ff4d4d;
+    color: white;
+}
+
+.button-container .transfer-button {
+    background-color: #4d94ff;
+    color: white;
+}
+
+.button-container .edit-button {
+    background-color: #4caf50;
+    color: white;
+}
+
+.delete-button:hover, .transfer-button:hover {
+    background-color: #0056b3;
+}
 
 .inmate-info {
     flex-grow: 1;

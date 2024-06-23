@@ -4,91 +4,117 @@
 
 import {API_ADD_INMATES_URL, FRONT_INMATES_URL, API_CENTERS_URL} from "./constants.js";
 import {handleNavbar} from "./handle_navbar.js";
-import {isLogged} from "./jwt.js";
-import {setHeaders} from "./utils.js";
+import {getHeaders, isLogged} from "./utils.js";
+import {openPopup} from "./popup.js";
 
-if (!isLogged()) {
-    window.location.assign("/");
-}
 
 document.addEventListener("DOMContentLoaded", function () {
-    handleNavbar("addInmate", isLogged());
-    loadCenters();
-    const inmateForm = document.getElementById("addInmateForm");
-    inmateForm.addEventListener("submit", function (event) {
-        event.preventDefault();
-        submitNewInmate();
+    isLogged((logged) => {
+        if (!logged) {
+            window.location.assign("/login");
+        } else {
+            handleNavbar("addInmate", logged);
+            loadCenters();
+
+            const addCrimeButton = document.getElementById('addCrimeButton');
+            const addSentenceButton = document.getElementById('addSentenceButton');
+
+            addCrimeButton.addEventListener('click', () => {
+                addNewInputField('crime', 'crimesContainer');
+            });
+
+            addSentenceButton.addEventListener('click', () => {
+                addNewInputField('sentence', 'sentencesContainer');
+            });
+            const inmateForm = document.getElementById("addInmateForm");
+            inmateForm.addEventListener("submit", function (event) {
+                event.preventDefault();
+                submitNewInmate();
+            });
+        }
     });
 });
 
+function addNewInputField(name, containerId) {
+    const container = document.getElementById(containerId);
+    const input = document.createElement('input');
+    input.name = name;
+    input.type = 'text';
+    input.required = true;
+    container.appendChild(input);
+    container.appendChild(document.createElement('br'));
+    container.appendChild(document.createElement('br'));
+}
+
 function loadCenters() {
-    const http = new XMLHttpRequest();
-    http.open("GET", API_CENTERS_URL, true);
-    setHeaders(http);
-
-    http.onreadystatechange = function () {
-        if (http.readyState === 4 && http.status === 200) {
-            const centers = JSON.parse(http.responseText);
+    fetch(API_CENTERS_URL, {
+        method: 'GET',
+        headers: getHeaders()
+    })
+        .then(response => response.json())
+        .then(centers => {
             const centerSelect = document.getElementById("center");
-
             centers.forEach(center => {
                 const option = document.createElement("option");
                 option.value = center.id;
                 option.textContent = center.title;
                 centerSelect.appendChild(option);
             });
-        }
-    };
-
-    http.send();
+        })
+        .catch(error => console.error("Error loading centers:", error));
 }
 
 function submitNewInmate() {
     const inmateName = document.getElementById("inmateName").value;
-    const crime = document.getElementById("crime").value;
-    const sentence = document.getElementById("sentence").value;
+    const crimes = Array.from(document.getElementsByName("crime")).map(input => input.value);
+    const sentences = Array.from(document.getElementsByName("sentence")).map(input => input.value);
     const centerId = document.getElementById("center").value;
     const image = document.getElementById("image").files[0];
 
-    if (inmateName && crime && sentence && centerId && image) {
-            const reader = new FileReader();
-            reader.onload = function (event) {
-                const imageData = event.target.result.split(',')[1];
-                const formData = {
-                    name: inmateName,
-                    crime: crime,
-                    sentence: sentence,
-                    image: imageData
-                };
-                addInmate(formData, centerId);
+    if (inmateName && crimes.length > 0 && sentences.length > 0 && image) {
+        const reader = new FileReader();
+        reader.onload = function (event) {
+            const imageData = event.target.result.split(',')[1];
+
+            const formData = {
+                name: inmateName,
+                crimes: crimes,
+                sentences: sentences,
+                image: imageData
             };
-            reader.readAsDataURL(image);
+
+            addInmate(formData, centerId);
+        };
+        reader.readAsDataURL(image);
     } else {
-        alert("All fields are required.");
+        openPopup("All fields are required.");
     }
 }
 
 function addInmate(formData, centerId) {
-    const http = new XMLHttpRequest();
-    http.open("PUT", API_ADD_INMATES_URL.replace("{center_id}", centerId), true);
-    setHeaders(http);
+    const url = API_ADD_INMATES_URL.replace("{center_id}", centerId);
 
-    http.onreadystatechange = function () {
-        if (http.readyState === 4) {
-            switch (http.status) {
-                case 201:
-                    setTimeout(() => {
-                        alert("Inmate added successfully.")
-                        window.location.assign(FRONT_INMATES_URL.replace("{center_id}", centerId));
-                    }, 2000);
-                    break;
-                case 401:
-                    alert("Unauthorized. Please log in again.");
-                    break;
-                default:
-                    alert("Failed to add inmate. Please try again later.");
+    fetch(url, {
+        method: 'PUT',
+        headers: getHeaders(),
+        body: JSON.stringify(formData)
+    })
+        .then(response => response.json()
+            .then(data => ({status: response.status, body: data}))
+            .catch(() => ({status: response.status, body: {}})))
+        .then(({status, body}) => {
+            openPopup(body.result);
+            if (status === 201) {
+                setTimeout(() => {
+                    window.location.assign(FRONT_INMATES_URL.replace("{center_id}", centerId));
+                }, 2000);
+            } else if (status === 401) {
+                openPopup(body.result);
+            } else {
+                openPopup(body.result);
             }
-        }
-    };
-    http.send(JSON.stringify(formData));
+        })
+        .catch(_ => {
+            openPopup('An error occurred while adding the inmate.');
+        });
 }

@@ -1,162 +1,243 @@
 // Author: Vlad
 
-"use strict";
-
 import {
     API_INMATES_COUNT_URL,
     API_INMATES_URL,
+    API_CENTERS_URL,
     FRONT_ADD_INMATE_URL,
     FRONT_ADD_VISIT_URL,
-    FRONT_INMATES_URL
+    FRONT_INMATES_URL,
+    API_DELETE_INMATE_URL,
+    FRONT_TRANSFER_INMATE_URL, FRONT_EDIT_INMATE_URL
 } from "./constants.js";
+
 import {handleNavbar} from "./handle_navbar.js";
-import {isLogged} from "./jwt.js";
-import {extractCenterIdFromUrl, isAdmin, setHeaders} from "./utils.js";
+import {extractCenterIdFromUrl, isAdmin, getHeaders, isLogged} from "./utils.js";
 
-if (!isLogged()) {
-    window.location.assign("/");
-}
-
-document.addEventListener('DOMContentLoaded', function () {
-    handleNavbar("inmates", isLogged());
-    const searchBar = document.getElementById('search');
-
-    let inmatesData = [];
-
-    function renderInmates(data) {
-        if (data.length === 0) {
-            const noInmatesDiv = document.createElement('div');
-            const inmatesContainer = document.querySelector('.inmates-wrapper');
-            inmatesContainer.style.justifyContent = 'center';
-            noInmatesDiv.textContent = 'No inmates found';
-            noInmatesDiv.classList.add('no-inmates');
-            inmatesContainer.appendChild(noInmatesDiv);
+document.addEventListener('DOMContentLoaded', () => {
+    isLogged((logged) => {
+        if (!logged) {
+            window.location.assign("/login");
         } else {
-            const inmatesContainer = document.querySelector('.inmates-wrapper');
-            inmatesContainer.innerHTML = '';
-            data.forEach(function (inmate) {
-                const inmateDiv = document.createElement('div');
-                inmateDiv.classList.add('inmate');
 
-                const inmateLink = document.createElement('a');
+            handleNavbar("inmates", logged);
+            const searchBar = document.getElementById('search');
+            let inmatesData = [];
 
-                const inmateImg = document.createElement('img');
-                inmateImg.setAttribute('src', 'data:image/jpg;base64,' + inmate.image);
-                inmateImg.setAttribute('width', '200');
-                inmateImg.setAttribute('height', '150');
-                inmateImg.setAttribute('alt', inmate.name);
+            function renderInmates(data) {
+                const inmatesContainer = document.querySelector('.inmates-wrapper');
+                inmatesContainer.innerHTML = '';
 
-                const inmateInfo = document.createElement('div');
-                inmateInfo.classList.add('inmate-info');
+                if (data.length === 0) {
+                    const noInmatesDiv = document.createElement('div');
+                    noInmatesDiv.textContent = 'No inmates found';
+                    noInmatesDiv.classList.add('no-inmates');
+                    inmatesContainer.appendChild(noInmatesDiv);
+                } else {
+                    data.forEach(function (inmate) {
+                        const inmateDiv = document.createElement('div');
+                        inmateDiv.classList.add('inmate');
 
-                const inmateName = document.createElement('h3');
-                inmateName.textContent = inmate.name;
+                        const inmateLink = document.createElement('a');
+                        inmateLink.setAttribute('href', FRONT_ADD_VISIT_URL.replace('{inmate_id}', inmate.id)
+                            .replace('{center_id}', extractCenterIdFromUrl()));
 
-                const inmateCrime = document.createElement('p');
-                inmateCrime.textContent = 'Crime: ' + inmate.crime;
+                        const inmateImg = document.createElement('img');
+                        inmateImg.setAttribute('src', 'data:image/jpg;base64,' + inmate.image);
+                        inmateImg.setAttribute('width', '200');
+                        inmateImg.setAttribute('height', '150');
+                        inmateImg.setAttribute('alt', inmate.name);
 
-                const inmateSentence = document.createElement('p');
-                inmateSentence.textContent = 'Sentence: ' + inmate.sentence;
+                        const inmateInfo = document.createElement('div');
+                        inmateInfo.classList.add('inmate-info');
 
-                inmateLink.appendChild(inmateImg);
-                inmateLink.appendChild(inmateInfo);
-                inmateInfo.appendChild(inmateName);
-                inmateInfo.appendChild(inmateCrime);
-                inmateInfo.appendChild(inmateSentence);
-                inmateDiv.appendChild(inmateLink);
-                inmatesContainer.appendChild(inmateDiv);
-                inmateLink.setAttribute('href', FRONT_ADD_VISIT_URL.replace('{inmate_id}',inmate.id)
-                    .replace('{center_id}', extractCenterIdFromUrl));
+                        const inmateName = document.createElement('h3');
+                        inmateName.textContent = inmate.name;
+
+                        const inmateCrime = document.createElement('p');
+                        inmateCrime.textContent = 'Crime: ' + inmate.crimes.join(', ');
+
+                        const inmateSentence = document.createElement('p');
+                        inmateSentence.textContent = 'Sentence: ' + inmate.sentences.join(', ');
+
+                        if (isAdmin()) {
+                            const buttonContainer = document.createElement('div');
+                            buttonContainer.classList.add('button-container');
+
+                            const deleteButton = document.createElement('button');
+                            deleteButton.textContent = 'Delete';
+                            deleteButton.classList.add('delete-button');
+                            deleteButton.addEventListener('click', function () {
+                                if (confirm('Are you sure you want to delete this inmate?')) {
+                                    deleteInmate(inmate.id);
+                                }
+                            });
+
+                            const transferButton = document.createElement('button');
+                            transferButton.textContent = 'Transfer';
+                            transferButton.classList.add('transfer-button');
+                            transferButton.addEventListener('click', function () {
+                                window.location.assign(FRONT_TRANSFER_INMATE_URL.replace('{inmate_id}', inmate.id)
+                                    .replace('{center_id}', extractCenterIdFromUrl()));
+                            });
+
+                            const editButton = document.createElement('button');
+                            editButton.textContent = 'Edit';
+                            editButton.classList.add('edit-button');
+                            editButton.addEventListener('click', function () {
+                                window.location.assign(FRONT_EDIT_INMATE_URL.replace('{inmate_id}', inmate.id)
+                                    .replace('{center_id}', extractCenterIdFromUrl()));
+                            });
+
+                            buttonContainer.appendChild(deleteButton);
+                            buttonContainer.appendChild(transferButton);
+                            buttonContainer.appendChild(editButton);
+                            inmateDiv.appendChild(buttonContainer);
+                        }
+
+                        inmateLink.appendChild(inmateImg);
+                        inmateInfo.appendChild(inmateName);
+                        inmateInfo.appendChild(inmateCrime);
+                        inmateInfo.appendChild(inmateSentence);
+                        inmateDiv.appendChild(inmateLink);
+                        inmateDiv.appendChild(inmateInfo);
+                        inmatesContainer.appendChild(inmateDiv);
+                    });
+                }
+            }
+
+
+            function deleteInmate(inmateId) {
+                fetch(API_DELETE_INMATE_URL.replace('{inmate_id}', inmateId).replace("{center_id}", extractCenterIdFromUrl()), {
+                    method: 'DELETE',
+                    headers: getHeaders()
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        alert(data['result']);
+                        fetchInmates();
+                    })
+                    .catch(error => {
+                        alert('An error occurred: ' + error.message);
+                    });
+            }
+
+            function filterInmates(searchTerm) {
+                const filteredInmates = inmatesData.filter(inmate => {
+                    return inmate.name.toLowerCase().includes(searchTerm.toLowerCase());
+                });
+                renderInmates(filteredInmates);
+            }
+
+            searchBar.addEventListener('input', function (event) {
+                const searchTerm = event.target.value.trim();
+                filterInmates(searchTerm);
             });
-        }
-    }
 
-    function filterInmates(searchTerm) {
-        const filteredInmates = inmatesData.filter(inmate => {
-            return inmate.name.toLowerCase().includes(searchTerm.toLowerCase());
-        });
-        if (filteredInmates.length > 0) {
-            renderInmates(filteredInmates);
-        }
-    }
-
-    searchBar.addEventListener('input', function (event) {
-        const searchTerm = event.target.value.trim();
-        filterInmates(searchTerm);
-    });
-
-    function fetchInmates(pageNumber) {
-        const http = new XMLHttpRequest();
-        http.open('GET', API_INMATES_URL.replace('{center_id}', extractCenterIdFromUrl), true);
-        setHeaders(http);
-
-        http.onreadystatechange = function () {
-            if (http.readyState === 4) {
-                switch (http.status) {
-                    case 200:
-                        inmatesData = JSON.parse(http.responseText);
+            function fetchInmates(page = 1) {
+                fetch(API_INMATES_URL.replace('{center_id}', extractCenterIdFromUrl()), {
+                    method: 'GET',
+                    headers: getHeaders()
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        inmatesData = data;
                         renderInmates(inmatesData);
-                        break;
-                    default:
+                    })
+                    .catch(_ => {
+                        alert('You are not authorized to view this page');
                         window.location.assign("/login");
+                    });
+            }
+
+            function fetchInmatesCount() {
+                fetch(API_INMATES_COUNT_URL.replace('{center_id}', extractCenterIdFromUrl()), {
+                    method: 'GET',
+                    headers: getHeaders()
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        const pagesNumber = Math.ceil(data.count / 10);
+                        createNavigationButtons(pagesNumber);
+                    })
+                    .catch(_ => {
+                        window.location.assign("/login");
+                    });
+            }
+
+            function createNavigationButtons(pagesNumber) {
+                const navigationButtons = document.querySelector('.navigation-buttons');
+                navigationButtons.innerHTML = '';
+
+                for (let i = 1; i <= pagesNumber; i++) {
+                    const button = document.createElement('button');
+                    button.textContent = i.toString();
+                    button.addEventListener('click', () => {
+                        history.pushState(null, null, `${FRONT_INMATES_URL.replace('{center_id}', extractCenterIdFromUrl())}/p${i}`);
+                        fetchInmates(i);
+                    });
+                    //navigationButtons.appendChild(button);
                 }
             }
-        };
 
-        http.send();
-    }
-
-    function fetchInmatesCount() {
-        const http = new XMLHttpRequest();
-        http.open('GET', API_INMATES_COUNT_URL.replace('{center_id}', extractCenterIdFromUrl), true);
-        setHeaders(http);
-
-        let count = 0;
-
-        http.onreadystatechange = () => {
-            if (http.readyState === 4) {
-                switch (http.status) {
-                    case 200:
-                        count = JSON.parse(http.responseText).count;
-                        createNavigationButtons(Math.ceil(count / 10));
-                        break;
-                    case 401:
-                        window.location.assign("/login");
-                }
+            function fetchCenterDetails() {
+                fetch(API_CENTERS_URL, {
+                    method: 'GET',
+                    headers: getHeaders()
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        const centerId = extractCenterIdFromUrl();
+                        const center = data.find(item => item.id === centerId);
+                        if (center) {
+                            const centerNameBox = document.createElement('div');
+                            centerNameBox.classList.add('center-name-box');
+                            centerNameBox.textContent = `${center.title}`;
+                            searchBar.insertAdjacentElement('afterend', centerNameBox);
+                        } else {
+                            console.error("Center not found");
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching center details:', error);
+                        console.error("Failed to fetch center details");
+                    });
             }
-        };
-        http.send();
-    }
 
-    function createNavigationButtons(pagesNumber) {
-        for (let i = 1; i <= pagesNumber; i++) {
-            const button = document.createElement('button');
-            button.textContent = i.toString();
-            button.addEventListener('click', () => {
-                history.pushState(null, null, FRONT_INMATES_URL.replace('{center_id}',extractCenterIdFromUrl)+ '/p'+i);
-                fetchInmates(i);
-                window.location.reload();
-            });
-            //document.querySelector('.navigation-buttons').appendChild(button); FOR LATER USE FOR PAGINATION
+            if (isAdmin()) {
+                const addInmateDiv = document.createElement('div');
+                addInmateDiv.classList.add('add-inmate');
+                const addInmateLink = document.createElement('a');
+                addInmateLink.addEventListener('click', () => {
+                    window.location.assign(FRONT_ADD_INMATE_URL.replace('{center_id}', extractCenterIdFromUrl()));
+                });
+                const addInmateButton = document.createElement('button');
+                addInmateButton.setAttribute('id', 'add-inmate-btn');
+                addInmateButton.textContent = 'Add More Inmates';
+                addInmateLink.appendChild(addInmateButton);
+                addInmateDiv.appendChild(addInmateLink);
+                document.querySelector('.main-content').appendChild(addInmateDiv);
+            }
+
+            const pageNumber = parseInt(window.location.href.split('/').pop().slice(1)) || 1;
+            fetchCenterDetails();
+            fetchInmatesCount();
+            fetchInmates();
         }
-    }
-
-    if (isAdmin()){
-        const addInmateDiv = document.createElement('div');
-        addInmateDiv.classList.add('add-center');
-        const addInmateLink = document.createElement('a');
-        addInmateLink.addEventListener('click', () => {
-            window.location.assign(FRONT_ADD_INMATE_URL.replace('{center_id}', extractCenterIdFromUrl));
-        });
-        const addInmateButton = document.createElement('button');
-        addInmateButton.setAttribute('id', 'add-inmate-btn');
-        addInmateButton.textContent = 'Add More Inmates';
-        addInmateLink.appendChild(addInmateButton);
-        addInmateDiv.appendChild(addInmateLink);
-        document.querySelector('.main-content').appendChild(addInmateDiv);
-    }
-
-    const pageNumber = window.location.href.split('/').pop().slice(1) || 1;
-    fetchInmatesCount();
-    fetchInmates(pageNumber);
+    });
 });

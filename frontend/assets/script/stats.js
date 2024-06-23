@@ -1,54 +1,51 @@
 "use strict";
 
-import { API_CENTERS_URL, API_INMATES_URL, API_STATISTICS_URL } from "./constants.js";
-import { handleNavbar } from "./handle_navbar.js";
-import { isLogged } from "./jwt.js";
-import { setHeaders } from "./utils.js";
-
-if (!isLogged()) {
-    window.location.assign("/");
-}
+import {API_CENTERS_URL, API_INMATES_URL, API_STATISTICS_URL} from "./constants.js";
+import {handleNavbar} from "./handle_navbar.js";
+import {getHeaders, isLogged} from "./utils.js";
 
 document.addEventListener("DOMContentLoaded", function () {
-    handleNavbar("addVisit", isLogged());
-    loadCenters();
+    isLogged((logged) => {
+        if (!logged) {
+            window.location.assign("/login");
+        } else {
+            handleNavbar("addVisit", logged);
+            loadCenters();
 
-    const generateStatsForm = document.querySelector("form");
-    generateStatsForm.addEventListener("submit", function (event) {
-        event.preventDefault();
-        if (validateForm()) {
-            fetchStats();
+            const generateStatsForm = document.querySelector("form");
+            generateStatsForm.addEventListener("submit", function (event) {
+                event.preventDefault();
+                if (validateForm()) {
+                    fetchStats();
+                }
+            });
+
+            document.getElementById("downloadHTML").addEventListener("click", downloadHTML);
+            document.getElementById("downloadCSV").addEventListener("click", downloadCSV);
+            document.getElementById("downloadJSON").addEventListener("click", downloadJSON);
+
+            const detentionCenterSelect = document.getElementById("detention-center");
+            detentionCenterSelect.addEventListener("change", loadInmates);
         }
     });
-
-    document.getElementById("downloadHTML").addEventListener("click", downloadHTML);
-    document.getElementById("downloadCSV").addEventListener("click", downloadCSV);
-    document.getElementById("downloadJSON").addEventListener("click", downloadJSON);
-
-    const detentionCenterSelect = document.getElementById("detention-center");
-    detentionCenterSelect.addEventListener("change", loadInmates);
 });
 
 function loadCenters() {
-    const http = new XMLHttpRequest();
-    http.open("GET", API_CENTERS_URL, true);
-    setHeaders(http);
-
-    http.onreadystatechange = function () {
-        if (http.readyState === 4 && http.status === 200) {
-            const centers = JSON.parse(http.responseText);
+    fetch(API_CENTERS_URL, {
+        method: 'GET',
+        headers: getHeaders()
+    })
+        .then(response => response.json())
+        .then(centers => {
             const centerSelect = document.getElementById("detention-center");
-
             centers.forEach(center => {
                 const option = document.createElement("option");
                 option.value = center.id;
                 option.textContent = center.title;
                 centerSelect.appendChild(option);
             });
-        }
-    };
-
-    http.send();
+        })
+        .catch(error => console.error('Error loading centers:', error));
 }
 
 function loadInmates() {
@@ -58,26 +55,22 @@ function loadInmates() {
         return;
     }
 
-    const http = new XMLHttpRequest();
-    http.open("GET", API_INMATES_URL.replace("{center_id}", centerId), true);
-    setHeaders(http);
-
-    http.onreadystatechange = function () {
-        if (http.readyState === 4 && http.status === 200) {
-            const inmates = JSON.parse(http.responseText);
+    fetch(API_INMATES_URL.replace("{center_id}", centerId), {
+        method: 'GET',
+        headers: getHeaders()
+    })
+        .then(response => response.json())
+        .then(inmates => {
             const inmatesSelect = document.getElementById("inmates");
             inmatesSelect.innerHTML = '<option value="all">All</option>';
-
             inmates.forEach(inmate => {
                 const option = document.createElement("option");
                 option.value = inmate.id;
                 option.textContent = inmate.name;
                 inmatesSelect.appendChild(option);
             });
-        }
-    };
-
-    http.send();
+        })
+        .catch(error => console.error('Error loading inmates:', error));
 }
 
 function clearInmates() {
@@ -102,32 +95,27 @@ function fetchStats() {
     const startDate = document.getElementById("start-date").value;
     const endDate = document.getElementById("end-date").value;
 
-    const http = new XMLHttpRequest();
-    http.open("GET", API_STATISTICS_URL.replace("{center_id}", centerId)
+    fetch(API_STATISTICS_URL.replace("{center_id}", centerId)
         .replace("{inmate_id}", inmateId)
         .replace("{start_date}", startDate)
-        .replace("{end_date}", endDate), true);
-    setHeaders(http);
-
-    http.onreadystatechange = function () {
-        if (http.readyState === 4) {
-            if (http.status === 200) {
-                try {
-                    let stats = JSON.parse(http.responseText);
-                    window.statsData = stats;
-                    displayStats(stats);
-                } catch (error) {
-                    console.error("Failed to parse statistics response:", error);
-                    alert("Failed to fetch statistics. Please try again later.");
-                }
-            } else {
-                console.error("Failed to fetch statistics. Status code:", http.status);
-                alert("Failed to fetch statistics. Please try again later.");
+        .replace("{end_date}", endDate), {
+        method: 'GET',
+        headers: getHeaders()
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Failed to fetch statistics. Status code: ${response.status}`);
             }
-        }
-    };
-
-    http.send();
+            return response.json();
+        })
+        .then(stats => {
+            window.statsData = stats;
+            displayStats(stats);
+        })
+        .catch(error => {
+            console.error("Failed to fetch statistics:", error);
+            alert("Failed to fetch statistics. Please try again later.");
+        });
 }
 
 function displayStats(stats) {
@@ -164,7 +152,7 @@ function downloadHTML() {
         </html>
     `;
 
-    const blob = new Blob([htmlContent], { type: "text/html" });
+    const blob = new Blob([htmlContent], {type: "text/html"});
     const link = document.createElement("a");
     link.href = URL.createObjectURL(blob);
     link.download = "stats_report.html";
@@ -179,7 +167,7 @@ function downloadCSV() {
     }
 
     const csvContent = generateCSVContent(stats);
-    const blob = new Blob([csvContent], { type: "text/csv" });
+    const blob = new Blob([csvContent], {type: "text/csv"});
     const link = document.createElement("a");
     link.href = URL.createObjectURL(blob);
     link.download = "stats_report.csv";
@@ -211,7 +199,7 @@ function downloadJSON() {
     }
 
     const jsonContent = JSON.stringify(stats, null, 2);
-    const blob = new Blob([jsonContent], { type: "application/json" });
+    const blob = new Blob([jsonContent], {type: "application/json"});
     const link = document.createElement("a");
     link.href = URL.createObjectURL(blob);
     link.download = "stats_report.json";

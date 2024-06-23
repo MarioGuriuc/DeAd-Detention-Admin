@@ -45,9 +45,12 @@ $api_routes = [
         'api/{username}/change-password' => 'api/user_service/change_password.php',
         'api/visits/{visit_id}/status' => 'api/visits_service/visit_status.php',//Vlad
         'api/visits/{visit_id}' => 'api/visits_service/edit_visit.php',//Vlad
+        'api/centers/{center_id}/inmates/{inmate_id}/transfer' => 'api/inmates_service/transfer_inmate.php',//Vlad
+        'api/centers/{center_id}/inmates/{inmate_id}/edit' => 'api/inmates_service/edit_inmate.php',//Vlad
     ],
     'DELETE' => [
         'api/account/{username}' => 'api/user_service/delete_account.php',
+        'api/centers/{center_id}/inmates/{inmate_id}/delete' => 'api/inmates_service/delete_inmate.php',//Vlad
     ],
     'PUT' => [
         'api/centers' => 'api/centers_service/add_center.php',

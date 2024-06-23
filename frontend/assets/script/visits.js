@@ -4,92 +4,92 @@
 
 import {API_VISIT_STATUS_URL, API_VISITS_URL, FRONT_EDIT_VISIT_URL} from "./constants.js";
 import {handleNavbar} from "./handle_navbar.js";
-import {getUsernameFromJwt, isLogged} from "./jwt.js";
-import {isAdmin, setHeaders} from "./utils.js";
-
-if (!isLogged()) {
-    window.location.assign("/");
-}
+import {getUsernameFromJwt} from "./jwt.js";
+import {isAdmin, getHeaders, isLogged} from "./utils.js";
 
 document.addEventListener('DOMContentLoaded', function () {
-    handleNavbar("visits", isLogged());
-    const searchBar = document.getElementById('search');
-    document.querySelector('.visits-container').addEventListener('click', function (event) {
-        if (event.target && event.target.classList.contains('edit-btn')) {
-            const visitId = event.target.dataset.id;
-            handleEdit(visitId);
-        }
-    });
-
-    let visitsData = [];
-
-    function renderVisits(data) {
-        const visitsContainer = document.querySelector('.visits-container');
-
-        if (data["visits"].length === 0) {
-            const noVisitsDiv = document.createElement('div');
-            visitsContainer.style.justifyContent = 'center';
-            noVisitsDiv.textContent = 'No visits found';
-            noVisitsDiv.classList.add('no-visits');
-            visitsContainer.appendChild(noVisitsDiv);
+    isLogged((logged) => {
+        if (!logged) {
+            window.location.assign("/login");
         } else {
-            visitsContainer.innerHTML = '';
-            data["visits"].forEach(function (visit) {
-                const visitDiv = document.createElement('div');
-                visitDiv.classList.add('visit-entry');
+            handleNavbar("visits", logged);
+            const searchBar = document.getElementById('search');
+            document.querySelector('.visits-container').addEventListener('click', function (event) {
+                if (event.target && event.target.classList.contains('edit-btn')) {
+                    const visitId = event.target.dataset.id;
+                    handleEdit(visitId);
+                }
+            });
 
-                const editButton = document.createElement('button');
-                editButton.textContent = 'Edit Visit';
-                editButton.classList.add('edit-btn');
-                editButton.dataset.id = visit.id;
-                visitDiv.appendChild(editButton);
+            let visitsData = [];
 
-                const truncatedLength = 20;
+            function renderVisits(data) {
+                const visitsContainer = document.querySelector('.visits-container');
 
-                const createTextElement = (label, text) => {
-                    const p = document.createElement('p');
-                    p.classList.add('text-wrap');
+                if (data["visits"].length === 0) {
+                    const noVisitsDiv = document.createElement('div');
+                    visitsContainer.style.justifyContent = 'center';
+                    noVisitsDiv.textContent = 'No visits found';
+                    noVisitsDiv.classList.add('no-visits');
+                    visitsContainer.appendChild(noVisitsDiv);
+                } else {
+                    visitsContainer.innerHTML = '';
+                    data["visits"].forEach(function (visit) {
+                        const visitDiv = document.createElement('div');
+                        visitDiv.classList.add('visit-entry');
 
-                    const span = document.createElement('span');
-                    span.textContent = `${label}: `;
+                        const editButton = document.createElement('button');
+                        editButton.textContent = 'Edit Visit';
+                        editButton.classList.add('edit-btn');
+                        editButton.dataset.id = visit.id;
+                        visitDiv.appendChild(editButton);
 
-                    const fullText = document.createElement('span');
-                    fullText.textContent = text;
-                    fullText.style.display = 'none';
+                        const truncatedLength = 20;
 
-                    p.appendChild(span);
+                        const createTextElement = (label, text) => {
+                            const p = document.createElement('p');
+                            p.classList.add('text-wrap');
 
-                    if (text.length > truncatedLength) {
-                        const readMoreButton = document.createElement('button');
-                        readMoreButton.textContent = 'Read More';
-                        readMoreButton.classList.add('read-more-btn');
-                        readMoreButton.addEventListener('click', () => {
-                            fullText.style.display = 'inline';
-                            readMoreButton.style.display = 'none';
-                            readLessButton.style.display = 'inline';
-                        });
+                            const span = document.createElement('span');
+                            span.textContent = `${label}: `;
 
-                        const readLessButton = document.createElement('button');
-                        readLessButton.textContent = 'Read Less';
-                        readLessButton.style.display = 'none';
-                        readLessButton.classList.add('read-less-btn');
-                        readLessButton.addEventListener('click', () => {
+                            const fullText = document.createElement('span');
+                            fullText.textContent = text;
                             fullText.style.display = 'none';
-                            readMoreButton.style.display = 'inline';
-                            readLessButton.style.display = 'none';
-                        });
 
-                        p.appendChild(readMoreButton);
-                        p.appendChild(readLessButton);
-                    } else {
-                        fullText.style.display = 'inline';
-                    }
+                            p.appendChild(span);
 
-                    p.appendChild(fullText);
-                    return p;
-                };
+                            if (text.length > truncatedLength) {
+                                const readMoreButton = document.createElement('button');
+                                readMoreButton.textContent = 'Read More';
+                                readMoreButton.classList.add('read-more-btn');
+                                readMoreButton.addEventListener('click', () => {
+                                    fullText.style.display = 'inline';
+                                    readMoreButton.style.display = 'none';
+                                    readLessButton.style.display = 'inline';
+                                });
 
-                visitDiv.innerHTML += `
+                                const readLessButton = document.createElement('button');
+                                readLessButton.textContent = 'Read Less';
+                                readLessButton.style.display = 'none';
+                                readLessButton.classList.add('read-less-btn');
+                                readLessButton.addEventListener('click', () => {
+                                    fullText.style.display = 'none';
+                                    readMoreButton.style.display = 'inline';
+                                    readLessButton.style.display = 'none';
+                                });
+
+                                p.appendChild(readMoreButton);
+                                p.appendChild(readLessButton);
+                            } else {
+                                fullText.style.display = 'inline';
+                            }
+
+                            p.appendChild(fullText);
+                            return p;
+                        };
+
+                        visitDiv.innerHTML += `
                 <h3>Date: ${visit.date}</h3>
                 <p>Detention Center: ${visit.center.name}</p>
                 <p>Inmate: ${visit.inmate.fullName}</p>
@@ -97,129 +97,133 @@ document.addEventListener('DOMContentLoaded', function () {
                 <p>Duration: ${visit.duration} hours</p>
             `;
 
-                visitDiv.appendChild(createTextElement('Nature', visit.nature));
-                visitDiv.appendChild(createTextElement('Objects Exchanged', visit.objectsExchanged));
-                visitDiv.appendChild(createTextElement('Summary', visit.summary));
-                visitDiv.appendChild(createTextElement('Health and Mood', visit.health));
-                visitDiv.appendChild(createTextElement('Witnesses', visit.witnesses));
-                if(visit.status === 'pending' && !isAdmin()){
-                    const statusButton = document.createElement('button');
-                    statusButton.classList.add(`${visit.status}-btn`);
-                    statusButton.textContent = visit.status.charAt(0).toUpperCase() + visit.status.slice(1);
-                    visitDiv.appendChild(statusButton);
-                }
+                        visitDiv.appendChild(createTextElement('Nature', visit.nature));
+                        visitDiv.appendChild(createTextElement('Objects Exchanged', visit.objectsExchanged));
+                        visitDiv.appendChild(createTextElement('Summary', visit.summary));
+                        visitDiv.appendChild(createTextElement('Health and Mood', visit.health));
+                        visitDiv.appendChild(createTextElement('Witnesses', visit.witnesses));
+                        if (visit.status === 'pending' && !isAdmin()) {
+                            const statusButton = document.createElement('button');
+                            statusButton.classList.add(`${visit.status}-btn`);
+                            statusButton.textContent = visit.status.charAt(0).toUpperCase() + visit.status.slice(1);
+                            visitDiv.appendChild(statusButton);
+                        }
 
-                if (visit.status === 'pending' && isAdmin()) {
-                    const buttonsDiv = document.createElement('div');
-                    buttonsDiv.classList.add('approve-deny-buttons');
+                        if (visit.status === 'pending' && isAdmin()) {
+                            const buttonsDiv = document.createElement('div');
+                            buttonsDiv.classList.add('approve-deny-buttons');
 
-                    const approveButton = document.createElement('button');
-                    approveButton.classList.add('approve-btn');
-                    approveButton.textContent = 'Approve';
-                    approveButton.dataset.id = visit.id;
-                    approveButton.addEventListener('click', () => handleApproval(visit.id, 'approved'));
+                            const approveButton = document.createElement('button');
+                            approveButton.classList.add('approve-btn');
+                            approveButton.textContent = 'Approve';
+                            approveButton.dataset.id = visit.id;
+                            approveButton.addEventListener('click', () => handleApproval(visit.id, 'approved'));
 
-                    const denyButton = document.createElement('button');
-                    denyButton.classList.add('deny-btn');
-                    denyButton.textContent = 'Deny';
-                    denyButton.dataset.id = visit.id;
-                    denyButton.addEventListener('click', () => handleApproval(visit.id, 'denied'));
+                            const denyButton = document.createElement('button');
+                            denyButton.classList.add('deny-btn');
+                            denyButton.textContent = 'Deny';
+                            denyButton.dataset.id = visit.id;
+                            denyButton.addEventListener('click', () => handleApproval(visit.id, 'denied'));
 
-                    buttonsDiv.appendChild(approveButton);
-                    buttonsDiv.appendChild(denyButton);
+                            buttonsDiv.appendChild(approveButton);
+                            buttonsDiv.appendChild(denyButton);
 
-                    visitDiv.appendChild(buttonsDiv);
-                }
+                            visitDiv.appendChild(buttonsDiv);
+                        }
 
-                if (visit.status === 'approved' || visit.status === 'denied') {
-                    const statusButton = document.createElement('button');
-                    statusButton.classList.add(`${visit.status}-btn`);
-                    statusButton.textContent = visit.status.charAt(0).toUpperCase() + visit.status.slice(1);
-                    if(isAdmin())
-                    statusButton.addEventListener('click', () => handleApproval(visit.id, 'attended'));
-                    visitDiv.appendChild(statusButton);
-                }
+                        if (visit.status === 'approved' || visit.status === 'denied') {
+                            const statusButton = document.createElement('button');
+                            statusButton.classList.add(`${visit.status}-btn`);
+                            statusButton.textContent = visit.status.charAt(0).toUpperCase() + visit.status.slice(1);
+                            if (isAdmin())
+                                statusButton.addEventListener('click', () => handleApproval(visit.id, 'attended'));
+                            visitDiv.appendChild(statusButton);
+                        }
 
-                if(visit.status === 'attended' || visit.status === 'expired'){
-                    const statusButton = document.createElement('button');
-                    statusButton.classList.add(`${visit.status}-btn`);
-                    statusButton.textContent = visit.status.charAt(0).toUpperCase() + visit.status.slice(1);
-                    visitDiv.appendChild(statusButton);
-                }
+                        if (visit.status === 'attended' || visit.status === 'expired') {
+                            const statusButton = document.createElement('button');
+                            statusButton.classList.add(`${visit.status}-btn`);
+                            statusButton.textContent = visit.status.charAt(0).toUpperCase() + visit.status.slice(1);
+                            visitDiv.appendChild(statusButton);
+                        }
 
-                visitsContainer.appendChild(visitDiv);
-            });
-        }
-    }
-
-    function filterVisits(searchTerm) {
-        const filteredVisits = visitsData.visits.filter(visit => {
-            return visit.inmate.fullName.toLowerCase().includes(searchTerm.toLowerCase());
-        });
-        const searchedVisits = JSON.parse(JSON.stringify({visits: filteredVisits}));
-        if (searchedVisits.visits.length > 0) {
-            {
-                renderVisits(searchedVisits);
-            }
-        }
-    }
-
-    searchBar.addEventListener('input', function (event) {
-        const searchTerm = event.target.value.trim();
-        filterVisits(searchTerm);
-    });
-
-    function handleEdit(visitId) {
-        const username = getUsernameFromJwt();
-        window.location.assign(FRONT_EDIT_VISIT_URL.replace('{username}', username).replace('{visit_id}', visitId));
-    }
-
-
-    function fetchVisits() {
-        const http = new XMLHttpRequest();
-        http.open('GET', API_VISITS_URL.replace('{username}', getUsernameFromJwt), true);
-        setHeaders(http);
-
-        http.onreadystatechange = function () {
-            if (http.readyState === 4) {
-                switch (http.status) {
-                    case 200:
-                        visitsData = JSON.parse(http.responseText);
-                        renderVisits(visitsData);
-                        break;
-                    default:
-                        window.location.assign("/login");
+                        visitsContainer.appendChild(visitDiv);
+                    });
                 }
             }
-        };
 
-        http.send();
-    }
-
-    function handleApproval(visitId, status) {
-        const http = new XMLHttpRequest();
-        const url = API_VISIT_STATUS_URL.replace('{visit_id}', visitId);
-
-        http.open('PATCH', url, true);
-        setHeaders(http);
-
-        http.onreadystatechange = function () {
-            if (http.readyState === 4) {
-                if (http.status === 200) {
-                    const response = JSON.parse(http.responseText);
-                    if (response.result === "Visit status updated successfully") {
-                        alert(`Visit ${status} successfully.`);
-                        fetchVisits();
-                    } else {
-                        alert(`Failed to ${status} the visit.`);
+            function filterVisits(searchTerm) {
+                const filteredVisits = visitsData.visits.filter(visit => {
+                    return visit.inmate.fullName.toLowerCase().includes(searchTerm.toLowerCase());
+                });
+                const searchedVisits = JSON.parse(JSON.stringify({visits: filteredVisits}));
+                if (searchedVisits.visits.length > 0) {
+                    {
+                        renderVisits(searchedVisits);
                     }
-                } else {
-                    alert(`Error ${status} the visit. Please try again later.`);
                 }
             }
-        };
 
-        http.send(JSON.stringify({status}));
-    }
-    fetchVisits();
+            searchBar.addEventListener('input', function (event) {
+                const searchTerm = event.target.value.trim();
+                filterVisits(searchTerm);
+            });
+
+            function handleEdit(visitId) {
+                const username = getUsernameFromJwt();
+                window.location.assign(FRONT_EDIT_VISIT_URL.replace('{username}', username).replace('{visit_id}', visitId));
+            }
+
+            function fetchVisits() {
+                const url = API_VISITS_URL.replace('{username}', getUsernameFromJwt());
+
+                fetch(url, {
+                    method: 'GET',
+                    headers: getHeaders()
+                })
+                    .then(response => response.json()
+                        .then(data => ({status: response.status, body: data}))
+                        .catch(() => ({status: response.status, body: {}})))
+                    .then(({status, body}) => {
+                        if (status === 200) {
+                            visitsData = body;
+                            renderVisits(body);
+                        } else {
+                            window.location.assign("/login");
+                        }
+                    })
+                    .catch(_ => {
+                        window.location.assign("/login");
+                    });
+            }
+
+
+            function handleApproval(visitId, status) {
+                const url = API_VISIT_STATUS_URL.replace('{visit_id}', visitId);
+
+                fetch(url, {
+                    method: 'PATCH',
+                    headers: getHeaders(),
+                    body: JSON.stringify({status})
+                })
+                    .then(response => response.json()
+                        .then(data => ({status: response.status, body: data}))
+                        .catch(() => ({status: response.status, body: {}})))
+                    .then(({status, body}) => {
+                        if (status === 200) {
+                            if (body.result === "Visit status updated successfully") {
+                                fetchVisits();
+                            } else {
+                                alert(`Failed to handle the approval the visit.`);
+                            }
+                        }
+                    })
+                    .catch(_ => {
+                        alert(`Error ${status} the visit. Please try again later.`);
+                    });
+            }
+
+            fetchVisits();
+        }
+    });
 });

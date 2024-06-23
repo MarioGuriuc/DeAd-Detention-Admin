@@ -83,7 +83,7 @@ export function extractCenterIdFromUrl() {
 
 export function extractInmateIdFromUrl() {
     const url = window.location.href;
-    const regex = /inmates\/([a-f0-9]{24})\/add-visit/;
+    const regex = /inmates\/([a-f0-9]{24})\/?/;
     const match = url.match(regex);
     if (match && match[1]) {
         return match[1];
