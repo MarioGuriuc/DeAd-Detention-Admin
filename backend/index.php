@@ -25,9 +25,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 
 $api_routes = [
     'GET' => [
-        'api/centers' => 'api/centers_service/get_detention_centers.php',
+        'api/centers' => 'api/centers_service/get_centers.php',
+        //'api/centers/{center_id}' => 'api/centers_service/get_center.php',
         'api/centers/count' => 'api/centers_service/get_centers_count.php',
-        'api/centers/{page_number}' => 'api/centers_service/get_detention_centers.php',
+        'api/centers/{page_number}' => 'api/centers_service/get_centers_page.php',
         'api/account/{username}' => 'api/user_service/get_account_info.php',
         'api/verify-jwt' => 'api/user_service/verify_jwt.php',
         'api/centers/{center_id}/inmates' => 'api/inmates_service/get_inmates.php',//Vlad
@@ -43,6 +44,7 @@ $api_routes = [
     'PATCH' => [
         'api/account/{username}' => 'api/user_service/update_account.php',
         'api/{username}/change-password' => 'api/user_service/change_password.php',
+        'api/{username}/change-role' => 'api/user_service/change_role.php',
         'api/visits/{visit_id}/status' => 'api/visits_service/visit_status.php',//Vlad
         'api/visits/{visit_id}' => 'api/visits_service/edit_visit.php',//Vlad
         'api/centers/{center_id}/inmates/{inmate_id}/transfer' => 'api/inmates_service/transfer_inmate.php',//Vlad

@@ -21,7 +21,7 @@ $data = receive_json();
 $username = $jwt->sub;
 $route_params = $GLOBALS['params'] ?? [];
 
-if (count($route_params) !== 1 || $route_params[0] !== $username) {
+if (count($route_params) !== 1 || $route_params['username'] !== $username) {
     send_response("Unauthorized", 401);
 }
 

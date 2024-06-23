@@ -1,8 +1,10 @@
 // Author: Mario Guriuc
 
 import {
-    API_ACCOUNT_URL, FRONT_ADMIN_URL,
+    API_ACCOUNT_URL,
+    FRONT_ADMIN_URL,
     FRONT_CHANGE_PASSWORD_URL,
+    FRONT_CHANGE_ROLE_URL,
     FRONT_DELETE_ACCOUNT_URL,
     FRONT_EDIT_ACCOUNT_URL
 } from "./constants.js";
@@ -11,11 +13,12 @@ import {getButton, getHeaders, getUsernameFromUrl, isLogged, logout} from "./uti
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    isLogged((logged) => {
+    isLogged(logged => {
         if (!logged) {
             window.location.assign("/");
         }
         else {
+
             function fetchUserInfo() {
                 fetch(API_ACCOUNT_URL.replace("{username}", getUsernameFromUrl()), {
                     'method': 'GET',
@@ -26,8 +29,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         window.location.assign("/");
                     }
                     return response.json();
-                }).then((accountInfo) => {
-                    const accountInfoDiv = document.getElementById('account-info');
+                }).then(accountInfo => {
+                    const accountInfoDiv = document.getElementById("account-info");
+                    accountInfoDiv.id = 'account-info';
 
                     const accountInfoHeading = document.createElement('h2');
                     accountInfoHeading.textContent = 'Account Information';
@@ -49,25 +53,28 @@ document.addEventListener('DOMContentLoaded', () => {
                         accountInfoDiv.appendChild(paragraph);
                     }
 
-                    handleNavbar("account", true);
                     appendButtons(accountInfo.role === "admin");
                 }).catch(_ => {
                     logout();
                     window.location.assign("/");
                 })
             }
+
             function appendButtons(isAdmin) {
                 const accountButtons = document.getElementById("account-buttons");
                 accountButtons.appendChild(getButton("Edit Account", FRONT_EDIT_ACCOUNT_URL.replace("{username}", getUsernameFromUrl())));
                 accountButtons.appendChild(getButton("Delete Account", FRONT_DELETE_ACCOUNT_URL.replace("{username}", getUsernameFromUrl())));
                 accountButtons.appendChild(getButton("Change Password", FRONT_CHANGE_PASSWORD_URL.replace("{username}", getUsernameFromUrl())));
-                accountButtons.appendChild(getButton("Logout", ""));
-                accountButtons.lastChild.addEventListener("click", logout);
                 if (isAdmin) {
                     accountButtons.appendChild(getButton("Admin Page", FRONT_ADMIN_URL.replace("{username}", getUsernameFromUrl())));
+                    accountButtons.appendChild(getButton("Change User Role", FRONT_CHANGE_ROLE_URL.replace("{username}", getUsernameFromUrl())));
                 }
+                accountButtons.appendChild(getButton("Logout", ""));
+                accountButtons.lastChild.addEventListener("click", logout);
             }
+
             fetchUserInfo();
+            handleNavbar("account", logged);
         }
     });
 });

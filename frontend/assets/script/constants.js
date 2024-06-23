@@ -11,6 +11,7 @@ const API_ACCOUNT_URL = `${API_URL}/account/{username}`;
 const API_ADD_CENTER_URL = `${API_URL}/centers`;
 const API_FORGOT_PASSWORD_URL = `${API_URL}/forgot-password`;
 const API_CHANGE_PASSWORD_URL = `${API_URL}/{username}/change-password`;
+const API_CHANGE_ROLE_URL = `${API_URL}/{username}/change-role`;
 const API_VERIFY_JWT = `${API_URL}/verify-jwt`;
 
 const FRONT_CENTERS_URL = `${FRONTEND_URL}/centers`;
@@ -19,6 +20,7 @@ const FRONT_DELETE_ACCOUNT_URL = `${FRONTEND_URL}/account/{username}/delete-acco
 const FRONT_ACCOUNT_URL = `${FRONTEND_URL}/account/{username}`;
 const FRONT_ADMIN_URL = `${FRONTEND_URL}/account/{username}/admin-page`;
 const FRONT_CHANGE_PASSWORD_URL = `${FRONTEND_URL}/account/{username}/change-password`;
+const FRONT_CHANGE_ROLE_URL = `${FRONTEND_URL}/account/{username}/change-role`;
 
 export {
     API_LOGIN_URL,
@@ -29,6 +31,7 @@ export {
     API_ADD_CENTER_URL,
     API_FORGOT_PASSWORD_URL,
     API_CHANGE_PASSWORD_URL,
+    API_CHANGE_ROLE_URL,
     API_VERIFY_JWT,
 };
 
@@ -39,6 +42,7 @@ export {
     FRONT_ACCOUNT_URL,
     FRONT_ADMIN_URL,
     FRONT_CHANGE_PASSWORD_URL,
+    FRONT_CHANGE_ROLE_URL,
 };
 
 //VLAD

@@ -30,8 +30,8 @@ $password = $data["password"];
 
 $database = get_db_conn();
 
-$usersCollection = $database->selectCollection('users');
-$user = $usersCollection->findOne(["username" => $username]);
+$users_collection = $database->selectCollection('users');
+$user = $users_collection->findOne(["username" => $username]);
 
 if (!$user) {
     send_response("User not found", 404);

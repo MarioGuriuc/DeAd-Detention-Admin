@@ -20,27 +20,16 @@ export const handleNavbar = (page, loggedIn = false) => {
                 appendHomeAccountButtons(navBar);
                 break;
             }
+            case "changeRole":
+            case "home":
+            case "visits":
+            case "addVisit":
             case "inmates": {
                 appendCentersAccountButtons(navBar);
                 break;
             }
-            case "addVisit":{
-                appendCentersAccountButtons(navBar);
-                break;
-            }
-            case "visits": {
-                appendCentersAccountButtons(navBar);
-                break;
-            }
-            case "addInmate": {
-                appendHomeCentersButtons(navBar);
-                break;
-            }
-            case "home": {
-                appendCentersAccountButtons(navBar);
-                break;
-            }
             case "addCenter":
+            case "addInmate":
             case "account": {
                 appendHomeCentersButtons(navBar);
                 break;
