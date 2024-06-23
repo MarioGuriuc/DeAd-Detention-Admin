@@ -10,10 +10,10 @@ const webRoutes = {
     'login': 'html/login.html',
     'register': 'html/register.html',
     'add-center': 'html/add_center.html',
-    'add-inmate': 'html/add_inmate_admin.html',
+    'add-inmate': 'html/add_inmate_admin.html',//Vlad
     'centers': 'html/detention_centers.html',
     'forgot-password': 'html/forgot_password.html',
-    'statistics': 'html/generate_stats.html',
+    'statistics': 'html/generate_stats.html',//Vlad
 };
 
 const dynamicWebRoutes = {
@@ -25,12 +25,14 @@ const dynamicWebRoutes = {
     'account/{username}/change-role': 'html/change_role.html',
     'centers': 'html/detention_centers.html',
     'centers/{page_number}': 'html/detention_centers.html',
-    'centers/{center_id}/inmates': 'html/inmates.html',
-    'centers/{center_id}/inmates/{inmate_id}': 'html/inmates.html',
-    'centers/{center_id}/add-inmate': 'html/add_inmate.html',
-    'account/{username}/visits': 'html/visits.html',
-    'centers/{center_id}/inmates/{inmate_id}/add-visit': 'html/add_visit.html',
-    'account/{username}/visits/{visit_id}': 'html/edit_visit.html',
+    'centers/{center_id}/inmates': 'html/inmates.html',//Vlad
+    'centers/{center_id}/inmates/{inmate_id}': 'html/inmates.html',//Vlad
+    'centers/{center_id}/add-inmate': 'html/add_inmate.html',//Vlad
+    'account/{username}/visits': 'html/visits.html',//Vlad
+    'centers/{center_id}/inmates/{inmate_id}/add-visit': 'html/add_visit.html',//Vlad
+    'account/{username}/visits/{visit_id}': 'html/edit_visit.html',//Vlad
+    'centers/{center_id}/inmates/{inmate_id}/transfer' : 'html/transfer_inmate.html',//Vlad
+    'centers/{center_id}/inmates/{inmate_id}/edit' : 'html/edit_inmate.html',//Vlad
 };
 
 function matchRoute(route, routes) {
