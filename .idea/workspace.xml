@@ -5,43 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="727244fc-fc79-4c8f-a87d-8e810b2fd93b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/backend/api/user_service/verify_jwt.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/discord.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/discord.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/assets/script/env.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/DeAd-Detention-Admin.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/DeAd-Detention-Admin.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documentatie/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Documentatie/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile-backend" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile-backend" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile-frontend" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile-frontend" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apache.conf" beforeDir="false" afterPath="$PROJECT_DIR$/backend/apache.conf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/.env" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/api/centers_service/add_center.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/api/centers_service/add_center.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/api/centers_service/constants.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/api/centers_service/constants.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/api/centers_service/get_centers_count.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/api/centers_service/get_centers_count.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/api/centers_service/get_detention_centers.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/api/centers_service/get_detention_centers.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/api/user_service/change_password.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/api/user_service/change_password.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/api/user_service/constants.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/api/user_service/constants.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/api/user_service/delete_account.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/api/user_service/delete_account.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/api/user_service/forgot_password.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/api/user_service/forgot_password.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/api/user_service/get_account_info.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/api/user_service/get_account_info.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/api/user_service/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/api/user_service/login.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/api/user_service/register.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/api/user_service/register.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/api/user_service/update_account.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/api/user_service/update_account.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/api/user_service/utils.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/api/user_service/utils.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/api/user_service/verify_password.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/inc/common.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/inc/common.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/inc/jwt.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/inc/jwt.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/assets/css/account.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/css/account.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/assets/script/account.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/script/account.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/assets/script/add_center.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/script/add_center.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/assets/script/change_password.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/script/change_password.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deploy.sh" beforeDir="false" afterPath="$PROJECT_DIR$/deploy.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/assets/script/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/script/constants.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/assets/script/delete_account.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/script/delete_account.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/assets/script/detention_centers.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/script/detention_centers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/assets/script/edit_account.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/script/edit_account.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/assets/script/forgot_password.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/script/forgot_password.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/assets/script/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/script/home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/assets/script/jwt.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/script/jwt.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/assets/script/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/script/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/assets/script/register.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/script/register.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/assets/script/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/script/utils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/index.php" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +35,8 @@
       <list>
         <option value="HTML File" />
         <option value="CSS File" />
+        <option value="JavaScript File" />
+        <option value="package.json" />
       </list>
     </option>
   </component>
@@ -105,24 +85,88 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/mario/Desktop/web_original/DeAd-Detention-Admin&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "Docker.Dockerfile-frontend.executor": "Run",
+    "Docker.docker-compose.yml.frontend: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "#20 on refactor-code",
+    "ignore.virus.scanning.warn.message": "true",
+    "javascript.nodejs.core.library.configured.version": "12.22.9",
+    "javascript.nodejs.core.library.typings.version": "12.20.55",
+    "last_opened_file_path": "/home/mario/Desktop/WEB_TEST/DeAd-Detention-Admin/Database",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "/home/mario/Downloads/PhpStorm-2024.1.1/PhpStorm-241.15989.102/plugins/javascript-plugin/jsLanguageServicesImpl/external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Database" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/backend" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Docker.docker-compose.yml: Compose Deployment">
+    <configuration name="Dockerfile-frontend" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
+      <deployment type="dockerfile">
+        <settings>
+          <option name="sourceFilePath" value="Dockerfile-frontend" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
+      <deployment type="dockerfile">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yml.frontend: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="frontend" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yml.frontend: Compose Deployment" />
+        <item itemvalue="Docker.Dockerfile-frontend" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -147,6 +191,9 @@
       <workItem from="1718807960482" duration="2663000" />
       <workItem from="1718822346049" duration="6637000" />
       <workItem from="1718889814421" duration="11604000" />
+      <workItem from="1719098767836" duration="73000" />
+      <workItem from="1719098858905" duration="1224000" />
+      <workItem from="1719100360692" duration="5006000" />
     </task>
     <servers />
   </component>

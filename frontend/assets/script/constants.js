@@ -1,6 +1,8 @@
 // Author: Mario Guriuc
 
 const API_URL = 'http://localhost:8000/api';
+const FRONTEND_URL = 'http://localhost:8001';
+
 const API_LOGIN_URL = `${API_URL}/login`;
 const API_REGISTER_URL = `${API_URL}/register`;
 const API_CENTERS_URL = `${API_URL}/centers/{page_number}`;
@@ -11,7 +13,6 @@ const API_FORGOT_PASSWORD_URL = `${API_URL}/forgot-password`;
 const API_CHANGE_PASSWORD_URL = `${API_URL}/{username}/change-password`;
 const API_VERIFY_JWT = `${API_URL}/verify-jwt`;
 
-const FRONTEND_URL = 'http://localhost:8001';
 const FRONT_CENTERS_URL = `${FRONTEND_URL}/centers`;
 const FRONT_EDIT_ACCOUNT_URL = `${FRONTEND_URL}/account/{username}/edit-account`;
 const FRONT_DELETE_ACCOUNT_URL = `${FRONTEND_URL}/account/{username}/delete-account`;

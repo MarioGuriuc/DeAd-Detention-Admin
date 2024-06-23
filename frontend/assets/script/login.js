@@ -1,11 +1,10 @@
 // Author: Mario Guriuc
 
-import { API_LOGIN_URL } from "./constants.js";
-import { handleNavbar } from "./handle_navbar.js";
-import { isLogged } from "./utils.js";
-import { openPopup } from "./popup.js";
-import { handleTogglePassword } from "./toggle_password.js";
-import { getHeaders } from "./utils.js";
+import {API_LOGIN_URL} from "./constants.js";
+import {handleNavbar} from "./handle_navbar.js";
+import {openPopup} from "./popup.js";
+import {handleTogglePassword} from "./toggle_password.js";
+import {getHeaders, isLogged} from "./utils.js";
 
 handleTogglePassword();
 
@@ -31,13 +30,15 @@ isLogged((logged) => {
                 .then((response) => {
                     if (response.status === 200) {
                         setTimeout(() => {
-                            window.location.assign('/login');
+                            window.location.assign('/centers');
                         }, 1000);
                     }
                     return response.json();
                 })
                 .then(json => {
-                    localStorage.setItem("JWT", json["jwt"]);
+                    if (json["jwt"]) {
+                        localStorage.setItem("JWT", json["jwt"]);
+                    }
                     openPopup(json["result"]);
                 })
                 .catch(_ => {

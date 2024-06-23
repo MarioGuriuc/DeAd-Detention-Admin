@@ -19,9 +19,9 @@ services:
       context: .
       dockerfile: Dockerfile-frontend
     ports:
-      - "8001:80"
+      - "8001:8001"
     volumes:
-      - ./frontend:/var/www/html/
+      - ./frontend:/app/frontend
     depends_on:
       - backend
 
@@ -40,9 +40,9 @@ services:
     volumes:
       - ./Database:/Database
     networks:
-        - mongoNetwork
+      - mongoNetwork
     depends_on:
-        - mongo-dead
+      - mongo-dead
     command: python /Database/db_script.py
 
 
