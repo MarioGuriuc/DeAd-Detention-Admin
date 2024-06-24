@@ -11,36 +11,42 @@ document.addEventListener('DOMContentLoaded', () => {
             window.location.assign("/");
         }
         else {
-            if (!isAdmin()) {
-                return window.location.assign(FRONT_ACCOUNT_URL.replace("{username}", getUsernameFromUrl()));
-            }
-            handleNavbar("changeRole", logged);
-            document.getElementById('change-role').addEventListener('click', changeRole);
+            isAdmin((admin) => {
+                if (!admin) {
+                    return window.location.assign(FRONT_ACCOUNT_URL.replace("{username}", getUsernameFromUrl()));
+                }
+                handleNavbar("changeRole", logged).then(() => {
+                    document.getElementById('change-role').addEventListener('click', changeRole);
 
-            function changeRole() {
-                fetch(API_CHANGE_ROLE_URL.replace("{username}", getUsernameFromUrl()), {
-                    'method': 'PATCH',
-                    'headers': getHeaders(),
-                    'body': JSON.stringify({
-                        'username': document.getElementById('username').value,
-                        'role': document.getElementById('role').value
-                    })
-                }).then((response) => {
-                    switch (response["status"]) {
-                        case 403:
-                        case 405:
-                            logout();
-                            break;
-                        default:
-                            return response.json();
+                    function changeRole() {
+                        fetch(API_CHANGE_ROLE_URL.replace("{username}", getUsernameFromUrl()), {
+                            'method': 'PATCH',
+                            'headers': getHeaders(),
+                            'credentials': 'include',
+                            'body': JSON.stringify({
+                                'username': document.getElementById('username').value,
+                                'role': document.getElementById('role').value
+                            })
+                        }).then((response) => {
+                            switch (response["status"]) {
+                                case 403:
+                                case 405:
+                                    logout().then(() => {
+                                        window.location.assign("/login");
+                                    });
+                                    break;
+                                default:
+                                    return response.json();
+                            }
+                        }).then((json) => {
+                            openPopup(json["result"]);
+                        }).catch(e => {
+                            console.log(e);
+                            openPopup("Unexpected error, please try again later.");
+                        })
                     }
-                }).then((json) => {
-                    openPopup(json["result"]);
-                }).catch(e => {
-                    console.log(e);
-                    openPopup("Unexpected error, please try again later.");
-                })
-            }
+                });
+            });
         }
     });
 });

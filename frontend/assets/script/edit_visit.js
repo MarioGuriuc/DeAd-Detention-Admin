@@ -12,24 +12,25 @@ document.addEventListener("DOMContentLoaded", function () {
             window.location.assign("/login");
         }
         else {
-            handleNavbar("visits", logged);
-            loadVisitData();
+            handleNavbar("visits", logged).then(async () => {
+                await loadVisitData();
 
-            const submitButton = document.getElementById("add-visit-btn")
-            submitButton.addEventListener("click", submitEditedVisit);
-
+                const submitButton = document.getElementById("add-visit-btn");
+                submitButton.addEventListener("click", submitEditedVisit);
+            });
         }
     });
 });
 
-function loadVisitData() {
+async function loadVisitData() {
     const visitId = extractVisitIdFromUrl();
-    const username = getUsernameFromJwt();
+    const username = await getUsernameFromJwt();
     const url = API_VISITS_URL.replace("{username}", username);
 
     fetch(url, {
         method: 'GET',
-        headers: getHeaders()
+        headers: getHeaders(),
+        credentials: 'include',
     })
         .then(response => response.json()
             .then(data => ({status: response.status, body: data}))
@@ -128,7 +129,8 @@ function editVisit(formData) {
     fetch(url, {
         method: 'PATCH',
         headers: getHeaders(),
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formData),
+        credentials: 'include',
     })
         .then(response => response.json()
             .then(data => ({status: response.status, body: data}))
@@ -136,8 +138,8 @@ function editVisit(formData) {
         .then(({status, body}) => {
             openPopup(body["result"]);
             if (status === 200) {
-                setTimeout(() => {
-                    window.location.assign(FRONT_VISITS_URL.replace("{username}", getUsernameFromJwt()));
+                setTimeout(async () => {
+                    window.location.assign(FRONT_VISITS_URL.replace("{username}", await getUsernameFromJwt()));
                 }, 2000);
             }
             else if (status === 401) {
@@ -151,4 +153,3 @@ function editVisit(formData) {
             openPopup("An error occurred while editing the visit.");
         });
 }
-

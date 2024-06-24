@@ -50,6 +50,13 @@ function send_response_with_user(array $user): void
     echo $json;
 }
 
+function send_response_username(string $username): void
+{
+    $json = json_encode(["username" => $username]);
+    http_response_code(200);
+    echo $json;
+}
+
 function change_user_password($email, $password, $users_collection): void
 {
     $hash_password = password_hash($password, PASSWORD_DEFAULT);

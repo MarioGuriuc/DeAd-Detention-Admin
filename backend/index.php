@@ -14,10 +14,6 @@ $route = trim($_SERVER['REQUEST_URI'], '/');
 
 $method = $_SERVER['REQUEST_METHOD'];
 
-header("Access-Control-Allow-Origin: " . $_ENV["FRONTEND_URL"]);
-header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS, PATCH");
-header("Access-Control-Allow-Headers: Content-Type, Authorization");
-
 if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
     http_response_code(200);
     exit();
@@ -25,12 +21,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 
 $api_routes = [
     'GET' => [
+        'api/get-username' => 'api/user_service/get_username.php',
+        'api/logout' => 'api/user_service/logout.php',
         'api/centers' => 'api/centers_service/get_centers.php',
         'api/center/{center_id}' => 'api/centers_service/get_center.php',
         'api/centers/count' => 'api/centers_service/get_centers_count.php',
         'api/centers/page/{page_number}' => 'api/centers_service/get_centers_page.php',
         'api/account/{username}' => 'api/user_service/get_account_info.php',
         'api/verify-jwt' => 'api/user_service/verify_jwt.php',
+        'api/verify-admin' => 'api/user_service/verify_admin.php',
         'api/centers/{center_id}/inmates' => 'api/inmates_service/get_inmates.php',//Vlad
         'api/centers/{center_id}/inmates/count' => 'api/inmates_service/get_inmates_count.php',//Vlad
         'api/account/{username}/visits' => 'api/visits_service/get_visits.php',//Vlad
@@ -93,5 +92,4 @@ if (!$file_to_include) {
     die();
 }
 
-header('Content-Type: application/json');
 include $file_to_include;

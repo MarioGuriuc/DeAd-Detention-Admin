@@ -13,6 +13,9 @@ const API_FORGOT_PASSWORD_URL = `${API_URL}/forgot-password`;
 const API_CHANGE_PASSWORD_URL = `${API_URL}/{username}/change-password`;
 const API_CHANGE_ROLE_URL = `${API_URL}/{username}/change-role`;
 const API_VERIFY_JWT = `${API_URL}/verify-jwt`;
+const API_GET_USERNAME = `${API_URL}/get-username`;
+const API_LOGOUT_URL = `${API_URL}/logout`;
+const API_VERIFY_ADMIN = `${API_URL}/verify-admin`;
 
 const FRONT_CENTERS_URL = `${FRONTEND_URL}/centers`;
 const FRONT_EDIT_ACCOUNT_URL = `${FRONTEND_URL}/account/{username}/edit-account`;
@@ -33,6 +36,9 @@ export {
     API_CHANGE_PASSWORD_URL,
     API_CHANGE_ROLE_URL,
     API_VERIFY_JWT,
+    API_GET_USERNAME,
+    API_LOGOUT_URL,
+    API_VERIFY_ADMIN,
 };
 
 export {

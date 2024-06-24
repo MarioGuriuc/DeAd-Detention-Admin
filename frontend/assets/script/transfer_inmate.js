@@ -11,11 +11,12 @@ document.addEventListener('DOMContentLoaded', function () {
             window.location.assign("/login");
         }
         else {
-            handleNavbar("inmates", logged);
-            loadCenters();
+            handleNavbar("inmates", logged).then(() => {
+                loadCenters();
 
-            const transferButton = document.getElementById('transferButton');
-            transferButton.addEventListener('click', transferInmate);
+                const transferButton = document.getElementById('transferButton');
+                transferButton.addEventListener('click', transferInmate);
+            });
         }
     });
 });
@@ -23,7 +24,8 @@ document.addEventListener('DOMContentLoaded', function () {
 function loadCenters() {
     fetch(API_CENTERS_URL, {
         method: 'GET',
-        headers: getHeaders()
+        headers: getHeaders(),
+        credentials: 'include',
     })
         .then(response => {
             if (!response.ok) {
@@ -52,6 +54,7 @@ function transferInmate() {
     fetch(API_TRANSFER_INMATE_URL.replace('{inmate_id}', inmateId).replace("{center_id}", newCenterId), {
         method: 'PATCH',
         headers: getHeaders(),
+        credentials: 'include',
     })
         .then(response => response.json())
         .then(data => {

@@ -1,6 +1,6 @@
 // Author: Mario Guriuc
 
-import {API_VERIFY_JWT} from "./constants.js";
+import {API_GET_USERNAME, API_LOGOUT_URL, API_VERIFY_ADMIN, API_VERIFY_JWT} from "./constants.js";
 
 export function getUsernameFromUrl() {
     const url = window.location.href;
@@ -17,62 +17,63 @@ export function getButton(text, route) {
     return button;
 }
 
-export function logout() {
-    if (localStorage.getItem("JWT") !== null) {
-        localStorage.removeItem("JWT");
-        setTimeout(() => {
-            window.location.assign("/");
-        }, 1000);
-    }
+export function getLogoutButton() {
+    const button = document.createElement("button");
+    button.textContent = "Logout";
+    button.addEventListener("click", async (event) => {
+        event.preventDefault();
+        await logout();
+        window.location.assign("/");
+    });
+    return button;
+}
+
+export async function logout() {
+    await fetch(API_LOGOUT_URL, {
+        method: 'GET',
+        headers: getHeaders(),
+        credentials: 'include'
+    });
 }
 
 export function getHeaders() {
     return {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + localStorage.getItem("JWT")
+        'Content-Type': 'application/json'
     };
 }
 
-export function isAdmin() {
-    const jwt = localStorage.getItem("JWT");
-    if (jwt === null) return false;
-    const payload = jwt.split(".")[1];
-    const data = JSON.parse(atob(payload));
-    return data["role"] === "admin";
-}
-
-export function isLogged(callback) {
-    if (localStorage.getItem("JWT") === null) {
-        callback(false);
-        return;
-    }
-
-    fetch(API_VERIFY_JWT, {
+export function isAdmin(admin) {
+    fetch(API_VERIFY_ADMIN, {
         method: 'GET',
-        headers: getHeaders()
+        headers: getHeaders(),
+        credentials: 'include'
     })
         .then(response => {
-            if (response.status === 200) {
-                return response.json();
-            }
-            else {
-                return null;
-            }
+            return response.json();
         })
         .then(json => {
-            if (json !== null) {
-                localStorage.setItem("JWT", json["jwt"]);
-                callback(true);
-            }
-            else {
-                localStorage.removeItem("JWT");
-                callback(false);
-            }
+            admin(json["result"] === "Authorized");
         })
         .catch(_ => {
-            localStorage.removeItem("JWT");
+            admin(false);
+        });
+}
+
+export function isLogged(logged) {
+    fetch(API_VERIFY_JWT, {
+        method: 'GET',
+        headers: getHeaders(),
+        credentials: 'include'
+    })
+        .then(response => {
+            return response.json();
+        })
+        .then(json => {
+            logged(json["result"] !== "Unauthorized");
+        })
+        .catch(_ => {
             window.location.assign("/");
-            callback(false);
+            logged(false);
         });
 }
 
@@ -99,11 +100,19 @@ export function extractVisitIdFromUrl() {
     return urlParts[4];
 }
 
-export function getUsernameFromJwt() {
-    const jwt = localStorage.getItem("JWT");
-    if (!jwt) {
-        return null;
-    }
-    const json = JSON.parse(atob(jwt.split(".")[1]));
-    return json.sub;
+export async function getUsernameFromJwt() {
+    return fetch(API_GET_USERNAME, {
+        method: 'GET',
+        headers: getHeaders(),
+        credentials: 'include'
+    })
+        .then(response => {
+            return response.json();
+        })
+        .then(json => {
+            return json["username"];
+        })
+        .catch(_ => {
+            return null;
+        });
 }

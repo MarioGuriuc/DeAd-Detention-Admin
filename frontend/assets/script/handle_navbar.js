@@ -3,9 +3,12 @@
 import {FRONT_ACCOUNT_URL} from "./constants.js";
 import {getUsernameFromJwt} from "./utils.js";
 
-const accountRoute = FRONT_ACCOUNT_URL.replace("{username}", getUsernameFromJwt());
+const accountRoute = async () => {
+    const username = await getUsernameFromJwt();
+    return FRONT_ACCOUNT_URL.replace("{username}", username);
+}
 
-export const handleNavbar = (page, loggedIn = false) => {
+export const handleNavbar = async (page, loggedIn = false) => {
     const headerContent = document.querySelector("header .header-content");
     const navBar = document.createElement("nav-bar");
     navBar.classList.add("nav-bar");
@@ -17,7 +20,7 @@ export const handleNavbar = (page, loggedIn = false) => {
             case "deleteAccount":
             case "centers":
             case "changePassword": {
-                appendHomeAccountButtons(navBar);
+                await appendHomeAccountButtons(navBar);
                 break;
             }
             case "changeRole":
@@ -25,7 +28,7 @@ export const handleNavbar = (page, loggedIn = false) => {
             case "visits":
             case "addVisit":
             case "inmates": {
-                appendCentersAccountButtons(navBar);
+                await appendCentersAccountButtons(navBar);
                 break;
             }
             case "addCenter":
@@ -63,14 +66,14 @@ function getButton(text, route) {
     return button;
 }
 
-function appendHomeAccountButtons(navBar) {
+async function appendHomeAccountButtons(navBar) {
     navBar.appendChild(getButton("Home", "/"));
-    navBar.appendChild(getButton("Account", accountRoute));
+    navBar.appendChild(getButton("Account", await accountRoute()));
 }
 
-function appendCentersAccountButtons(navBar) {
+async function appendCentersAccountButtons(navBar) {
     navBar.appendChild(getButton("Centers", "/centers"));
-    navBar.appendChild(getButton("Account", accountRoute));
+    navBar.appendChild(getButton("Account", await accountRoute()));
 }
 
 function appendHomeCentersButtons(navBar) {
