@@ -1,10 +1,9 @@
 // Author: Vlad
 
 import {
-    API_CENTERS_URL,
     API_DELETE_INMATE_URL,
     API_INMATES_COUNT_URL,
-    API_INMATES_URL,
+    API_INMATES_URL, API_ONE_CENTER_URL,
     FRONT_ADD_INMATE_URL,
     FRONT_ADD_VISIT_URL,
     FRONT_EDIT_INMATE_URL,
@@ -198,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 function fetchCenterDetails() {
-                    fetch(API_CENTERS_URL, {
+                    fetch(API_ONE_CENTER_URL.replace("{center_id}", extractCenterIdFromUrl()), {
                         method: 'GET',
                         headers: getHeaders(),
                         credentials: 'include',
@@ -210,12 +209,10 @@ document.addEventListener('DOMContentLoaded', () => {
                             return response.json();
                         })
                         .then(data => {
-                            const centerId = extractCenterIdFromUrl();
-                            const center = data.find(item => item.id === centerId);
-                            if (center) {
+                            if (data.center) {
                                 const centerNameBox = document.createElement('div');
                                 centerNameBox.classList.add('center-name-box');
-                                centerNameBox.textContent = `${center.title}`;
+                                centerNameBox.textContent = `${data.center.title}`;
                                 searchBar.insertAdjacentElement('afterend', centerNameBox);
                             }
                             else {

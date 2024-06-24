@@ -64,9 +64,11 @@
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 800px;
+    max-width: 1000px;
     margin: 30px auto;
     text-align: center;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .centers-wrapper {
@@ -90,25 +92,23 @@
 }
 
 .center {
-    text-align: center;
-    width: calc((100% - 40px) / 4);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
     background-color: #f9f9f9;
+    padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+    width: calc((100% - 60px) / 4);
     margin-bottom: 20px;
+    text-align: left;
+    align-items: center;
+    align-content: center;
+    justify-content: space-between;
 }
 
 .center img {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 15px;
-}
-
-.center img {
-    width: 150px;
+    width: 200px;
     height: 150px;
     object-fit: cover;
     border-radius: 10px;

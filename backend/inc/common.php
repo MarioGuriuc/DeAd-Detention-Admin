@@ -18,11 +18,11 @@ function sanitize_data(array|string &$data): void
 {
     if (is_array($data)) {
         foreach ($data as $key => $value) {
-            $data[$key] = htmlspecialchars(strip_tags($value));
+            $data[$key] = htmlspecialchars($value);
         }
     }
     else {
-        $data = htmlspecialchars(strip_tags($data));
+        $data = htmlspecialchars($data);
     }
 }
 

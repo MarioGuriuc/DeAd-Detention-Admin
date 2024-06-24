@@ -24,7 +24,7 @@ const USERNAME_MAX_LENGTH = 20;
 const PASSWORD_MIN_LENGTH = 6;
 const PASSWORD_MAX_LENGTH = 64;
 const PHONE_MIN_LENGTH = 10;
-const PHONE_REGEX = "/^\d{10}$/";
+const PHONE_REGEX = "/^[0-9]{10}$/";
 const EMAIL_REGEX = "/\S+@\S+\.\S+/";
 
 const FIRST_NAME_VALIDATION = [

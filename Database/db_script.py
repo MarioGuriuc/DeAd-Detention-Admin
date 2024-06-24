@@ -11,10 +11,14 @@ user_schema = {
             "firstName": {
                 "bsonType": "string",
                 "description": "Please enter a valid first name"
+                "minLength": 2,
+                "maxLength": 20,
             },
             "lastName": {
                 "bsonType": "string",
-                "description": "Please enter a valid last name"
+                "description": "Please enter a valid last name",
+                "minLength": 2,
+                "maxLength": 20,
             },
             "username": {
                 "bsonType": "string",
@@ -36,7 +40,8 @@ user_schema = {
             "phone": {
                 "bsonType": "string",
                 "minLength": 10,
-                "description": "Please enter a valid phone number"
+                "description": "Please enter a valid phone number",
+                "pattern": "^[0-9]{10}$"
             },
             "dob": {
                 "bsonType": "string",
