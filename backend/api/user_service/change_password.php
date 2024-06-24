@@ -5,6 +5,7 @@
 declare(strict_types=1);
 
 require_once 'utils.php';
+require_once 'constants.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'PATCH') {
     send_response("Method not allowed", 405);

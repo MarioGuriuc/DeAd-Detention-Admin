@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById("change-password").addEventListener("click", changePassword);
 
             function changePassword() {
-                fetch(API_CHANGE_PASSWORD_URL, {
+                fetch(API_CHANGE_PASSWORD_URL.replace("{username}", getUsernameFromUrl()), {
                     method: 'PATCH',
                     headers: getHeaders(),
                     body: JSON.stringify({
