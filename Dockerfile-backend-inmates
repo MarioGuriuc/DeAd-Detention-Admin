@@ -1,0 +1,33 @@
+# Author: Mario Guriuc
+
+FROM php:8.3-apache
+
+COPY backend/inmates_service /var/www/html/backend/
+
+RUN a2enmod rewrite headers
+
+COPY backend/apache.conf /etc/apache2/sites-available/000-default.conf
+
+RUN apt-get update && apt-get install -y \
+    libpng-dev \
+    libjpeg-dev \
+    libfreetype6-dev \
+    libonig-dev \
+    libzip-dev \
+    unzip \
+    curl \
+    gnupg \
+    python3 \
+    python3-venv \
+    python3-pip \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install -j$(nproc) gd mbstring zip \
+    && apt-get clean
+
+RUN pecl channel-update pecl.php.net \
+    && pecl install mongodb \
+    && docker-php-ext-enable mongodb
+
+EXPOSE 80
+
+CMD ["apache2-foreground"]

@@ -10,7 +10,7 @@ user_schema = {
         "properties": {
             "firstName": {
                 "bsonType": "string",
-                "description": "Please enter a valid first name"
+                "description": "Please enter a valid first name",
                 "minLength": 2,
                 "maxLength": 20,
             },

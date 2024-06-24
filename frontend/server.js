@@ -105,5 +105,5 @@ function getMimeType(ext) {
 }
 
 
-const PORT = 8001;
+const PORT = 8000;
 server.listen(PORT);
