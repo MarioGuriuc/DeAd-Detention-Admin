@@ -4,7 +4,7 @@ import {API_ACCOUNT_URL} from "./constants.js";
 import {handleNavbar} from "./handle_navbar.js";
 import {openPopup} from "./popup.js";
 import {handleTogglePassword} from "./toggle_password.js";
-import {getHeaders, getUsernameFromUrl, isLogged} from "./utils.js";
+import {getHeaders, getUsernameFromUrl, isLogged, logout} from "./utils.js";
 
 handleTogglePassword();
 
@@ -14,28 +14,32 @@ document.addEventListener('DOMContentLoaded', () => {
             window.location.assign("/");
         }
         else {
-            handleNavbar("deleteAccount", true);
-            document.getElementById("delete-account").addEventListener("click", deleteAccount);
+            handleNavbar("deleteAccount", true).then(() => {
+                document.getElementById("delete-account").addEventListener("click", deleteAccount);
 
-            function deleteAccount() {
-                fetch(API_ACCOUNT_URL.replace("{username}", getUsernameFromUrl()), {
-                    method: 'DELETE',
-                    headers: getHeaders()
-                }).then((response) => {
-                    if (response.status === 201) {
-                        setTimeout(() => {
-                            window.location.assign('/login');
-                        }, 1000);
-                    }
-                    return response.json();
-                })
-                    .then(json => {
-                        openPopup(json["result"]);
+                function deleteAccount() {
+                    fetch(API_ACCOUNT_URL.replace("{username}", getUsernameFromUrl()), {
+                        method: 'DELETE',
+                        credentials: 'include',
+                        headers: getHeaders()
+                    }).then((response) => {
+                        if (response.status === 200) {
+                            setTimeout(() => {
+                                logout().then(() => {
+                                    window.location.assign("/");
+                                });
+                            }, 1000);
+                        }
+                        return response.json();
                     })
-                    .catch(_ => {
-                        openPopup("Unexpected error, please try again later.");
-                    });
-            }
+                        .then(json => {
+                            openPopup(json["result"]);
+                        })
+                        .catch(_ => {
+                            openPopup("Unexpected error, please try again later.");
+                        });
+                }
+            });
         }
     });
 });

@@ -11,20 +11,22 @@ document.addEventListener("DOMContentLoaded", function () {
             window.location.assign("/login");
         }
         else {
-            handleNavbar("addInmate", logged);
-            const submitButton = document.querySelector(".button-pop-up");
-            submitButton.addEventListener("click", submitNewInmate);
+            handleNavbar("addInmate", logged)
+                .then(() => {
+                    const submitButton = document.querySelector(".button-pop-up");
+                    submitButton.addEventListener("click", submitNewInmate);
 
-            const addCrimeButton = document.getElementById('addCrimeButton');
-            const addSentenceButton = document.getElementById('addSentenceButton');
+                    const addCrimeButton = document.getElementById('addCrimeButton');
+                    const addSentenceButton = document.getElementById('addSentenceButton');
 
-            addCrimeButton.addEventListener('click', () => {
-                addNewInputField('crime', 'crimesContainer');
-            });
+                    addCrimeButton.addEventListener('click', () => {
+                        addNewInputField('crime', 'crimesContainer');
+                    });
 
-            addSentenceButton.addEventListener('click', () => {
-                addNewInputField('sentence', 'sentencesContainer');
-            });
+                    addSentenceButton.addEventListener('click', () => {
+                        addNewInputField('sentence', 'sentencesContainer');
+                    });
+                });
         }
     });
 });
@@ -74,6 +76,7 @@ function addInmate(formData) {
     fetch(url, {
         method: 'PUT',
         headers: getHeaders(),
+        credentials: 'include',
         body: JSON.stringify(formData)
     })
         .then(response => response.json()

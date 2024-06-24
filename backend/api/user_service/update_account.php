@@ -53,6 +53,8 @@ validate_user_data($data, CHANGE_CHECKS);
 
 sanitize_data($data);
 
+echo json_encode($data, JSON_PRETTY_PRINT);
+
 if (array_key_exists("email", $data)) {
     $email_exists = $users_collection->findOne(["email" => $data["email"]]);
     if ($email_exists) {

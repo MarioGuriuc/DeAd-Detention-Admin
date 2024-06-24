@@ -6,10 +6,18 @@ declare(strict_types=1);
 
 function send_response_with_center($center): void
 {
-    $json = json_encode($center);
+    $json = json_encode(['center' => $center]);
     http_response_code(200);
     echo $json;
     die();
+}
+function extract_center_id_from_url(): ?string
+{
+    $url = $_SERVER['REQUEST_URI'];
+
+    $url_parts = explode('/', $url);
+
+    return $url_parts[3] ?? null;
 }
 
 function send_response_with_centers($centers): void

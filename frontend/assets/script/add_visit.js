@@ -11,14 +11,15 @@ document.addEventListener("DOMContentLoaded", function () {
             window.location.assign("/login");
         }
         else {
-            handleNavbar("addVisit", logged);
-            const submitButton = document.getElementById("add-visit-btn");
-            submitButton.addEventListener("click", submitNewVisit);
+            handleNavbar("addVisit", logged).then(async () => {
+                const submitButton = document.getElementById("add-visit-btn");
+                submitButton.addEventListener("click", await submitNewVisit);
+            });
         }
     });
 });
 
-function submitNewVisit(event) {
+async function submitNewVisit(event) {
     event.preventDefault();
 
     const date = document.getElementById("date").value;
@@ -62,7 +63,7 @@ function submitNewVisit(event) {
         summary: summary,
         health: health,
         witnesses: witnesses,
-        user: getUsernameFromJwt()
+        user: await getUsernameFromJwt()
     };
 
     addVisit(formData);
@@ -76,6 +77,7 @@ function addVisit(formData) {
     fetch(url, {
         method: 'PUT',
         headers: getHeaders(),
+        credentials: 'include',
         body: JSON.stringify(formData)
     })
         .then(response => response.json()
@@ -84,8 +86,8 @@ function addVisit(formData) {
         .then(({status, body}) => {
             openPopup(body["result"]);
             if (status === 201) {
-                setTimeout(() => {
-                    window.location.assign(FRONT_VISITS_URL.replace("{username}", getUsernameFromJwt()));
+                setTimeout(async () => {
+                    window.location.assign(FRONT_VISITS_URL.replace("{username}", await getUsernameFromJwt()));
                 }, 2000);
             }
             else if (status === 401) {
@@ -99,4 +101,3 @@ function addVisit(formData) {
             openPopup('An error occurred while adding the visit.');
         });
 }
-

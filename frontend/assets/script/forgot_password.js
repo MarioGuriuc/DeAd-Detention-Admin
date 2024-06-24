@@ -21,6 +21,7 @@ function sendPassword() {
     fetch(API_FORGOT_PASSWORD_URL, {
         method: 'POST',
         headers: getHeaders(),
+        credentials: 'include',
         body: JSON.stringify({
             email: document.getElementById("email").value
         })

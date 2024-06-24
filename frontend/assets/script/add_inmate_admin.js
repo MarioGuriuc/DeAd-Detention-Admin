@@ -2,7 +2,7 @@
 
 "use strict";
 
-import {API_ADD_INMATES_URL, API_CENTERS_URL, FRONT_INMATES_URL} from "./constants.js";
+import {API_ADD_INMATES_URL, API_ALL_CENTERS_URL, FRONT_INMATES_URL} from "./constants.js";
 import {handleNavbar} from "./handle_navbar.js";
 import {openPopup} from "./popup.js";
 import {getHeaders, isLogged} from "./utils.js";
@@ -14,23 +14,24 @@ document.addEventListener("DOMContentLoaded", function () {
             window.location.assign("/login");
         }
         else {
-            handleNavbar("addInmate", logged);
-            loadCenters();
+            handleNavbar("addInmate", logged).then(() => {
+                loadCenters();
 
-            const addCrimeButton = document.getElementById('addCrimeButton');
-            const addSentenceButton = document.getElementById('addSentenceButton');
+                const addCrimeButton = document.getElementById('addCrimeButton');
+                const addSentenceButton = document.getElementById('addSentenceButton');
 
-            addCrimeButton.addEventListener('click', () => {
-                addNewInputField('crime', 'crimesContainer');
-            });
+                addCrimeButton.addEventListener('click', () => {
+                    addNewInputField('crime', 'crimesContainer');
+                });
 
-            addSentenceButton.addEventListener('click', () => {
-                addNewInputField('sentence', 'sentencesContainer');
-            });
-            const inmateForm = document.getElementById("addInmateForm");
-            inmateForm.addEventListener("submit", function (event) {
-                event.preventDefault();
-                submitNewInmate();
+                addSentenceButton.addEventListener('click', () => {
+                    addNewInputField('sentence', 'sentencesContainer');
+                });
+                const inmateForm = document.getElementById("addInmateForm");
+                inmateForm.addEventListener("submit", function (event) {
+                    event.preventDefault();
+                    submitNewInmate();
+                });
             });
         }
     });
@@ -48,9 +49,10 @@ function addNewInputField(name, containerId) {
 }
 
 function loadCenters() {
-    fetch(API_CENTERS_URL, {
+    fetch(API_ALL_CENTERS_URL, {
         method: 'GET',
-        headers: getHeaders()
+        headers: getHeaders(),
+        credentials: 'include',
     })
         .then(response => response.json())
         .then(centers => {
@@ -99,6 +101,7 @@ function addInmate(formData, centerId) {
     fetch(url, {
         method: 'PUT',
         headers: getHeaders(),
+        credentials: 'include',
         body: JSON.stringify(formData)
     })
         .then(response => response.json()

@@ -10,23 +10,24 @@ document.addEventListener("DOMContentLoaded", function () {
             window.location.assign("/login");
         }
         else {
-            handleNavbar("addVisit", logged);
-            loadCenters();
+            handleNavbar("addVisit", logged).then(() => {
+                loadCenters();
 
-            const generateStatsForm = document.querySelector("form");
-            generateStatsForm.addEventListener("submit", function (event) {
-                event.preventDefault();
-                if (validateForm()) {
-                    fetchStats();
-                }
+                const generateStatsForm = document.querySelector("form");
+                generateStatsForm.addEventListener("submit", function (event) {
+                    event.preventDefault();
+                    if (validateForm()) {
+                        fetchStats();
+                    }
+                });
+
+                document.getElementById("downloadHTML").addEventListener("click", downloadHTML);
+                document.getElementById("downloadCSV").addEventListener("click", downloadCSV);
+                document.getElementById("downloadJSON").addEventListener("click", downloadJSON);
+
+                const detentionCenterSelect = document.getElementById("detention-center");
+                detentionCenterSelect.addEventListener("change", loadInmates);
             });
-
-            document.getElementById("downloadHTML").addEventListener("click", downloadHTML);
-            document.getElementById("downloadCSV").addEventListener("click", downloadCSV);
-            document.getElementById("downloadJSON").addEventListener("click", downloadJSON);
-
-            const detentionCenterSelect = document.getElementById("detention-center");
-            detentionCenterSelect.addEventListener("change", loadInmates);
         }
     });
 });
@@ -34,7 +35,8 @@ document.addEventListener("DOMContentLoaded", function () {
 function loadCenters() {
     fetch(API_CENTERS_URL, {
         method: 'GET',
-        headers: getHeaders()
+        headers: getHeaders(),
+        credentials: 'include',
     })
         .then(response => response.json())
         .then(centers => {
@@ -58,7 +60,8 @@ function loadInmates() {
 
     fetch(API_INMATES_URL.replace("{center_id}", centerId), {
         method: 'GET',
-        headers: getHeaders()
+        headers: getHeaders(),
+        credentials: 'include',
     })
         .then(response => response.json())
         .then(inmates => {
@@ -101,7 +104,8 @@ function fetchStats() {
         .replace("{start_date}", startDate)
         .replace("{end_date}", endDate), {
         method: 'GET',
-        headers: getHeaders()
+        headers: getHeaders(),
+        credentials: 'include',
     })
         .then(response => {
             if (!response.ok) {

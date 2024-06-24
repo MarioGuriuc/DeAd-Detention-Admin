@@ -58,4 +58,13 @@ $token_payload = [
 
 $jwt = generate_jwt($token_payload);
 
-send_response_with_jwt("Login successful", $jwt);
+setcookie('JWT', $jwt, [
+    'domain' => $_ENV["COOKIE_DOMAIN"],
+    'expires' => $exp,
+    'path' => '/',
+    'httpOnly' => true,
+    'SameSite' => 'None',
+    'Secure' => true
+]);
+
+send_response("Login successful", 200);

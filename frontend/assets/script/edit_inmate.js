@@ -11,22 +11,23 @@ document.addEventListener("DOMContentLoaded", function () {
             window.location.assign("/login");
         }
         else {
-            handleNavbar("inmates", logged);
-            loadInmateData();
+            handleNavbar("inmates", logged).then(() => {
+                loadInmateData();
 
-            const submitButton = document.querySelector(".button-pop-up");
-            submitButton.addEventListener("click", submitEditedInmate);
+                const submitButton = document.querySelector(".button-pop-up");
+                submitButton.addEventListener("click", submitEditedInmate);
 
-            const addCrimeButton = document.getElementById('addCrimeButton');
-            const addSentenceButton = document.getElementById('addSentenceButton');
+                const addCrimeButton = document.getElementById('addCrimeButton');
+                const addSentenceButton = document.getElementById('addSentenceButton');
 
-            addCrimeButton.addEventListener('click', () => {
-                addNewInputField('crime', 'crimesContainer');
-            });
+                addCrimeButton.addEventListener('click', () => {
+                    addNewInputField('crime', 'crimesContainer');
+                });
 
-            addSentenceButton.addEventListener('click', () => {
-                addNewInputField('sentence', 'sentencesContainer');
-            });
+                addSentenceButton.addEventListener('click', () => {
+                    addNewInputField('sentence', 'sentencesContainer');
+                });
+            })
         }
     });
 });
@@ -49,7 +50,8 @@ function loadInmateData() {
 
     fetch(url, {
         method: 'GET',
-        headers: getHeaders()
+        headers: getHeaders(),
+        credentials: 'include',
     })
         .then(response => {
             if (!response.ok) {
@@ -150,6 +152,7 @@ function editInmate(formData) {
     fetch(url, {
         method: 'PATCH',
         headers: getHeaders(),
+        credentials: 'include',
         body: JSON.stringify(formData),
     })
         .then(response => response.json()

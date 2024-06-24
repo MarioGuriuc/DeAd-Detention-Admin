@@ -11,10 +11,14 @@ user_schema = {
             "firstName": {
                 "bsonType": "string",
                 "description": "Please enter a valid first name"
+                "minLength": 2,
+                "maxLength": 20,
             },
             "lastName": {
                 "bsonType": "string",
-                "description": "Please enter a valid last name"
+                "description": "Please enter a valid last name",
+                "minLength": 2,
+                "maxLength": 20,
             },
             "username": {
                 "bsonType": "string",
@@ -36,7 +40,8 @@ user_schema = {
             "phone": {
                 "bsonType": "string",
                 "minLength": 10,
-                "description": "Please enter a valid phone number"
+                "description": "Please enter a valid phone number",
+                "pattern": "^[0-9]{10}$"
             },
             "dob": {
                 "bsonType": "string",
@@ -85,102 +90,128 @@ center_schema = {
 }
 
 inmates_schema = {
-    "$jsonSchema": {
+      "$jsonSchema": {
         "bsonType": "object",
-        "required": ["image", "fullName", "crime", "sentence", "center"],
+        "required": [
+          "image",
+          "fullName",
+          "crimes",
+          "sentences",
+          "center"
+        ],
         "properties": {
-            "image": {
-                "bsonType": "binData",
-                "description": "Please provide a valid image in binary format"
+          "image": {
+            "bsonType": "binData",
+            "description": "Please enter a valid image"
+          },
+          "fullName": {
+            "bsonType": "string",
+            "minLength": 4,
+            "maxLength": 50,
+            "description": "Full name must be a string."
+          },
+          "crimes": {
+            "bsonType": "array",
+            "items": {
+              "minLength": 4,
+              "maxLength": 50,
+              "bsonType": "string"
             },
-            "fullName": {
-                "bsonType": "string",
-                "minLength": 5,
-                "maxLength": 50,
-                "description": "Please enter the full name of the inmate"
+            "description": "Crimes must be an array of strings."
+          },
+          "sentences": {
+            "bsonType": "array",
+            "items": {
+              "minLength": 4,
+              "maxLength": 50,
+              "bsonType": "string"
             },
-            "crime": {
-                "bsonType": "string",
-                "minLength": 10,
-                "maxLength": 50,
-                "description": "Please enter the crime committed by the inmate"
-            },
-            "sentence": {
-                "bsonType": "string",
-                "minLength": 10,
-                "maxLength": 50,
-                "description": "Please enter the sentence of the inmate"
-            },
-            "center": {
-                "bsonType": "objectId",
-                "description": "Please provide a valid ObjectId for the center"
-            }
+            "description": "Sentences must be an array of strings."
+          },
+          "center": {
+            "bsonType": "objectId",
+            "description": "Center must be an object containing a valid ObjectId."
+          }
         }
-    }
+      }
 }
 
 visits_schema = {
-    "$jsonSchema": {
+      "$jsonSchema": {
         "bsonType": "object",
-        "required": ["center", "inmate", "date", "time", "duration", "nature", "objectsExchanged", "summary", "health", "witnesses", "status", "creator"],
+        "required": [
+          "center",
+          "inmate",
+          "creator",
+          "date",
+          "time",
+          "duration",
+          "nature",
+          "objectsExchanged",
+          "summary",
+          "health",
+          "witnesses",
+          "status"
+        ],
         "properties": {
-            "center": {
-                "bsonType": "objectId",
-                "description": "Please provide a valid ObjectId for the center"
-            },
-            "inmate": {
-                 "bsonType": "objectId",
-                 "description": "Please provide a valid ObjectId for the inmate"
-            },
-            "date": {
-                  "bsonType": "string",
-                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
-                  "description": "Please enter a valid date in YYYY-MM-DD format"
-            },
-            "time": {
-                  "bsonType": "string",
-                  "pattern": "^\\d{2}:\\d{2}$",
-                  "description": "Please enter a valid time in HH:MM format"
-            },
-            "duration": {
-                  "bsonType": "int",
-                  "minimum": 1,
-                  "description": "Please enter a valid duration in hours"
-            },
-            "nature": {
-                  "bsonType": "string",
-                  "enum": ["Official", "Personal", "Legal", "Medical"],
-                  "description": "Nature must be one of the allowed values: Official, Personal, Legal, Medical"
-            },
-            "objectsExchanged": {
-                  "bsonType": "string",
-                  "description": "Please describe the objects exchanged during the visit"
-            },
-            "summary": {
-                  "bsonType": "string",
-                  "description": "Please provide a summary of the visit"
-            },
-            "health": {
-                  "bsonType": "string",
-                  "description": "Please provide health details discussed during the visit"
-            },
-            "witnesses": {
-                  "bsonType": "int",
-                  "minimum": 1,
-                  "maximum": 10,
-                  "description": "Please provide the number of witnesses, must be a positive integer"
-            },
-            "status": {
-                  "bsonType": "string",
-                  "enum": ["pending", "attended", "denied"],
-                  "description": "Status must be one of the allowed values: pending, attended, cancelled"
-            },
-            "creator": {
-                  "bsonType": "string",
-                  "description": "Please provide the creator of the visit record"
-            }
+          "center": {
+            "bsonType": "objectId",
+            "description": "Center must be a valid ObjectId."
+          },
+          "inmate": {
+            "bsonType": "objectId",
+            "description": "Inmate must be a valid ObjectId."
+          },
+          "creator": {
+            "bsonType": "string",
+            "description": "Creator must be a string."
+          },
+          "date": {
+            "bsonType": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+            "description": "Date must be a string in the format YYYY-MM-DD."
+          },
+          "time": {
+            "bsonType": "string",
+            "pattern": "^\\d{2}:\\d{2}$",
+            "description": "Time must be a string in the format HH:MM."
+          },
+          "duration": {
+            "bsonType": "number",
+            "description": "Duration must be a number."
+          },
+          "nature": {
+            "bsonType": "string",
+            "description": "Nature must be a string."
+          },
+          "objectsExchanged": {
+            "bsonType": "string",
+            "description": "ObjectsExchanged must be a string."
+          },
+          "summary": {
+            "bsonType": "string",
+            "description": "Summary must be a string."
+          },
+          "health": {
+            "bsonType": "string",
+            "description": "Health must be a string."
+          },
+          "witnesses": {
+            "bsonType": "number",
+            "description": "Witnesses must be a number."
+          },
+          "status": {
+            "bsonType": "string",
+            "enum": [
+              "pending",
+              "approved",
+              "denied",
+              "attended"
+            ],
+            "description": "Status must be a string and one of the following values: pending, approved, denied, attended."
+          }
         }
-    }
+      }
 }
 
 

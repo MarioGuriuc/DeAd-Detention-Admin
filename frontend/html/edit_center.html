@@ -1,0 +1,55 @@
+<!-- Author: Vlad-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Edit Detention Center</title>
+    <base href="/">
+    <link href="../assets/images/icon.png" rel="icon">
+    <link href="../assets/css/add_center.css" rel="stylesheet">
+    <link href="../assets/css/footer.css" rel="stylesheet">
+    <link href="../assets/css/header.css" rel="stylesheet">
+    <link href="../assets/css/nav-bar-buttons.css" rel="stylesheet">
+    <link href="../assets/css/body_style.css" rel="stylesheet">
+    <link href="../assets/css/popup.css" rel="stylesheet">
+
+    <script src="../assets/script/handle_navbar.js" type="module"></script>
+    <script src="../assets/script/popup.js" type="module"></script>
+    <script src="../assets/script/edit_center.js" type="module"></script>
+</head>
+<body>
+<header>
+    <div class="header-content">
+        <h1>Edit Detention Center</h1>
+    </div>
+</header>
+
+<div class="container">
+    <form onsubmit="return false">
+        <label for="centerName">Detention Center Name:</label>
+        <input id="centerName" name="centerName" required type="text"><br><br>
+
+        <label for="location">Location:</label>
+        <input id="location" name="location" required type="text"><br><br>
+
+        <label for="description">Description:</label><br>
+        <textarea id="description" name="description" required rows="4"></textarea><br><br>
+
+        <label for="image">Image:</label>
+        <input accept="image/*" id="image" name="image" type="file"><br><br>
+        <div id="imageContainer"></div>
+
+        <div class="pop-up-container" id="add-center-btn">
+            <button class="button-pop-up">Submit</button>
+            <span class="pop-up-message" id="message"></span>
+        </div>
+    </form>
+</div>
+
+<footer>
+    <p>&copy; 2024 Detention Centers. All rights reserved.</p>
+</footer>
+</body>
+</html>

@@ -36,16 +36,16 @@ function validate_string(string $data, array $checks): void
     }
 }
 
-function send_response_with_jwt($message, string $jwt): void
+function send_response_with_user(array $user): void
 {
-    $json = json_encode(["result" => $message, "jwt" => $jwt]);
+    $json = json_encode($user);
     http_response_code(200);
     echo $json;
 }
 
-function send_response_with_user(array $user): void
+function send_response_username(string $username): void
 {
-    $json = json_encode($user);
+    $json = json_encode(["username" => $username]);
     http_response_code(200);
     echo $json;
 }
