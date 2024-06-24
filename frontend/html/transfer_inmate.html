@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Transfer Inmate</title>
+    <base href="/">
+    <link href="../assets/images/icon.png" rel="icon">
+    <link href="../assets/css/transfer_inmate.css" rel="stylesheet">
+    <link href="../assets/css/footer.css" rel="stylesheet">
+    <link href="../assets/css/header.css" rel="stylesheet">
+    <link href="../assets/css/nav-bar-buttons.css" rel="stylesheet">
+    <link href="../assets/css/body_style.css" rel="stylesheet">
+    <link href="../assets/css/popup.css" rel="stylesheet">
+    <script src="../assets/script/transfer_inmate.js" type="module"></script>
+    <script src="../assets/script/handle_navbar.js" type="module"></script>
+</head>
+<body>
+<header>
+    <div class="header-content">
+        <h1>Transfer Inmate</h1>
+        <div class="nav-bar"></div>
+    </div>
+</header>
+
+<div class="container">
+    <form id="transferInmateForm" onsubmit="return false;">
+        <label for="center">Select new center:</label>
+        <select id="center" name="center" required></select><br><br>
+
+        <button id="transferButton" type="button">Transfer</button>
+        <div class="pop-up-container" id="transfer-btn">
+            <span class="pop-up-message" id="message"></span>
+        </div>
+    </form>
+</div>
+
+<footer>
+    <p>&copy; 2024 Detention Centers. All rights reserved.</p>
+</footer>
+</body>
+</html>

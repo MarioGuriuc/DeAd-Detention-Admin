@@ -6,7 +6,7 @@ COPY backend/ /var/www/html/backend/
 
 RUN a2enmod rewrite headers
 
-COPY apache.conf /etc/apache2/sites-available/000-default.conf
+COPY backend/apache.conf /etc/apache2/sites-available/000-default.conf
 
 RUN apt-get update && apt-get install -y \
     libpng-dev \

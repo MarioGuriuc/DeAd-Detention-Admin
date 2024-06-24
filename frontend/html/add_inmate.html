@@ -1,5 +1,3 @@
-<!-- Author: Vlad-->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,15 +24,23 @@
 </header>
 
 <div class="container">
-    <form onsubmit="return false">
+    <form id="addInmateForm" onsubmit="return false">
         <label for="inmateName">Inmate name:</label>
         <input id="inmateName" name="inmateName" required type="text"><br><br>
 
-        <label for="crime">Crime:</label><br>
-        <input id="crime" name="crime" required type="text"><br><br>
+        <label>Crimes:</label><br>
+        <div id="crimesContainer">
+            <input name="crime" required type="text"><br><br>
+        </div>
+        <button id="addCrimeButton" type="button">Add Crime</button>
+        <br><br>
 
-        <label for="sentence">Sentence:</label>
-        <input id="sentence" name="sentence" required type="text"><br><br>
+        <label>Sentences:</label><br>
+        <div id="sentencesContainer">
+            <input name="sentence" type="text" required><br><br>
+        </div>
+        <button id="addSentenceButton" type="button">Add Sentence</button>
+        <br><br>
 
         <label for="image">Image:</label>
         <input accept="image/*" id="image" name="image" type="file"><br><br>

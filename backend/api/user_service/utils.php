@@ -1,7 +1,5 @@
 <?php
 
-use Firebase\JWT\JWT;
-
 function validate_register_data(array $data, array $checks): void
 {
     foreach ($data as $key => $value) {
@@ -38,23 +36,16 @@ function validate_string(string $data, array $checks): void
     }
 }
 
-function generate_jwt(object $user, mixed $time, mixed $exp): string
-{
-    $tokenPayload = [
-        "iss" => "http://localhost",
-        "sub" => $user["username"],
-        "iat" => $time,
-        "exp" => $exp + 3600 * 2,
-        "role" => $user["role"]
-    ];
-
-    $jwt_secret_key = $_ENV["JWT_KEY"];
-    return JWT::encode($tokenPayload, $jwt_secret_key, 'HS256');
-}
-
 function send_response_with_jwt($message, string $jwt): void
 {
     $json = json_encode(["result" => $message, "jwt" => $jwt]);
+    http_response_code(200);
+    echo $json;
+}
+
+function send_response_with_user(array $user): void
+{
+    $json = json_encode($user);
     http_response_code(200);
     echo $json;
 }
@@ -83,15 +74,4 @@ function generate_random_password($length = 10): string
         $password .= $characters[rand(0, strlen($characters) - 1)];
     }
     return $password;
-}
-
-function get_password_from_headers()
-{
-    $headers = apache_request_headers();
-
-    if (!isset($headers["Password"])) {
-        return "";
-    }
-
-    return $headers["Password"];
 }

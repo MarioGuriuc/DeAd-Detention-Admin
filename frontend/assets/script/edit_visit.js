@@ -1,63 +1,76 @@
 "use strict";
 
-import {API_EDIT_VISIT_URL, FRONT_VISITS_URL, API_VISITS_URL} from "./constants.js";
+import {API_EDIT_VISIT_URL, API_VISITS_URL, FRONT_VISITS_URL} from "./constants.js";
 import {handleNavbar} from "./handle_navbar.js";
-import {isLogged, getUsernameFromJwt} from "./jwt.js";
-import {extractVisitIdFromUrl, setHeaders} from "./utils.js";
 import {openPopup} from "./popup.js";
+import {extractVisitIdFromUrl, getHeaders, getUsernameFromJwt, isLogged} from "./utils.js";
 
-if (!isLogged()) {
-    window.location.assign("/");
-}
 
 document.addEventListener("DOMContentLoaded", function () {
-    handleNavbar("visits", isLogged());
-    loadVisitData();
+    isLogged((logged) => {
+        if (!logged) {
+            window.location.assign("/login");
+        }
+        else {
+            handleNavbar("visits", logged);
+            loadVisitData();
 
-    const submitButton = document.getElementById("add-visit-btn")
-    submitButton.addEventListener("click", submitEditedVisit);
+            const submitButton = document.getElementById("add-visit-btn")
+            submitButton.addEventListener("click", submitEditedVisit);
+
+        }
+    });
 });
 
 function loadVisitData() {
     const visitId = extractVisitIdFromUrl();
     const username = getUsernameFromJwt();
-    const http = new XMLHttpRequest();
-    http.open("GET", API_VISITS_URL.replace("{username}", username), true);
+    const url = API_VISITS_URL.replace("{username}", username);
 
-    setHeaders(http);
+    fetch(url, {
+        method: 'GET',
+        headers: getHeaders()
+    })
+        .then(response => response.json()
+            .then(data => ({status: response.status, body: data}))
+            .catch(() => ({status: response.status, body: {}})))
+        .then(({status, body}) => {
+            if (status === 200) {
+                const visitData = body.visits.find(visit => visit.id === visitId);
 
-    http.onreadystatechange = function () {
-        if (http.readyState === 4 && http.status === 200) {
-            const visitsData = JSON.parse(http.responseText);
-            const visitData = visitsData.visits.find(visit => visit.id === visitId);
+                if (visitData) {
+                    document.getElementById("date").value = visitData.date;
+                    document.getElementById("time").value = visitData.time;
+                    document.getElementById("duration").value = visitData.duration;
+                    document.getElementById("nature").value = visitData.nature;
+                    document.getElementById("objectsExchanged").value = visitData.objectsExchanged;
+                    document.getElementById("summary").value = visitData.summary;
+                    document.getElementById("health").value = visitData.health;
+                    document.getElementById("witnesses").value = visitData.witnesses;
 
-            if (visitData) {
-                document.getElementById("date").value = visitData.date;
-                document.getElementById("time").value = visitData.time;
-                document.getElementById("duration").value = visitData.duration;
-                document.getElementById("nature").value = visitData.nature;
-                document.getElementById("objectsExchanged").value = visitData.objectsExchanged;
-                document.getElementById("summary").value = visitData.summary;
-                document.getElementById("health").value = visitData.health;
-                document.getElementById("witnesses").value = visitData.witnesses;
-
-                if (visitData.status === "attended") {
-                    document.getElementById("date").disabled = true;
-                    document.getElementById("time").disabled = true;
-                    document.getElementById("duration").disabled = true;
-                    document.getElementById("nature").disabled = true;
-                    document.getElementById("objectsExchanged").disabled = true;
-                    document.getElementById("health").disabled = true;
-                    document.getElementById("witnesses").disabled = true;
+                    if (visitData.status === "attended") {
+                        document.getElementById("date").disabled = true;
+                        document.getElementById("time").disabled = true;
+                        document.getElementById("duration").disabled = true;
+                        document.getElementById("nature").disabled = true;
+                        document.getElementById("objectsExchanged").disabled = true;
+                        document.getElementById("health").disabled = true;
+                        document.getElementById("witnesses").disabled = true;
+                    }
                 }
-            } else {
-                openPopup("Visit not found.");
+                else {
+                    openPopup("Visit not found.");
+                }
             }
-        }
-    };
-
-    http.send();
+            else {
+                openPopup("Failed to load visit data.");
+            }
+        })
+        .catch(_ => {
+            openPopup("An error occurred while loading visit data.");
+        });
 }
+
 
 function submitEditedVisit(event) {
     event.preventDefault();
@@ -109,29 +122,33 @@ function submitEditedVisit(event) {
 }
 
 function editVisit(formData) {
-    const http = new XMLHttpRequest();
     const visitId = extractVisitIdFromUrl();
-    http.open("PATCH", API_EDIT_VISIT_URL.replace("{visit_id}", visitId), true);
-    setHeaders(http);
+    const url = API_EDIT_VISIT_URL.replace("{visit_id}", visitId);
 
-    http.onreadystatechange = function () {
-        if (http.readyState === 4) {
-            const response = JSON.parse(http.responseText);
-            switch (http.status) {
-                case 200:
-                    openPopup(response["result"]);
-                    setTimeout(() => {
-                        window.location.assign(FRONT_VISITS_URL.replace("{username}", getUsernameFromJwt()));
-                    }, 2000);
-                    break;
-                case 401:
-                    openPopup(response["result"]);
-                    break;
-                default:
-                    openPopup(response["result"]);
+    fetch(url, {
+        method: 'PATCH',
+        headers: getHeaders(),
+        body: JSON.stringify(formData)
+    })
+        .then(response => response.json()
+            .then(data => ({status: response.status, body: data}))
+            .catch(() => ({status: response.status, body: {}})))
+        .then(({status, body}) => {
+            openPopup(body["result"]);
+            if (status === 200) {
+                setTimeout(() => {
+                    window.location.assign(FRONT_VISITS_URL.replace("{username}", getUsernameFromJwt()));
+                }, 2000);
             }
-        }
-    };
-
-    http.send(JSON.stringify(formData));
+            else if (status === 401) {
+                openPopup(body["result"]);
+            }
+            else {
+                openPopup(body["result"]);
+            }
+        })
+        .catch(_ => {
+            openPopup("An error occurred while editing the visit.");
+        });
 }
+

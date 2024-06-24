@@ -1,0 +1,60 @@
+<!-- Author: Mario Guriuc-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Change password</title>
+    <base href="/">
+    <link href="../assets/images/icon.png" rel="icon">
+    <link href="../assets/css/footer.css" rel="stylesheet">
+    <link href="../assets/css/header.css" rel="stylesheet">
+    <link href="../assets/css/nav-bar-buttons.css" rel="stylesheet">
+    <link href="../assets/css/body_style.css" rel="stylesheet">
+    <link href="../assets/css/info_change.css" rel="stylesheet">
+    <link href="../assets/css/popup.css" rel="stylesheet">
+    <link href="../assets/css/toggle-password.css" rel="stylesheet">
+
+    <script src="../assets/script/popup.js" type="module"></script>
+    <script src="../assets/script/change_role.js" type="module"></script>
+</head>
+
+<body>
+<header>
+    <div class="header-content">
+        <h1>Change user role</h1>
+        <div class="nav-bar"></div>
+    </div>
+</header>
+
+<main>
+    <section class="info-section">
+        <div class="info-container">
+            <h2>Change someones role!</h2>
+            <form onsubmit="return false">
+                <div class="input-group">
+                    <label for="username">Username:</label>
+                    <input id="username" name="username" placeholder="Please enter the username..." type="text">
+                </div>
+                <div class="input-group">
+                    <label for="role">Role:</label>
+                    <select id="role" name="role">
+                        <option value="user">User</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+                <div class="pop-up-container" id="change-role">
+                    <button class="button-pop-up">Change</button>
+                    <span class="pop-up-message" id="message"></span>
+                </div>
+            </form>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2024 Detention Center. All rights reserved.</p>
+</footer>
+</body>
+</html>

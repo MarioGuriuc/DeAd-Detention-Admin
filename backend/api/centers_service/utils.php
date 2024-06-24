@@ -4,6 +4,14 @@
 
 declare(strict_types=1);
 
+function send_response_with_center($center): void
+{
+    $json = json_encode($center);
+    http_response_code(200);
+    echo $json;
+    die();
+}
+
 function send_response_with_centers($centers): void
 {
     $json = json_encode($centers);

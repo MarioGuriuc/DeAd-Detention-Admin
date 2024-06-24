@@ -13,7 +13,7 @@
     <link href="../assets/css/header.css" rel="stylesheet">
     <link href="../assets/css/nav-bar-buttons.css" rel="stylesheet">
     <link href="../assets/css/body_style.css" rel="stylesheet">
-    <link href="../assets/css/edit_account.css" rel="stylesheet">
+    <link href="../assets/css/info_change.css" rel="stylesheet">
     <link href="../assets/css/popup.css" rel="stylesheet">
     <link href="../assets/css/toggle-password.css" rel="stylesheet">
 
@@ -33,51 +33,53 @@
 </header>
 
 <main>
-    <div class="edit-account-container">
-        <form onsubmit="return false">
-            <div class="input-group">
-                <label for="first-name">First name:</label>
-                <input id="first-name" name="firstName" placeholder="Leave missing to not be changed..."
-                       type="text">
-            </div>
-            <div class="input-group">
-                <label for="last-name">Last name:</label>
-                <input id="last-name" name="lastName" placeholder="Leave missing to not be changed..."
-                       type="text">
-            </div>
-            <div class="input-group">
-                <label for="username">Username:</label>
-                <input id="username" name="username" placeholder="Leave missing to not be changed..."
-                       type="text">
-            </div>
-            <div class="input-group">
-                <label for="email">E-mail:</label>
-                <input id="email" name="email" placeholder="Leave missing to not be changed..."
-                       type="email">
-            </div>
-            <div class="input-group">
-                <label for="phone">Phone number:</label>
-                <input id="phone" name="phone" placeholder="Leave missing to not be changed..."
-                       type="tel">
-            </div>
-            <div class="input-group">
-                <label for="password">Password:</label>
-                <input id="password" name="password" placeholder="Leave missing to not be changed..."
-                       type="password">
-                <span class="toggle-password" id="togglePassword">👁️</span>
-            </div>
-            <div class="input-group">
-                <label for="confirmPassword">Confirm password:</label>
-                <input id="confirmPassword" name="confirmPassword" placeholder="Leave missing to not be changed..."
-                       type="password">
-                <span class="toggle-password" id="togglePasswordConfirm">👁️</span>
-            </div>
-            <div class="pop-up-container" id="save-button">
-                <button class="button-pop-up">Save changes</button>
-                <span class="pop-up-message" id="message"></span>
-            </div>
-        </form>
-    </div>
+    <section class="info-section">
+        <div class="info-container">
+            <form onsubmit="return false">
+                <div class="input-group">
+                    <label for="firstName">First name:</label>
+                    <input id="firstName" name="firstName" placeholder="Leave missing to not be changed..."
+                           type="text">
+                </div>
+                <div class="input-group">
+                    <label for="lastName">Last name:</label>
+                    <input id="lastName" name="lastName" placeholder="Leave missing to not be changed..."
+                           type="text">
+                </div>
+                <div class="input-group">
+                    <label for="username">Username:</label>
+                    <input id="username" name="username" placeholder="Leave missing to not be changed..."
+                           type="text">
+                </div>
+                <div class="input-group">
+                    <label for="email">E-mail:</label>
+                    <input id="email" name="email" placeholder="Leave missing to not be changed..."
+                           type="email">
+                </div>
+                <div class="input-group">
+                    <label for="phone">Phone number:</label>
+                    <input id="phone" name="phone" placeholder="Leave missing to not be changed..."
+                           type="tel">
+                </div>
+                <div class="input-group">
+                    <label for="password">Password:</label>
+                    <input id="password" name="password" placeholder="Leave missing to not be changed..."
+                           type="password">
+                    <span class="toggle-password" id="togglePassword">👁️</span>
+                </div>
+                <div class="input-group">
+                    <label for="confirmPassword">Confirm password:</label>
+                    <input id="confirmPassword" name="confirmPassword" placeholder="Leave missing to not be changed..."
+                           type="password">
+                    <span class="toggle-password" id="togglePasswordConfirm">👁️</span>
+                </div>
+                <div class="pop-up-container" id="save-button">
+                    <button class="button-pop-up">Save changes</button>
+                    <span class="pop-up-message" id="message"></span>
+                </div>
+            </form>
+        </div>
+    </section>
 </main>
 
 <footer>

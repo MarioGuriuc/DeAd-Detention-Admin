@@ -62,3 +62,12 @@ function extract_page_number_from_url($url): int|string
     return 'No page number found';
 }
 
+function extract_inmate_id_from_url(): ?string
+{
+    $url = $_SERVER['REQUEST_URI'];
+
+    $url_parts = explode('/', $url);
+
+    return $url_parts[5] ?? null;
+}
+

@@ -9,9 +9,9 @@ if ($_SERVER['REQUEST_METHOD'] !== 'PUT') {
     send_response("Method not allowed", 405);
 }
 
-$jwt = get_decoded_jwt();
+$jwt = validate_and_return_jwt();
 
-if (!$jwt) {
+if (is_null($jwt)) {
     send_response("Unauthorized", 401);
 }
 

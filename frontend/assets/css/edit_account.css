@@ -22,15 +22,11 @@
     box-sizing: border-box;
 }
 
-.input-group input[type="tel"] {
-    width: calc(100% - 22px);
-}
-
 .input-group small {
     color: #999;
 }
 
-.edit-account-container button {
+.info-container button {
     background-color: #4CAF50;
     color: white;
     padding: 15px 50px;
@@ -44,7 +40,7 @@
     margin: 10px 0;
 }
 
-.edit-account-container {
+.info-container {
     text-align: center;
     background: linear-gradient(rgba(131, 208, 93, 0.7), rgba(242, 242, 242, 0.7));
     padding: 2%;
@@ -55,7 +51,7 @@
     font-size: 20px;
 }
 
-.edit-account-container h2 {
+.info-container h2 {
     margin: 0;
     color: #333;
 }
@@ -75,15 +71,15 @@
 }
 
 @media screen and (max-width: 768px) {
-    .edit-account-container {
+    .info-container {
         margin: 60px 20px;
     }
 
-    .edit-account-container h2 {
+    .info-container h2 {
         font-size: 20px;
     }
 
-    .edit-account-container button {
+    .info-container button {
         font-size: 14px;
         padding: 10px 20px;
     }
@@ -107,15 +103,15 @@
 }
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {
-    .edit-account-container {
+    .info-container {
         margin: 70px auto;
     }
 
-    .edit-account-container h2 {
+    .info-container h2 {
         font-size: 34px;
     }
 
-    .edit-account-container button {
+    .info-container button {
         font-size: 35px;
         padding: 10px 20px;
     }
@@ -140,15 +136,15 @@
 }
 
 @media screen and (min-width: 1024px) and (max-width: 1200px) {
-    .edit-account-container {
+    .info-container {
         margin: 20px auto;
     }
 
-    .edit-account-container h2 {
+    .info-container h2 {
         font-size: 35px;
     }
 
-    .edit-account-container button {
+    .info-container button {
         font-size: 30px;
         padding: 10px 20px;
     }
@@ -173,15 +169,15 @@
 }
 
 @media screen and (min-width: 280px) and (max-width: 320px) {
-    .edit-account-container {
+    .info-container {
         margin: 8px auto;
     }
 
-    .edit-account-container h2 {
+    .info-container h2 {
         font-size: 20px;
     }
 
-    .edit-account-container button {
+    .info-container button {
         font-size: 14px;
         padding: 10px 20px;
     }
@@ -205,16 +201,16 @@
 }
 
 @media screen and (min-width: 1024px) and (max-height: 600px) {
-    .edit-account-container {
+    .info-container {
         padding: 30px;
         margin: 0 auto 20px auto;
     }
 
-    .edit-account-container h2 {
+    .info-container h2 {
         font-size: 20px;
     }
 
-    .edit-account-container button {
+    .info-container button {
         font-size: 14px;
         padding: 10px 20px;
     }

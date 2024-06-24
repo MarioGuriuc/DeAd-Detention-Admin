@@ -13,13 +13,15 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     send_response("Method not allowed", 405);
 }
 
+$jwt = validate_and_return_jwt();
+
 if ($jwt) {
     send_response("Already logged in", 400);
 }
 
 $data = receive_json();
 
-$empty_field = is_data_empty($data, user_required_fields);
+$empty_field = is_data_empty($data, USER_REQUIRED_FIELDS);
 
 if ($empty_field) {
     send_response($empty_field, 400);
@@ -36,6 +38,10 @@ $existing_user = $users_collection->findOne(['$or' => [["username" => $data["use
 
 if ($existing_user) {
     send_response("Username or email already in use", 400);
+}
+
+if ($data["password"] !== $data["confirmPassword"]) {
+    send_response("Passwords do not match", 400);
 }
 
 $hashed_password = password_hash($data["password"], PASSWORD_DEFAULT);

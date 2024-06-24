@@ -3,25 +3,24 @@
 
 require_once 'utils.php';
 require_once 'constants.php';
+
 use MongoDB\BSON\ObjectId;
 
 if ($_SERVER["REQUEST_METHOD"] !== "PATCH") {
     send_response("Method not allowed", 405);
 }
 
-$jwt = get_decoded_jwt();
+$jwt = validate_and_return_jwt();
 
-if (!$jwt) {
-    send_response("Unauthorized", 401);
+if (is_null($jwt)) {
+    send_response('Unauthorized', 401);
 }
 
-$route_params = $GLOBALS['params'] ?? [];
-
-if (count($route_params) !== 1) {
-    send_response("Unauthorized", 401);
+if ($jwt->role !== 'admin') {
+    send_response('Unauthorized', 403);
 }
 
-$visit_id = $route_params[0];
+$visit_id = extract_visit_id_from_url();
 
 $data = receive_json();
 

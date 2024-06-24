@@ -9,16 +9,16 @@ if ($_SERVER["REQUEST_METHOD"] !== "PATCH") {
     send_response("Method not allowed", 405);
 }
 
-$jwt = get_decoded_jwt();
+$jwt = validate_and_return_jwt();
 
-if (!$jwt) {
+if (is_null($jwt)) {
     send_response("Unauthorized", 401);
 }
 
 $username = $jwt->sub;
-$route_params = $GLOBALS['params'] ?? [];
+$username_param = $params['username'] ?? '';
 
-if (count($route_params) !== 1 || $route_params[0] !== $username) {
+if ($username_param !== $username) {
     send_response("Unauthorized", 401);
 }
 
@@ -67,10 +67,14 @@ if (array_key_exists("username", $data)) {
     }
 }
 
+if (empty($data)) {
+    send_response("No changes were made", 400);
+}
+
 $result = $users_collection->updateOne(["username" => $jwt->sub], ['$set' => $data]);
 
 if ($result->getModifiedCount() !== 1) {
-    send_response("An error occurred while updating the account", 500);
+    send_response("No changes were made", 400);
 }
 
 send_response("Account updated successfully, please login again", 200);

@@ -1,13 +1,12 @@
 # Author: Mario Guriuc
 
-FROM php:8.3-apache
+FROM node:18
 
-COPY frontend/ /var/www/html/frontend/
+WORKDIR /app
 
-RUN a2enmod rewrite headers
+COPY frontend/ /app/frontend/
+COPY frontend/server.js /app/
 
-COPY apache.conf /etc/apache2/sites-available/000-default.conf
+EXPOSE 8001
 
-EXPOSE 80
-
-CMD ["apache2-foreground"]
+CMD ["node", "server.js"]

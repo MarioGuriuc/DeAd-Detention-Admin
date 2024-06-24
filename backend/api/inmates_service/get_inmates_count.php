@@ -5,22 +5,23 @@
 declare(strict_types=1);
 
 use MongoDB\BSON\ObjectId;
+
 require_once "utils.php";
 
 if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
     send_response('Method not allowed', 405);
 }
 
-$jwt = get_decoded_jwt();
+$jwt = validate_and_return_jwt();
 
-if (!$jwt) {
+if (is_null($jwt)) {
     send_response('Unauthorized', 401);
 }
 
 $database = get_db_conn();
 $inmates = $database->selectCollection('inmates');
 
-$center_id = $params[0] ?? null;
+$center_id = extract_center_id_from_url();
 
 if (!$center_id) {
     send_response('Missing center_id', 400);

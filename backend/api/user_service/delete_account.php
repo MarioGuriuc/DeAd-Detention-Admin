@@ -10,16 +10,16 @@ if ($_SERVER['REQUEST_METHOD'] !== 'DELETE') {
     send_response("Method not allowed", 405);
 }
 
-$jwt = get_decoded_jwt();
+$jwt = validate_and_return_jwt();
 
-if (!$jwt) {
+if (is_null($jwt)) {
     send_response("Unauthorized", 401);
 }
 
 $username = $jwt->sub;
-$route_params = $GLOBALS['params'] ?? [];
+$username_param = $params['username'] ?? '';
 
-if (count($route_params) !== 1 || $route_params[0] !== $username) {
+if ($username_param !== $username) {
     send_response("Unauthorized", 401);
 }
 

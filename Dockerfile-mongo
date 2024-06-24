@@ -1,3 +1,5 @@
+# Author: Mario Guriuc
+
 FROM python:3.9
 
 COPY Database /Database

@@ -11,9 +11,9 @@ if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
     send_response('Method not allowed', 405);
 }
 
-$jwt = get_decoded_jwt();
+$jwt = validate_and_return_jwt();
 
-if (!$jwt) {
+if (is_null($jwt)) {
     send_response('Unauthorized', 401);
 }
 
@@ -22,8 +22,7 @@ $inmates_collection = $database->selectCollection('inmates');
 
 $url = $_SERVER['REQUEST_URI'];
 
-
-$center_id = $params[0] ?? null;
+$center_id = extract_center_id_from_url();
 
 $cursor = $inmates_collection->find([
     'center' => new ObjectId($center_id)
@@ -36,11 +35,11 @@ foreach ($cursor as $inmate) {
         'id' => (string)$inmate['_id'],
         'image' => $inmate['image']->getData(),
         'name' => $inmate['fullName'],
-        'crime' => $inmate['crime'],
-        'sentence' => $inmate['sentence']
+        'crimes' => $inmate['crimes'],
+        'sentences' => $inmate['sentences'],
+        'center' => (string)$inmate['center'],
     ];
     $inmates[] = $filtered_inmate;
 }
 
 send_response_with_inmates($inmates);
-
