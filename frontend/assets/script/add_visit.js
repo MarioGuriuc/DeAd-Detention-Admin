@@ -2,15 +2,15 @@
 
 import {API_ADD_VISIT_URL, FRONT_VISITS_URL} from "./constants.js";
 import {handleNavbar} from "./handle_navbar.js";
-import {getUsernameFromJwt} from "./jwt.js";
-import {extractCenterIdFromUrl, extractInmateIdFromUrl, getHeaders,isLogged} from "./utils.js";
 import {openPopup} from "./popup.js";
+import {extractCenterIdFromUrl, extractInmateIdFromUrl, getHeaders, getUsernameFromJwt, isLogged} from "./utils.js";
 
 document.addEventListener("DOMContentLoaded", function () {
     isLogged((logged) => {
         if (!logged) {
             window.location.assign("/login");
-        } else {
+        }
+        else {
             handleNavbar("addVisit", logged);
             const submitButton = document.getElementById("add-visit-btn");
             submitButton.addEventListener("click", submitNewVisit);
@@ -79,17 +79,19 @@ function addVisit(formData) {
         body: JSON.stringify(formData)
     })
         .then(response => response.json()
-            .then(data => ({ status: response.status, body: data }))
-            .catch(() => ({ status: response.status, body: {} })))
-        .then(({ status, body }) => {
+            .then(data => ({status: response.status, body: data}))
+            .catch(() => ({status: response.status, body: {}})))
+        .then(({status, body}) => {
             openPopup(body["result"]);
             if (status === 201) {
                 setTimeout(() => {
                     window.location.assign(FRONT_VISITS_URL.replace("{username}", getUsernameFromJwt()));
                 }, 2000);
-            } else if (status === 401) {
+            }
+            else if (status === 401) {
                 openPopup(body["result"]);
-            } else {
+            }
+            else {
                 openPopup(body["result"]);
             }
         })

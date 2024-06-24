@@ -26,10 +26,10 @@ $username = extract_username_from_url();
 
 $url = $_SERVER['REQUEST_URI'];
 
-if($jwt->role === 'admin') {
+if ($jwt->role === 'admin') {
     $cursor = $visits_collection->find();
 }
-else{
+else {
     $cursor = $visits_collection->find(['creator' => $username]);
 }
 

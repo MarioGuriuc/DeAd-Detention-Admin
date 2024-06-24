@@ -2,17 +2,18 @@
 
 "use strict";
 
-import {API_ADD_INMATES_URL, FRONT_INMATES_URL, API_CENTERS_URL} from "./constants.js";
+import {API_ADD_INMATES_URL, API_CENTERS_URL, FRONT_INMATES_URL} from "./constants.js";
 import {handleNavbar} from "./handle_navbar.js";
-import {getHeaders, isLogged} from "./utils.js";
 import {openPopup} from "./popup.js";
+import {getHeaders, isLogged} from "./utils.js";
 
 
 document.addEventListener("DOMContentLoaded", function () {
     isLogged((logged) => {
         if (!logged) {
             window.location.assign("/login");
-        } else {
+        }
+        else {
             handleNavbar("addInmate", logged);
             loadCenters();
 
@@ -86,7 +87,8 @@ function submitNewInmate() {
             addInmate(formData, centerId);
         };
         reader.readAsDataURL(image);
-    } else {
+    }
+    else {
         openPopup("All fields are required.");
     }
 }
@@ -108,9 +110,11 @@ function addInmate(formData, centerId) {
                 setTimeout(() => {
                     window.location.assign(FRONT_INMATES_URL.replace("{center_id}", centerId));
                 }, 2000);
-            } else if (status === 401) {
+            }
+            else if (status === 401) {
                 openPopup(body.result);
-            } else {
+            }
+            else {
                 openPopup(body.result);
             }
         })

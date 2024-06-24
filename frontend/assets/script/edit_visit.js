@@ -1,17 +1,17 @@
 "use strict";
 
-import {API_EDIT_VISIT_URL, FRONT_VISITS_URL, API_VISITS_URL} from "./constants.js";
+import {API_EDIT_VISIT_URL, API_VISITS_URL, FRONT_VISITS_URL} from "./constants.js";
 import {handleNavbar} from "./handle_navbar.js";
-import {getUsernameFromJwt} from "./jwt.js";
-import {extractVisitIdFromUrl, getHeaders,isLogged} from "./utils.js";
 import {openPopup} from "./popup.js";
+import {extractVisitIdFromUrl, getHeaders, getUsernameFromJwt, isLogged} from "./utils.js";
 
 
 document.addEventListener("DOMContentLoaded", function () {
     isLogged((logged) => {
         if (!logged) {
             window.location.assign("/login");
-        } else {
+        }
+        else {
             handleNavbar("visits", logged);
             loadVisitData();
 
@@ -32,9 +32,9 @@ function loadVisitData() {
         headers: getHeaders()
     })
         .then(response => response.json()
-            .then(data => ({ status: response.status, body: data }))
-            .catch(() => ({ status: response.status, body: {} })))
-        .then(({ status, body }) => {
+            .then(data => ({status: response.status, body: data}))
+            .catch(() => ({status: response.status, body: {}})))
+        .then(({status, body}) => {
             if (status === 200) {
                 const visitData = body.visits.find(visit => visit.id === visitId);
 
@@ -57,10 +57,12 @@ function loadVisitData() {
                         document.getElementById("health").disabled = true;
                         document.getElementById("witnesses").disabled = true;
                     }
-                } else {
+                }
+                else {
                     openPopup("Visit not found.");
                 }
-            } else {
+            }
+            else {
                 openPopup("Failed to load visit data.");
             }
         })
@@ -129,17 +131,19 @@ function editVisit(formData) {
         body: JSON.stringify(formData)
     })
         .then(response => response.json()
-            .then(data => ({ status: response.status, body: data }))
-            .catch(() => ({ status: response.status, body: {} })))
-        .then(({ status, body }) => {
+            .then(data => ({status: response.status, body: data}))
+            .catch(() => ({status: response.status, body: {}})))
+        .then(({status, body}) => {
             openPopup(body["result"]);
             if (status === 200) {
                 setTimeout(() => {
                     window.location.assign(FRONT_VISITS_URL.replace("{username}", getUsernameFromJwt()));
                 }, 2000);
-            } else if (status === 401) {
+            }
+            else if (status === 401) {
                 openPopup(body["result"]);
-            } else {
+            }
+            else {
                 openPopup(body["result"]);
             }
         })

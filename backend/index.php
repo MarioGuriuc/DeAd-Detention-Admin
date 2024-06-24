@@ -93,4 +93,5 @@ if (!$file_to_include) {
     die();
 }
 
+header('Content-Type: application/json');
 include $file_to_include;

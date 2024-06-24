@@ -1,16 +1,16 @@
 // Author: Vlad
 
 import {API_CENTERS_URL, API_TRANSFER_INMATE_URL, FRONT_INMATES_URL} from "./constants.js";
-import {getHeaders, extractInmateIdFromUrl,isLogged} from "./utils.js";
-import { openPopup } from "./popup.js";
 import {handleNavbar} from "./handle_navbar.js";
+import {openPopup} from "./popup.js";
+import {extractInmateIdFromUrl, getHeaders, isLogged} from "./utils.js";
 
 document.addEventListener('DOMContentLoaded', function () {
     isLogged((logged) => {
         if (!logged) {
             window.location.assign("/login");
         }
-        else{
+        else {
             handleNavbar("inmates", logged);
             loadCenters();
 
@@ -49,7 +49,7 @@ function transferInmate() {
     const inmateId = extractInmateIdFromUrl();
     const newCenterId = document.getElementById('center').value;
 
-    fetch(API_TRANSFER_INMATE_URL.replace('{inmate_id}', inmateId).replace("{center_id}",newCenterId), {
+    fetch(API_TRANSFER_INMATE_URL.replace('{inmate_id}', inmateId).replace("{center_id}", newCenterId), {
         method: 'PATCH',
         headers: getHeaders(),
     })

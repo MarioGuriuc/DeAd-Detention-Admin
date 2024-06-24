@@ -1,7 +1,7 @@
 // Author: Mario Guriuc and Vlad
 
 import {FRONT_ACCOUNT_URL} from "./constants.js";
-import {getUsernameFromJwt} from "./jwt.js";
+import {getUsernameFromJwt} from "./utils.js";
 
 const accountRoute = FRONT_ACCOUNT_URL.replace("{username}", getUsernameFromJwt());
 

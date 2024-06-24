@@ -6,7 +6,8 @@ function extract_inmate_id_from_url(): ?string
     $regex = '/inmates\/([a-f0-9]{24})\/add-visit/';
     if (preg_match($regex, $url, $matches)) {
         return $matches[1];
-    } else {
+    }
+    else {
         send_response("Inmate ID not found in the URL", 400);
     }
     return null;
@@ -36,7 +37,8 @@ function extract_username_from_url(): ?string
     $regex = '/account\/([a-zA-Z0-9_]+)\/visits/';
     if (preg_match($regex, $url, $matches)) {
         return $matches[1];
-    } else {
+    }
+    else {
         send_response("Username not found in the URL", 400);
     }
     return null;
@@ -48,7 +50,8 @@ function extract_visit_id_from_url(): ?string
     $regex = '/visits\/([a-f0-9]{24})/';
     if (preg_match($regex, $url, $matches)) {
         return $matches[1];
-    } else {
+    }
+    else {
         send_response("Visit ID not found in the URL", 400);
     }
     return null;

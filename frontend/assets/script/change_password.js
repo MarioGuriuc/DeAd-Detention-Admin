@@ -1,11 +1,10 @@
 // Author: Mario Guriuc
 
-import {API_CHANGE_PASSWORD_URL, FRONT_ACCOUNT_URL} from "./constants.js";
+import {API_CHANGE_PASSWORD_URL} from "./constants.js";
 import {handleNavbar} from "./handle_navbar.js";
-import {isLogged} from "./utils.js";
 import {openPopup} from "./popup.js";
 import {handleTogglePassword} from "./toggle_password.js";
-import {getUsernameFromUrl, getHeaders} from "./utils.js";
+import {getHeaders, getUsernameFromUrl, isLogged} from "./utils.js";
 
 handleTogglePassword();
 
@@ -17,6 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
         else {
             handleNavbar("changePassword", true);
             document.getElementById("change-password").addEventListener("click", changePassword);
+
             function changePassword() {
                 fetch(API_CHANGE_PASSWORD_URL, {
                     method: 'PATCH',

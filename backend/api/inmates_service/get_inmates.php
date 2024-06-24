@@ -33,7 +33,7 @@ $inmates = [];
 foreach ($cursor as $inmate) {
     $filtered_inmate = [
         'id' => (string)$inmate['_id'],
-        'image' =>$inmate['image']->getData(),
+        'image' => $inmate['image']->getData(),
         'name' => $inmate['fullName'],
         'crimes' => $inmate['crimes'],
         'sentences' => $inmate['sentences'],

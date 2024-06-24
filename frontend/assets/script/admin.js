@@ -2,15 +2,15 @@
 
 import {FRONT_ADD_CENTER_URL, FRONT_ADD_INMATE_ADMIN_URL, FRONT_STATISTICS_URL, FRONT_VISITS_URL} from "./constants.js";
 import {handleNavbar} from "./handle_navbar.js";
-import {getUsernameFromJwt} from "./jwt.js";
-import {isLogged} from "./utils.js";
+import {getUsernameFromJwt, isLogged} from "./utils.js";
 
 
 document.addEventListener("DOMContentLoaded", function () {
     isLogged((logged) => {
         if (!logged) {
             window.location.assign("/login");
-        } else {
+        }
+        else {
             handleNavbar("addVisit", logged);
 
             const addCentersButton = document.querySelector(".center-btn");

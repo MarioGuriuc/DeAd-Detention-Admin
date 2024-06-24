@@ -2,14 +2,15 @@
 
 import {API_EDIT_INMATE_URL, API_INMATES_URL, FRONT_INMATES_URL} from "./constants.js";
 import {handleNavbar} from "./handle_navbar.js";
-import {extractCenterIdFromUrl, extractInmateIdFromUrl, getHeaders, isLogged} from "./utils.js";
 import {openPopup} from "./popup.js";
+import {extractCenterIdFromUrl, extractInmateIdFromUrl, getHeaders, isLogged} from "./utils.js";
 
 document.addEventListener("DOMContentLoaded", function () {
     isLogged((logged) => {
         if (!logged) {
             window.location.assign("/login");
-        } else {
+        }
+        else {
             handleNavbar("inmates", logged);
             loadInmateData();
 
@@ -94,7 +95,8 @@ function loadInmateData() {
                     imageInput.height = 150;
                     document.getElementById("imageContainer").appendChild(imageInput);
                 }
-            } else {
+            }
+            else {
                 openPopup("Inmate not found.");
             }
         })
@@ -128,7 +130,8 @@ function submitEditedInmate(event) {
                 editInmate(formData);
             };
             reader.readAsDataURL(imageFile);
-        } else {
+        }
+        else {
             const formData = {
                 name: inmateName,
                 crimes: crimes,
@@ -158,7 +161,8 @@ function editInmate(formData) {
                 setTimeout(() => {
                     window.location.assign(FRONT_INMATES_URL.replace("{center_id}", extractCenterIdFromUrl()));
                 }, 2000);
-            } else {
+            }
+            else {
                 openPopup(body["result"]);
             }
         })

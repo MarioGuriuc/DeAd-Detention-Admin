@@ -87,7 +87,8 @@ export function extractInmateIdFromUrl() {
     const match = url.match(regex);
     if (match && match[1]) {
         return match[1];
-    } else {
+    }
+    else {
         console.error("Inmate ID not found in the URL.");
         return null;
     }
@@ -96,4 +97,13 @@ export function extractInmateIdFromUrl() {
 export function extractVisitIdFromUrl() {
     const urlParts = window.location.pathname.split('/');
     return urlParts[4];
+}
+
+export function getUsernameFromJwt() {
+    const jwt = localStorage.getItem("JWT");
+    if (!jwt) {
+        return null;
+    }
+    const json = JSON.parse(atob(jwt.split(".")[1]));
+    return json.sub;
 }

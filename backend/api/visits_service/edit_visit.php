@@ -73,30 +73,30 @@ try {
     send_response("An error occurred while processing the visit date", 500);
 }
 
-try{
-$visit_start_time = new DateTime($data['date'] . ' ' . $data['time']);
-$visit_end_time = clone $visit_start_time;
-$visit_end_time->modify('+' . $data['duration'] . ' minutes');
+try {
+    $visit_start_time = new DateTime($data['date'] . ' ' . $data['time']);
+    $visit_end_time = clone $visit_start_time;
+    $visit_end_time->modify('+' . $data['duration'] . ' minutes');
 
-$existing_visits = $visits_collection->find([
-    'inmate' => new ObjectId($inmate_id),
-    'date' => $data['date'],
-    '_id' => ['$ne' => new ObjectId($visit_id)]
-]);
+    $existing_visits = $visits_collection->find([
+        'inmate' => new ObjectId($inmate_id),
+        'date' => $data['date'],
+        '_id' => ['$ne' => new ObjectId($visit_id)]
+    ]);
 
-foreach ($existing_visits as $existing_visit) {
-    $existing_start_time = new DateTime($data['date'] . ' ' . $existing_visit['time']);
-    $existing_end_time = clone $existing_start_time;
-    $existing_end_time->modify('+' . $existing_visit['duration'] . ' minutes');
+    foreach ($existing_visits as $existing_visit) {
+        $existing_start_time = new DateTime($data['date'] . ' ' . $existing_visit['time']);
+        $existing_end_time = clone $existing_start_time;
+        $existing_end_time->modify('+' . $existing_visit['duration'] . ' minutes');
 
-    if ($visit_start_time < $existing_end_time && $visit_end_time > $existing_start_time) {
-        send_response("There is already a visit scheduled during this time.", 400);
+        if ($visit_start_time < $existing_end_time && $visit_end_time > $existing_start_time) {
+            send_response("There is already a visit scheduled during this time.", 400);
+        }
     }
-}
 } catch (Exception $e) {
     send_response("An error occurred while processing the visit time", 500);
 }
-if($visit['status'] != 'attended') {
+if ($visit['status'] != 'attended') {
     $updateData = [
         "date" => $data["date"],
         "time" => $data["time"],
@@ -108,7 +108,8 @@ if($visit['status'] != 'attended') {
         "witnesses" => $data["witnesses"],
         'status' => 'pending'
     ];
-} else {
+}
+else {
     $updateData = [
         "summary" => $data["summary"],
     ];

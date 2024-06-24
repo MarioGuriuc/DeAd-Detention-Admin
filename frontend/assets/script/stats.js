@@ -8,7 +8,8 @@ document.addEventListener("DOMContentLoaded", function () {
     isLogged((logged) => {
         if (!logged) {
             window.location.assign("/login");
-        } else {
+        }
+        else {
             handleNavbar("addVisit", logged);
             loadCenters();
 

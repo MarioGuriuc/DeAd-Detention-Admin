@@ -1,24 +1,26 @@
 // Author: Vlad
 
 import {
+    API_CENTERS_URL,
+    API_DELETE_INMATE_URL,
     API_INMATES_COUNT_URL,
     API_INMATES_URL,
-    API_CENTERS_URL,
     FRONT_ADD_INMATE_URL,
     FRONT_ADD_VISIT_URL,
+    FRONT_EDIT_INMATE_URL,
     FRONT_INMATES_URL,
-    API_DELETE_INMATE_URL,
-    FRONT_TRANSFER_INMATE_URL, FRONT_EDIT_INMATE_URL
+    FRONT_TRANSFER_INMATE_URL
 } from "./constants.js";
 
 import {handleNavbar} from "./handle_navbar.js";
-import {extractCenterIdFromUrl, isAdmin, getHeaders, isLogged} from "./utils.js";
+import {extractCenterIdFromUrl, getHeaders, isAdmin, isLogged} from "./utils.js";
 
 document.addEventListener('DOMContentLoaded', () => {
     isLogged((logged) => {
         if (!logged) {
             window.location.assign("/login");
-        } else {
+        }
+        else {
 
             handleNavbar("inmates", logged);
             const searchBar = document.getElementById('search');
@@ -33,7 +35,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     noInmatesDiv.textContent = 'No inmates found';
                     noInmatesDiv.classList.add('no-inmates');
                     inmatesContainer.appendChild(noInmatesDiv);
-                } else {
+                }
+                else {
                     data.forEach(function (inmate) {
                         const inmateDiv = document.createElement('div');
                         inmateDiv.classList.add('inmate');
@@ -209,7 +212,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             centerNameBox.classList.add('center-name-box');
                             centerNameBox.textContent = `${center.title}`;
                             searchBar.insertAdjacentElement('afterend', centerNameBox);
-                        } else {
+                        }
+                        else {
                             console.error("Center not found");
                         }
                     })

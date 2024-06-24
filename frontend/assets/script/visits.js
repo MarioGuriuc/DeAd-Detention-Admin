@@ -4,14 +4,14 @@
 
 import {API_VISIT_STATUS_URL, API_VISITS_URL, FRONT_EDIT_VISIT_URL} from "./constants.js";
 import {handleNavbar} from "./handle_navbar.js";
-import {getUsernameFromJwt} from "./jwt.js";
-import {isAdmin, getHeaders, isLogged} from "./utils.js";
+import {getHeaders, getUsernameFromJwt, isAdmin, isLogged} from "./utils.js";
 
 document.addEventListener('DOMContentLoaded', function () {
     isLogged((logged) => {
         if (!logged) {
             window.location.assign("/login");
-        } else {
+        }
+        else {
             handleNavbar("visits", logged);
             const searchBar = document.getElementById('search');
             document.querySelector('.visits-container').addEventListener('click', function (event) {
@@ -32,7 +32,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     noVisitsDiv.textContent = 'No visits found';
                     noVisitsDiv.classList.add('no-visits');
                     visitsContainer.appendChild(noVisitsDiv);
-                } else {
+                }
+                else {
                     visitsContainer.innerHTML = '';
                     data["visits"].forEach(function (visit) {
                         const visitDiv = document.createElement('div');
@@ -81,7 +82,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
                                 p.appendChild(readMoreButton);
                                 p.appendChild(readLessButton);
-                            } else {
+                            }
+                            else {
                                 fullText.style.display = 'inline';
                             }
 
@@ -188,7 +190,8 @@ document.addEventListener('DOMContentLoaded', function () {
                         if (status === 200) {
                             visitsData = body;
                             renderVisits(body);
-                        } else {
+                        }
+                        else {
                             window.location.assign("/login");
                         }
                     })
@@ -213,7 +216,8 @@ document.addEventListener('DOMContentLoaded', function () {
                         if (status === 200) {
                             if (body.result === "Visit status updated successfully") {
                                 fetchVisits();
-                            } else {
+                            }
+                            else {
                                 alert(`Failed to handle the approval the visit.`);
                             }
                         }

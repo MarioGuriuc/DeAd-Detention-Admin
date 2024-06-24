@@ -1,15 +1,16 @@
 "use strict";
 
-import { API_ADD_INMATES_URL, FRONT_INMATES_URL } from "./constants.js";
-import { handleNavbar } from "./handle_navbar.js";
-import { extractCenterIdFromUrl, getHeaders, isLogged } from "./utils.js";
-import { openPopup } from "./popup.js";
+import {API_ADD_INMATES_URL, FRONT_INMATES_URL} from "./constants.js";
+import {handleNavbar} from "./handle_navbar.js";
+import {openPopup} from "./popup.js";
+import {extractCenterIdFromUrl, getHeaders, isLogged} from "./utils.js";
 
 document.addEventListener("DOMContentLoaded", function () {
     isLogged((logged) => {
         if (!logged) {
             window.location.assign("/login");
-        } else {
+        }
+        else {
             handleNavbar("addInmate", logged);
             const submitButton = document.querySelector(".button-pop-up");
             submitButton.addEventListener("click", submitNewInmate);
@@ -60,7 +61,8 @@ function submitNewInmate() {
             addInmate(formData);
         };
         reader.readAsDataURL(image);
-    } else {
+    }
+    else {
         openPopup("All fields are required.");
     }
 }
@@ -75,17 +77,19 @@ function addInmate(formData) {
         body: JSON.stringify(formData)
     })
         .then(response => response.json()
-            .then(data => ({ status: response.status, body: data }))
-            .catch(() => ({ status: response.status, body: {} })))
-        .then(({ status, body }) => {
+            .then(data => ({status: response.status, body: data}))
+            .catch(() => ({status: response.status, body: {}})))
+        .then(({status, body}) => {
             openPopup(body["result"]);
             if (status === 201) {
                 setTimeout(() => {
                     window.location.assign(FRONT_INMATES_URL.replace("{center_id}", centerId));
                 }, 2000);
-            } else if (status === 401) {
+            }
+            else if (status === 401) {
                 openPopup(body["result"]);
-            } else {
+            }
+            else {
                 openPopup(body["result"]);
             }
         })

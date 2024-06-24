@@ -94,7 +94,8 @@ $result = $visits_collection->insertOne($visit);
 
 if ($result->getInsertedCount() > 0) {
     send_response("Visit added", 201);
-} else {
+}
+else {
     send_response("Error while adding the visit ", 201);
 }
 

@@ -36,7 +36,8 @@ try {
 
     if ($result->getModifiedCount() > 0) {
         send_response('Inmate transferred successfully', 200);
-    } else {
+    }
+    else {
         send_response('Inmate not found', 404);
     }
 } catch (Throwable $e) {
