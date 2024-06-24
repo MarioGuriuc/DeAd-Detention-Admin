@@ -63,6 +63,10 @@ const API_STATISTICS_URL = `${API_URL}/statistics/{center_id}/{inmate_id}/{start
 const API_DELETE_INMATE_URL = `${API_URL}/centers/{center_id}/inmates/{inmate_id}/delete`;
 const API_TRANSFER_INMATE_URL = `${API_URL}/centers/{center_id}/inmates/{inmate_id}/transfer`;
 const API_EDIT_INMATE_URL = `${API_URL}/centers/{center_id}/inmates/{inmate_id}/edit`;
+const API_DELETE_CENTER_URL = `${API_URL}/centers/{center_id}/delete`;
+const API_EDIT_CENTER_URL = `${API_URL}/centers/{center_id}/edit`;
+const API_ALL_CENTERS_URL = `${API_URL}/centers`;
+const API_ONE_CENTER_URL = `${API_URL}/center/{center_id}`;
 
 const FRONT_VISITS_URL = `${FRONTEND_URL}/account/{username}/visits`;
 const FRONT_ADD_VISIT_URL = `${FRONTEND_URL}/centers/{center_id}/inmates/{inmate_id}/add-visit`;
@@ -74,8 +78,13 @@ const FRONT_ADD_INMATE_ADMIN_URL = `${FRONTEND_URL}/add-inmate`;
 const FRONT_STATISTICS_URL = `${FRONTEND_URL}/statistics`;
 const FRONT_TRANSFER_INMATE_URL = `${FRONTEND_URL}/centers/{center_id}/inmates/{inmate_id}/transfer`;
 const FRONT_EDIT_INMATE_URL = `${FRONTEND_URL}/centers/{center_id}/inmates/{inmate_id}/edit`;
+const FRONT_EDIT_CENTER_URL = `${FRONTEND_URL}/centers/{center_id}/edit`;
 
 export {
+    API_ONE_CENTER_URL,
+    API_ALL_CENTERS_URL,
+    API_EDIT_CENTER_URL,
+    API_DELETE_CENTER_URL,
     API_EDIT_INMATE_URL,
     API_TRANSFER_INMATE_URL,
     API_DELETE_INMATE_URL,
@@ -90,6 +99,7 @@ export {
 };
 
 export {
+    FRONT_EDIT_CENTER_URL,
     FRONT_ADD_INMATE_URL,
     FRONT_ADD_CENTER_URL,
     FRONT_VISITS_URL,

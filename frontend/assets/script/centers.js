@@ -1,6 +1,10 @@
 // Author: Mario Guriuc
 
-import {API_CENTERS_COUNT_URL, API_CENTERS_URL, FRONT_INMATES_URL} from "./constants.js";
+import {
+    API_CENTERS_COUNT_URL,
+    API_CENTERS_URL, API_DELETE_CENTER_URL, FRONT_EDIT_CENTER_URL,
+    FRONT_INMATES_URL,
+} from "./constants.js";
 import {handleNavbar} from "./handle_navbar.js";
 import {getHeaders, isAdmin, isLogged} from "./utils.js";
 
@@ -8,8 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     isLogged((logged) => {
         if (!logged) {
             window.location.assign("/login");
-        }
-        else {
+        } else {
             handleNavbar("centers", logged)
                 .then(() => {
                     isAdmin((admin) => {
@@ -39,8 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             noCentersDiv.textContent = 'No centers found';
                             noCentersDiv.classList.add('no-centers');
                             centersContainer.appendChild(noCentersDiv);
-                        }
-                        else {
+                        } else {
                             data.forEach(function (center) {
                                 const centerDiv = document.createElement('div');
                                 centerDiv.classList.add('center');
@@ -66,6 +68,34 @@ document.addEventListener('DOMContentLoaded', () => {
                                 const centerDescription = document.createElement('p');
                                 centerDescription.textContent = 'Description: ' + center.description;
 
+                                isAdmin(admin => {
+                                    if (admin) {
+                                        const buttonContainer = document.createElement('div');
+                                        buttonContainer.classList.add('button-container');
+
+                                        const deleteButton = document.createElement('button');
+                                        deleteButton.textContent = 'Delete';
+                                        deleteButton.classList.add('delete-button');
+                                        deleteButton.addEventListener('click', function () {
+                                            if (confirm('Are you sure you want to delete this center?')) {
+                                                deleteCenter(center.id);
+                                            }
+                                        });
+
+
+                                        const editButton = document.createElement('button');
+                                        editButton.textContent = 'Edit';
+                                        editButton.classList.add('edit-button');
+                                        editButton.addEventListener('click', function () {
+                                            window.location.assign(FRONT_EDIT_CENTER_URL.replace('{center_id}', center.id));
+                                        });
+
+                                        buttonContainer.appendChild(deleteButton);
+                                        buttonContainer.appendChild(editButton);
+                                        centerDiv.appendChild(buttonContainer);
+                                    }
+                                });
+
                                 centerInfo.appendChild(centerName);
                                 centerInfo.appendChild(centerLocation);
                                 centerInfo.appendChild(centerDescription);
@@ -88,6 +118,26 @@ document.addEventListener('DOMContentLoaded', () => {
                         const searchTerm = event.target.value;
                         filterCenters(searchTerm);
                     });
+                    searchBar.addEventListener('input', (event) => {
+                        const searchTerm = event.target.value;
+                        filterCenters(searchTerm);
+                    });
+
+                    function deleteCenter(centerId) {
+                        fetch(API_DELETE_CENTER_URL.replace("{center_id}", centerId), {
+                            method: 'DELETE',
+                            headers: getHeaders(),
+                            credentials: 'include'
+                        })
+                            .then(response => response.json())
+                            .then(data => {
+                                alert(data['result']);
+                                fetchCenters(1);
+                            })
+                            .catch(error => {
+                                alert('An error occurred: ' + error.message);
+                            });
+                    }
 
                     function fetchCenters(pageNumber) {
                         fetch(API_CENTERS_URL.replace('{page_number}', pageNumber),

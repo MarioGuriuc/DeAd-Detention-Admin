@@ -25,8 +25,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     window.location.assign(FRONT_ADD_INMATE_ADMIN_URL);
                 });
 
-                approveVisitsButton.addEventListener("click", function () {
-                    window.location.assign(FRONT_VISITS_URL.replace("{username}", getUsernameFromJwt()));
+                approveVisitsButton.addEventListener("click", async function () {
+                    window.location.assign(FRONT_VISITS_URL.replace("{username}", await getUsernameFromJwt()));
                 });
 
                 statisticsButton.addEventListener("click", function () {

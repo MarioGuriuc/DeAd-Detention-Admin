@@ -1,60 +1,61 @@
+<!-- Vlad-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Edit Inmate</title>
-  <base href="/">
-  <link href="../assets/images/icon.png" rel="icon">
-  <script src="../assets/script/handle_navbar.js" type="module"></script>
-  <script src="../assets/script/edit_inmate.js" type="module"></script>
-  <link href="../assets/css/add_inmate.css" rel="stylesheet">
-  <link href="../assets/css/footer.css" rel="stylesheet">
-  <link href="../assets/css/header.css" rel="stylesheet">
-  <link href="../assets/css/nav-bar-buttons.css" rel="stylesheet">
-  <link href="../assets/css/body_style.css" rel="stylesheet">
-  <link href="../assets/css/popup.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Edit Inmate</title>
+    <base href="/">
+    <link href="../assets/images/icon.png" rel="icon">
+    <script src="../assets/script/handle_navbar.js" type="module"></script>
+    <script src="../assets/script/edit_inmate.js" type="module"></script>
+    <link href="../assets/css/add_inmate.css" rel="stylesheet">
+    <link href="../assets/css/footer.css" rel="stylesheet">
+    <link href="../assets/css/header.css" rel="stylesheet">
+    <link href="../assets/css/nav-bar-buttons.css" rel="stylesheet">
+    <link href="../assets/css/body_style.css" rel="stylesheet">
+    <link href="../assets/css/popup.css" rel="stylesheet">
 </head>
 <body>
 <header>
-  <div class="header-content">
-    <h1>Edit Inmate</h1>
-    <div class="nav-bar"></div>
-  </div>
+    <div class="header-content">
+        <h1>Edit Inmate</h1>
+        <div class="nav-bar"></div>
+    </div>
 </header>
 
 <div class="container">
-  <form id="addInmateForm" onsubmit="return false">
-    <label for="inmateName">Inmate name:</label>
-    <input id="inmateName" name="inmateName" required type="text"><br><br>
+    <form id="addInmateForm" onsubmit="return false">
+        <label for="inmateName">Inmate name:</label>
+        <input id="inmateName" name="inmateName" required type="text"><br><br>
 
-    <label>Crimes:</label><br>
-    <div id="crimesContainer">
-      <input name="crime" required type="text"><br><br>
-    </div>
-    <button id="addCrimeButton" type="button">Add Crime</button>
-    <br><br>
+        <label>Crimes:</label><br>
+        <div id="crimesContainer">
+            <input name="crime" required type="text"><br><br>
+        </div>
+        <button id="addCrimeButton" type="button">Add Crime</button>
+        <br><br>
 
-    <label>Sentences:</label><br>
-    <div id="sentencesContainer">
-      <input name="sentence" type="text" required><br><br>
-    </div>
-    <button id="addSentenceButton" type="button">Add Sentence</button>
-    <br><br>
+        <label>Sentences:</label><br>
+        <div id="sentencesContainer">
+            <input name="sentence" type="text" required><br><br>
+        </div>
+        <button id="addSentenceButton" type="button">Add Sentence</button>
+        <br><br>
 
-    <label for="image">Image:</label>
-    <input accept="image/*" id="image" name="image" type="file"><br><br>
-    <div id="imageContainer"></div>
+        <label for="image">Image:</label>
+        <input accept="image/*" id="image" name="image" type="file"><br><br>
+        <div id="imageContainer"></div>
 
-    <div class="pop-up-container" id="add-inmate-btn">
-      <button class="button-pop-up">Submit</button>
-      <span class="pop-up-message" id="message"></span>
-    </div>
-  </form>
+        <div class="pop-up-container" id="add-inmate-btn">
+            <button class="button-pop-up">Submit</button>
+            <span class="pop-up-message" id="message"></span>
+        </div>
+    </form>
 </div>
 
 <footer>
-  <p>&copy; 2024 Detention Centers. All rights reserved.</p>
+    <p>&copy; 2024 Detention Centers. All rights reserved.</p>
 </footer>
 </body>
 </html>

@@ -24,6 +24,7 @@ const dynamicWebRoutes = {
     'account/{username}/change-password': 'html/change_password.html',
     'account/{username}/change-role': 'html/change_role.html',
     'centers/{page_number}': 'html/detention_centers.html',
+    'centers/{center_id}/edit': 'html/edit_center.html',//Vlad
     'centers/{center_id}/inmates': 'html/inmates.html',//Vlad
     'centers/{center_id}/inmates/{inmate_id}': 'html/inmates.html',//Vlad
     'centers/{center_id}/add-inmate': 'html/add_inmate.html',//Vlad

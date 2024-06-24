@@ -2,7 +2,7 @@
 
 "use strict";
 
-import {API_ADD_INMATES_URL, API_CENTERS_URL, FRONT_INMATES_URL} from "./constants.js";
+import {API_ADD_INMATES_URL, API_ALL_CENTERS_URL, FRONT_INMATES_URL} from "./constants.js";
 import {handleNavbar} from "./handle_navbar.js";
 import {openPopup} from "./popup.js";
 import {getHeaders, isLogged} from "./utils.js";
@@ -49,7 +49,7 @@ function addNewInputField(name, containerId) {
 }
 
 function loadCenters() {
-    fetch(API_CENTERS_URL, {
+    fetch(API_ALL_CENTERS_URL, {
         method: 'GET',
         headers: getHeaders(),
         credentials: 'include',

@@ -14,10 +14,10 @@ document.addEventListener('DOMContentLoaded', function () {
         else {
             handleNavbar("visits", logged).then(async () => {
                 const searchBar = document.getElementById('search');
-                document.querySelector('.visits-container').addEventListener('click', function (event) {
+                document.querySelector('.visits-container').addEventListener('click', async function (event) {
                     if (event.target && event.target.classList.contains('edit-btn')) {
                         const visitId = event.target.dataset.id;
-                        handleEdit(visitId);
+                        await handleEdit(visitId);
                     }
                 });
 
@@ -178,8 +178,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     filterVisits(searchTerm);
                 });
 
-                function handleEdit(visitId) {
-                    const username = getUsernameFromJwt();
+                async function handleEdit(visitId) {
+                    const username = await getUsernameFromJwt();
                     window.location.assign(FRONT_EDIT_VISIT_URL.replace('{username}', username).replace('{visit_id}', visitId));
                 }
 

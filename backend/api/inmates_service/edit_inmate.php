@@ -22,7 +22,6 @@ if ($jwt->role !== 'admin') {
 
 $data = receive_json();
 
-
 $inmate_id = extract_inmate_id_from_url();
 
 $inmateUpdates = [];

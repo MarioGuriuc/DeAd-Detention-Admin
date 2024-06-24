@@ -11,15 +11,15 @@ document.addEventListener("DOMContentLoaded", function () {
             window.location.assign("/login");
         }
         else {
-            handleNavbar("addVisit", logged).then(() => {
+            handleNavbar("addVisit", logged).then(async () => {
                 const submitButton = document.getElementById("add-visit-btn");
-                submitButton.addEventListener("click", submitNewVisit);
+                submitButton.addEventListener("click", await submitNewVisit);
             });
         }
     });
 });
 
-function submitNewVisit(event) {
+async function submitNewVisit(event) {
     event.preventDefault();
 
     const date = document.getElementById("date").value;
@@ -63,7 +63,7 @@ function submitNewVisit(event) {
         summary: summary,
         health: health,
         witnesses: witnesses,
-        user: getUsernameFromJwt()
+        user: await getUsernameFromJwt()
     };
 
     addVisit(formData);

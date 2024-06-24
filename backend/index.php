@@ -48,10 +48,12 @@ $api_routes = [
         'api/visits/{visit_id}' => 'api/visits_service/edit_visit.php',//Vlad
         'api/centers/{center_id}/inmates/{inmate_id}/transfer' => 'api/inmates_service/transfer_inmate.php',//Vlad
         'api/centers/{center_id}/inmates/{inmate_id}/edit' => 'api/inmates_service/edit_inmate.php',//Vlad
+        'api/centers/{center_id}/edit' => 'api/centers_service/edit_center.php',//Vlad
     ],
     'DELETE' => [
         'api/account/{username}' => 'api/user_service/delete_account.php',
         'api/centers/{center_id}/inmates/{inmate_id}/delete' => 'api/inmates_service/delete_inmate.php',//Vlad
+        'api/centers/{center_id}/delete' => 'api/centers_service/delete_center.php',//Vlad
     ],
     'PUT' => [
         'api/centers' => 'api/centers_service/add_center.php',
