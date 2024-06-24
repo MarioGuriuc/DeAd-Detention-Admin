@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             })
                             .then(response => {
                                 if (!response.ok) {
-                                    //window.location.assign("/login");
+                                    window.location.assign("/login");
                                 }
                                 return response.json();
                             })
@@ -157,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 renderCenters(centersData);
                             })
                             .catch(_ => {
-                                //window.location.assign("/login");
+                                window.location.assign("/login");
                             });
                     }
 
@@ -169,7 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         })
                             .then(response => {
                                 if (!response.ok) {
-                                    //window.location.assign("/login");
+                                    window.location.assign("/login");
                                 }
                                 return response.json();
                             })
@@ -178,7 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 createNavigationButtons(pagesNumber);
                             })
                             .catch(_ => {
-                                //window.location.assign("/login");
+                                window.location.assign("/login");
                             });
                     }
 
