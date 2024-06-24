@@ -52,10 +52,6 @@ function validate_and_return_jwt(): ?stdClass
 
 function refresh_and_return_jwt(stdClass $jwt): string|null
 {
-    $old_exp = $jwt->exp;
-
-    $new_exp = $old_exp + 60 * 15; // 15 minutes
-
     $users_collection = get_db_conn()->selectCollection('users');
     $user_role = $users_collection->findOne(["username" => $jwt->sub], ["projection" => ["role" => 1]]);
 
@@ -67,7 +63,7 @@ function refresh_and_return_jwt(stdClass $jwt): string|null
         "iss" => $_ENV["BACKEND_URL"],
         "sub" => $jwt->sub,
         "iat" => time(),
-        "exp" => $new_exp,
+        "exp" => $jwt->exp + 60 * 15, // 15 minutes
         "role" => $user_role["role"]
     ];
 

@@ -66,4 +66,4 @@ setcookie('JWT', $jwt, [
     'SameSite' => 'None',
 ]);
 
-send_response_with_jwt("Login successful", $jwt);
+send_response("Login successful", 200);

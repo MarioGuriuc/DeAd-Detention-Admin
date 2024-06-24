@@ -20,10 +20,10 @@ if (is_null($refreshed_jwt)) {
 
 setcookie('JWT', $refreshed_jwt, [
     'domain' => $_ENV["COOKIE_DOMAIN"],
-    'expires' => time() + 60 * 15, // 15 minutes
+    'expires' => $jwt->exp + 60 * 15, // 15 minutes
     'path' => '/',
     'httpOnly' => true,
     'SameSite' => 'None',
 ]);
 
-send_response("JWT refreshed", 200);
+send_response("Authorized", 200);
