@@ -24,6 +24,7 @@ setcookie('JWT', $refreshed_jwt, [
     'path' => '/',
     'httpOnly' => true,
     'SameSite' => 'None',
+    'Secure' => true
 ]);
 
 send_response("Authorized", 200);

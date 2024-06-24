@@ -64,6 +64,7 @@ setcookie('JWT', $jwt, [
     'path' => '/',
     'httpOnly' => true,
     'SameSite' => 'None',
+    'Secure' => true
 ]);
 
 send_response("Login successful", 200);
