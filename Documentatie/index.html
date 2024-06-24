@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Detention Admin Website</title>
+    <title>Detention Admin Documentation</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -76,7 +76,7 @@
 
 <div class="container">
 
-    <h1>Detention Admin Website</h1>
+    <h1>Detention Admin Documentation</h1>
 
     <div class="authors">
         <p><strong>Mario Guriuc, Vlad Spiridon</strong></p>
@@ -147,6 +147,33 @@
 
         <section>
             <h2>System Features</h2>
+            <section>
+                <h3>
+                    Docker Containerization
+                </h3>
+                <section>
+                    <h4>Description</h4>
+                    <p>Containerization is a lightweight alternative to full machine virtualization that involves
+                        encapsulating an application in a container with its own operating environment. Docker is a
+                        popular containerization platform that allows developers to build, ship, and run applications
+                        within containers.</p>
+                    <p>The detention administration system will be containerized using Docker to ensure consistency,
+                        portability, and scalability across different environments. This will enable the system to be
+                        easily deployed and managed in various settings, including development, testing, and production
+                        environments.
+                    </p>
+                    <p>The Docker containers will encapsulate the application code, dependencies, and configuration
+                        settings, providing a self-contained environment for the system to run without interference from
+                        external factors. This approach enhances system reliability, security, and performance while
+                        simplifying the deployment process for administrators and developers.
+                    </p>
+                    <p>Docker Compose will be used to define and manage multi-container Docker applications, allowing
+                        the detention administration system to be composed of multiple services, such as the web server,
+                        database, and API server. This will streamline the deployment and orchestration of the system
+                        components, ensuring seamless integration and operation of the application.
+                    </p>
+                </section>
+            </section>
 
             <section>
                 <h3>Visitor Management</h3>
@@ -479,23 +506,31 @@
             </section>
 
             <section>
+                <h3>GET /api/center/{center_id}</h3>
+                <p>Route for retrieving a specific detention center based on the center ID. Returns a JSON object
+                    containing detailed information about the specified detention center, including name, location and
+                    description.</p>
+            </section>
+
+            <section>
                 <h3>GET /api/centers/count</h3>
                 <p>Route for retrieving the total count of detention centers registered within the system. Returns an
                     integer value representing the total number of detention centers.</p>
             </section>
 
             <section>
-                <h3>GET /api/centers/{page_number}</h3>
+                <h3>GET /api/centers/page/{page_number}</h3>
                 <p>Route for retrieving a paginated list of detention centers registered within the system. Accepts a
                     page number as input to fetch the corresponding subset of detention centers. Returns a JSON array of
                     detention center objects for the specified page.</p>
             </section>
 
-        <section>
-            <h3>GET /api/account/{username}</h3>
-            <p>Route for retrieving user account details based on the username. Returns a JSON object containing user
-                information such as name, email, and role.</p>
-        </section>
+            <section>
+                <h3>GET /api/account/{username}</h3>
+                <p>Route for retrieving user account details based on the username. Returns a JSON object containing
+                    user
+                    information such as name, email, and role.</p>
+            </section>
 
             <section>
                 <h3>POST /api/login</h3>
@@ -522,6 +557,11 @@
                     Returns a success message upon successful password change.</p>
             </section>
 
+            <section>
+                <h3>GET /api/verify-jwt</h3>
+                <p>Route for verifying JSON Web Token (JWT) for user authentication. Requires JWT as input. Returns a
+                    success message if the JWT is valid, also a refreshed JWT.</p>
+            </section>
 
         </section>
     </section>

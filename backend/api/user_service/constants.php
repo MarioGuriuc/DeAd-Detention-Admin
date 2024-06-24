@@ -16,10 +16,8 @@ const LOGIN_REQUIRED_FIELDS = [
     "password" => "Please enter a valid password",
 ];
 
-const FIRST_NAME_MIN_LENGTH = 2;
-const FIRST_NAME_MAX_LENGTH = 20;
-const LAST_NAME_MIN_LENGTH = 2;
-const LAST_NAME_MAX_LENGTH = 20;
+const NAME_MIN_LENGTH = 2;
+const NAME_MAX_LENGTH = 20;
 const NAME_REGEX = "/^[a-zA-Z]+$/";
 const USERNAME_MIN_LENGTH = 5;
 const USERNAME_MAX_LENGTH = 20;
@@ -30,16 +28,16 @@ const PHONE_REGEX = "/^\d{10}$/";
 const EMAIL_REGEX = "/\S+@\S+\.\S+/";
 
 const FIRST_NAME_VALIDATION = [
-    "min" => 2,
-    "max" => 20,
-    "regex" => "/^[a-zA-Z]+$/",
+    "min" => NAME_MIN_LENGTH,
+    "max" => NAME_MAX_LENGTH,
+    "regex" => NAME_REGEX,
     "message" => "First name must be between 2 and 20 characters long and contain only letters"
 ];
 
 const LAST_NAME_VALIDATION = [
-    "min" => 2,
-    "max" => 20,
-    "regex" => "/^[a-zA-Z]+$/",
+    "min" => NAME_MIN_LENGTH,
+    "max" => NAME_MAX_LENGTH,
+    "regex" => NAME_REGEX,
     "message" => "Last name must be between 2 and 20 characters long and contain only letters"
 ];
 

@@ -22,10 +22,6 @@
     box-sizing: border-box;
 }
 
-.input-group input[type="tel"] {
-    width: calc(100% - 22px);
-}
-
 .input-group small {
     color: #999;
 }
