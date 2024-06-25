@@ -1,5 +1,7 @@
 <?php
 
+// Author: Vlad
+
 use MongoDB\BSON\ObjectId;
 
 if ($_SERVER['REQUEST_METHOD'] !== 'PUT') {
@@ -45,31 +47,41 @@ if ($data['witnesses'] <= 0) {
 if (!in_array($data['nature'], VISIT_ALLOWED_NATURES)) {
     send_response("Invalid nature of visit.", 400);
 }
+try {
+    $current_date = new DateTime();
+    $visit_date = new DateTime($data['date']);
+    if ($visit_date <= $current_date) {
+        send_response("The date of the visit must be in the future.", 400);
+    }
 
-$current_date = new DateTime();
-$visit_date = new DateTime($data['date']);
-if ($visit_date <= $current_date) {
-    send_response("The date of the visit must be in the future.", 400);
+
+    $visit_start_time = new DateTime($data['date'] . ' ' . $data['time']);
+    $visit_end_time = clone $visit_start_time;
+    $visit_end_time->modify('+' . $data['duration'] . ' minutes');
+
+    $existing_visits = $visits_collection->find([
+        'inmate' => new ObjectId($inmate_id),
+        'date' => $data['date']
+    ]);
+
+    foreach ($existing_visits as $existing_visit) {
+        $existing_start_time = new DateTime($data['date'] . ' ' . $existing_visit['time']);
+        $existing_end_time = clone $existing_start_time;
+        $existing_end_time->modify('+' . $existing_visit['duration'] . ' minutes');
+
+        if ($visit_start_time < $existing_end_time && $visit_end_time > $existing_start_time) {
+            send_response("There is already a visit scheduled during this time.", 400);
+        }
+    }
+} catch (Exception $e) {
+    send_response("Invalid date or time format.", 400);
+}
+if ($data['duration'] < 1 || $data['duration'] > 5) {
+    send_response("The duration of the visit must be between 1 and 5 hours.", 400);
 }
 
-
-$visit_start_time = new DateTime($data['date'] . ' ' . $data['time']);
-$visit_end_time = clone $visit_start_time;
-$visit_end_time->modify('+' . $data['duration'] . ' minutes');
-
-$existing_visits = $visits_collection->find([
-    'inmate' => new ObjectId($inmate_id),
-    'date' => $data['date']
-]);
-
-foreach ($existing_visits as $existing_visit) {
-    $existing_start_time = new DateTime($data['date'] . ' ' . $existing_visit['time']);
-    $existing_end_time = clone $existing_start_time;
-    $existing_end_time->modify('+' . $existing_visit['duration'] . ' minutes');
-
-    if ($visit_start_time < $existing_end_time && $visit_end_time > $existing_start_time) {
-        send_response("There is already a visit scheduled during this time.", 400);
-    }
+if ($data['witnesses'] < 1 || $data['witnesses'] > 5) {
+    send_response("The number of witnesses must be between 1 and 5.", 400);
 }
 
 $visit = [
@@ -91,8 +103,7 @@ $result = $visits_collection->insertOne($visit);
 
 if ($result->getInsertedCount() > 0) {
     send_response("Visit added", 201);
-}
-else {
+} else {
     send_response("Error while adding the visit ", 201);
 }
 

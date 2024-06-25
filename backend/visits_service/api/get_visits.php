@@ -1,4 +1,5 @@
 <?php
+
 // Author: Vlad Spiridon
 
 declare(strict_types=1);
