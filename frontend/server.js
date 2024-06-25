@@ -75,7 +75,7 @@ const server = http.createServer((req, res) => {
         }
         else {
             res.statusCode = 404;
-            fileToInclude = 'frontend/html/404.html';
+            fileToInclude = 'html/404.html';
         }
     }
 
