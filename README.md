@@ -1,5 +1,7 @@
 # DeAd-Detention-Admin
 
-Sa se dezvolte o aplicatie Web pentru gestiunea vizitelor de care beneficiaza persoanele condamnate la executarea unei pedepse intr-un penitenciar sau intr-o casa de corectie. Fiecarei vizite i se vor atasa informatii privind individul ori indivizii care efectueaza vizita -- minimal, se vor considera: identitatea, fotografia, relatia cu condamnatul (ruda, tutore legal, avocat, prieten), natura vizitei.
+My friend and I developed a web application to streamline the management of visits for inmates in correctional facilities. The system allows administrators to record visitor details, including identity, photo, relationship to the inmate (like family or attorney), and the purpose of each visit.
 
-De asemenea, vor fi consemnate: data realizarii intrevederii, natura si durata acesteia (e.g., consultare privind recursul procesului, vizita amicala), posibile obiecte/date furnizate condamnatului sau oferite de condamnat vizitatorului/vizitatorilor, rezumatul discutiilor efectuate (daca nu e incalcata confidentialitatea), starea de sanatate si de spirit a detinutului, martorul/martorii la intalnire etc. Sistemul Web implementat va genera statistici -- documente HTML, CSV si JSON -- vizand vizitele realizate per individ, perioada de timp, in functie de categoria pedepsei savarsite sau alte criterii. Functionalitatile esentiale vor fi oferite si prin intermediul unui API Web REST/GraphQL.
+It also tracks visit-specific information such as date, duration, purpose, items exchanged, and any summary of the discussions (respecting confidentiality rules). Additionally, health and mental state notes, along with any witness information, can be recorded.
+
+The application generates detailed reports in HTML, CSV, and JSON formats, which can be filtered by inmate, time period, or type of offense. Essential features are also accessible via a REST API for broader integration.
