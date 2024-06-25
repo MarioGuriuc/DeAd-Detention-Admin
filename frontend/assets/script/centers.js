@@ -29,12 +29,12 @@ document.addEventListener('DOMContentLoaded', () => {
                             addCenterButton.textContent = 'Add More Centers';
                             addCenterLink.appendChild(addCenterButton);
                             addCenterDiv.appendChild(addCenterLink);
-                            document.querySelector('.centers-wrapper').appendChild(addCenterDiv);
+                            document.getElementById('centers-container').appendChild(addCenterDiv);
                         }
                     });
 
                     const searchBar = document.getElementById('search');
-                    const centersContainer = document.querySelector('.centers');
+                    const centersContainer = document.getElementById('centers-wrapper');
                     const navigationButtons = document.querySelector('.navigation-buttons');
                     let centersData = [];
 
@@ -48,6 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                         else {
                             data.forEach(function (center) {
+                                const centersWrapper = document.getElementById('centers-wrapper');
                                 const centerDiv = document.createElement('div');
                                 centerDiv.classList.add('center');
 
@@ -106,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 centerLink.appendChild(centerImg);
                                 centerLink.appendChild(centerInfo);
                                 centerDiv.appendChild(centerLink);
-                                centersContainer.appendChild(centerDiv);
+                                centersWrapper.appendChild(centerDiv);
                             });
                         }
                     }
@@ -160,8 +161,9 @@ document.addEventListener('DOMContentLoaded', () => {
                                 centersData = data;
                                 renderCenters(centersData);
                             })
-                            .catch(_ => {
-                                window.location.assign("/login");
+                            .catch(e => {
+                                console.log(e);
+                                //window.location.assign("/login");
                             });
                     }
 
@@ -181,8 +183,9 @@ document.addEventListener('DOMContentLoaded', () => {
                                 const pagesNumber = Math.ceil(data['count'] / 12);
                                 createNavigationButtons(pagesNumber);
                             })
-                            .catch(_ => {
-                                window.location.assign("/login");
+                            .catch(e => {
+                                console.log(e);
+                                //window.location.assign("/login");
                             });
                     }
 
