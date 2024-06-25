@@ -13,5 +13,6 @@ setcookie('JWT', '', [
     'path' => '/',
     'httpOnly' => true,
     'SameSite' => 'None',
+    'Secure' => true
 ]);
 send_response("Logged out successfully", 200);
