@@ -64,12 +64,6 @@
         .authors strong {
             color: #666;
         }
-
-        .section-title {
-            border-bottom: 2px solid #ddd;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-        }
     </style>
 </head>
 <body>
@@ -135,7 +129,7 @@
                     deleting the center, or editing existing information.
 
                 </li>
-                <li><strong>Inmates Management:</strong> Recording information about inmates, including name,
+                <li><strong>Inmates Management:</strong> Recording information about inmates, including name
                     ,facility location, crime committed and the current sentences.Administrator can add, delete or edit
                     the information.They can also transfer an inmate to another facility.
 
@@ -204,140 +198,140 @@
                 schemas, and high availability, which are advantageous for the requirements of the detention
                 administration website.</p>
         </section>
+        <section>
+            <h3>Visitor Management</h3>
             <section>
-                <h3>Visitor Management</h3>
-                <section>
-                    <h4>Description</h4>
-                    <p>This feature allows users to manage visitor information,like identity.</p>
-                </section>
-                <section>
-                    <h4>Inputs</h4>
-                    <ul>
-                        <li>Visitor details: Name, contact information.</li>
-                        <li>Inmate details: Identification number, name, facility location, crime committed.</li>
-                    </ul>
-                </section>
-                <section>
-                    <h4>Outputs</h4>
-                    <ul>
-                        <li>Visitor records stored in the database for future reference.</li>
-                        <li>Ability to associate visitors with specific inmates.</li>
-                    </ul>
-                </section>
+                <h4>Description</h4>
+                <p>This feature allows users to manage visitor information,like identity.</p>
+            </section>
+            <section>
+                <h4>Inputs</h4>
+                <ul>
+                    <li>Visitor details: Name, contact information.</li>
+                    <li>Inmate details: Identification number, name, facility location, crime committed.</li>
+                </ul>
+            </section>
+            <section>
+                <h4>Outputs</h4>
+                <ul>
+                    <li>Visitor records stored in the database for future reference.</li>
+                    <li>Ability to associate visitors with specific inmates.</li>
+                </ul>
+            </section>
+        </section>
+
+        <section>
+            <h3>Admin Control</h3>
+
+            <section>
+                <h4>Description</h4>
+                <p>The Admin Control feature provides system administrators with tools to manage and oversee various
+                    aspects of the detention center visitation system. This includes approving or denying visitor
+                    requests, adding new detention centers and inmates, and generating reports for analysis.</p>
             </section>
 
             <section>
-                <h3>Admin Control</h3>
-
-                <section>
-                    <h4>Description</h4>
-                    <p>The Admin Control feature provides system administrators with tools to manage and oversee various
-                        aspects of the detention center visitation system. This includes approving or denying visitor
-                        requests, adding new detention centers and inmates, and generating reports for analysis.</p>
-                </section>
-
-                <section>
-                    <h4>Features</h4>
-                    <ul>
-                        <li><strong>Visitor Approval:</strong> Allows administrators to review and approve or deny
-                            visitor requests based on eligibility and compliance with visitation policies.
-                        </li>
-                        <li><strong>Add Detention Centers:</strong> Enables administrators to add new detention centers
-                            to the system, specifying details.The detention centers can be edited or deleted.
-                        </li>
-                        <li><strong>Add Inmates:</strong> Provides functionality for administrators to add new inmates
-                            to the system, capturing essential details like name, identification, facility location, and
-                            crime committed.The inmates can be edited or deleted.
-                        </li>
-                        <li><strong>Generate Reports:</strong> Allows administrators to generate various reports for
-                            analysis, including visitor statistics, inmate details, and visitation trends.
-                        </li>
-                    </ul>
-                </section>
-
-                <section>
-                    <h4>Inputs</h4>
-                    <ul>
-                        <li>Visitor requests: Details of visitors requesting access, including name, contact
-                            information, and purpose of visit.
-                        </li>
-                        <li>Detention center details: Information about new detention centers, such as location,
-                            capacity, and current occupancy status.
-                        </li>
-                        <li>Inmate details: Information about new inmates, including name, identification, facility
-                            location, and crime committed.
-                        </li>
-                        <li>Report criteria: Parameters for generating reports, such as date range, type of report, and
-                            specific data points to include.
-                        </li>
-                    </ul>
-                </section>
-
-                <section>
-                    <h4>Outputs</h4>
-                    <ul>
-                        <li>Visitor approval status: Confirmation of approved or denied visitor requests.</li>
-                        <li>New detention centers: Record of newly added detention centers in the system.</li>
-                        <li>New inmate records: Confirmation of successfully added new inmates to the system.</li>
-                        <li>Generated reports: Various reports in desired formats (HTML, CSV, JSON) providing insights
-                            and analysis of system data.
-                        </li>
-                    </ul>
-                </section>
+                <h4>Features</h4>
+                <ul>
+                    <li><strong>Visitor Approval:</strong> Allows administrators to review and approve or deny
+                        visitor requests based on eligibility and compliance with visitation policies.
+                    </li>
+                    <li><strong>Add Detention Centers:</strong> Enables administrators to add new detention centers
+                        to the system, specifying details.The detention centers can be edited or deleted.
+                    </li>
+                    <li><strong>Add Inmates:</strong> Provides functionality for administrators to add new inmates
+                        to the system, capturing essential details like name, identification, facility location, and
+                        crime committed.The inmates can be edited or deleted.
+                    </li>
+                    <li><strong>Generate Reports:</strong> Allows administrators to generate various reports for
+                        analysis, including visitor statistics, inmate details, and visitation trends.
+                    </li>
+                </ul>
             </section>
 
             <section>
-                <h3>Visit Information</h3>
-                <section>
-                    <h4>Description</h4>
-                    <p>This feature enables users to record detailed information about each visit, including date,
-                        duration, nature of visit, items exchanged, discussions summary, inmate's health and mood,
-                        witnesses, etc.</p>
-                </section>
-                <section>
-                    <h4>Inputs</h4>
-                    <ul>
-                        <li>Visit date and time.</li>
-                        <li>Duration of visit.</li>
-                        <li>Nature of visit (e.g., legal consultation, family visit).</li>
-                        <li>Items exchanged between visitor and inmate.</li>
-                        <li>Summary of discussions.</li>
-                        <li>Inmate's health and mood assessment.</li>
-                        <li>Witnesses present during the visit.</li>
-                    </ul>
-                </section>
-                <section>
-                    <h4>Outputs</h4>
-                    <ul>
-                        <li>Visitation records stored in the database.</li>
-                        <li>Ability to generate reports based on visitation data.</li>
-                    </ul>
-                </section>
+                <h4>Inputs</h4>
+                <ul>
+                    <li>Visitor requests: Details of visitors requesting access, including name, contact
+                        information, and purpose of visit.
+                    </li>
+                    <li>Detention center details: Information about new detention centers, such as location,
+                        capacity, and current occupancy status.
+                    </li>
+                    <li>Inmate details: Information about new inmates, including name, identification, facility
+                        location, and crime committed.
+                    </li>
+                    <li>Report criteria: Parameters for generating reports, such as date range, type of report, and
+                        specific data points to include.
+                    </li>
+                </ul>
             </section>
 
             <section>
-                <h3>Statistical Reporting</h3>
-                <section>
-                    <h4>Description</h4>
-                    <p>This feature allows admins to generate statistical reports analyzing visitation trends and
-                        patterns over time.</p>
-                </section>
-                <section>
-                    <h4>Inputs</h4>
-                    <ul>
-                        <li>Criteria for report generation (e.g., individual visits, time periods, types of offenses).
-                        </li>
-                        <li>Output format (HTML, CSV, JSON).</li>
-                    </ul>
-                </section>
-                <section>
-                    <h4>Outputs</h4>
-                    <ul>
-                        <li>Statistical reports presented in the specified format.</li>
-                        <li>Insights into visitation patterns for decision-making purposes.</li>
-                    </ul>
-                </section>
+                <h4>Outputs</h4>
+                <ul>
+                    <li>Visitor approval status: Confirmation of approved or denied visitor requests.</li>
+                    <li>New detention centers: Record of newly added detention centers in the system.</li>
+                    <li>New inmate records: Confirmation of successfully added new inmates to the system.</li>
+                    <li>Generated reports: Various reports in desired formats (HTML, CSV, JSON) providing insights
+                        and analysis of system data.
+                    </li>
+                </ul>
             </section>
+        </section>
+
+        <section>
+            <h3>Visit Information</h3>
+            <section>
+                <h4>Description</h4>
+                <p>This feature enables users to record detailed information about each visit, including date,
+                    duration, nature of visit, items exchanged, discussions summary, inmate's health and mood,
+                    witnesses, etc.</p>
+            </section>
+            <section>
+                <h4>Inputs</h4>
+                <ul>
+                    <li>Visit date and time.</li>
+                    <li>Duration of visit.</li>
+                    <li>Nature of visit (e.g., legal consultation, family visit).</li>
+                    <li>Items exchanged between visitor and inmate.</li>
+                    <li>Summary of discussions.</li>
+                    <li>Inmate's health and mood assessment.</li>
+                    <li>Witnesses present during the visit.</li>
+                </ul>
+            </section>
+            <section>
+                <h4>Outputs</h4>
+                <ul>
+                    <li>Visitation records stored in the database.</li>
+                    <li>Ability to generate reports based on visitation data.</li>
+                </ul>
+            </section>
+        </section>
+
+        <section>
+            <h3>Statistical Reporting</h3>
+            <section>
+                <h4>Description</h4>
+                <p>This feature allows admins to generate statistical reports analyzing visitation trends and
+                    patterns over time.</p>
+            </section>
+            <section>
+                <h4>Inputs</h4>
+                <ul>
+                    <li>Criteria for report generation (e.g., individual visits, time periods, types of offenses).
+                    </li>
+                    <li>Output format (HTML, CSV, JSON).</li>
+                </ul>
+            </section>
+            <section>
+                <h4>Outputs</h4>
+                <ul>
+                    <li>Statistical reports presented in the specified format.</li>
+                    <li>Insights into visitation patterns for decision-making purposes.</li>
+                </ul>
+            </section>
+        </section>
 
         <section>
             <h2>Detention Admin Frontend Pages</h2>
@@ -396,7 +390,8 @@
                 <h3>Edit Visit Page</h3>
                 <p>The Edit Visit Page offers advanced functionality for modifying and customizing various
                     visits.
-                    Users can modify their old visit in the system based on our criteria, the visit status being modified
+                    Users can modify their old visit in the system based on our criteria, the visit status being
+                    modified
                     to pending.</p>
             </section>
 
@@ -404,7 +399,8 @@
                 <h3>Centers Page</h3>
                 <p>The Centers Page presents a comprehensive list and detailed profiles of all detention centers
                     registered within the system. This page provides valuable information about each detention center,
-                    including the name, location, and a description. Admins can delete and be redirected to a separate page
+                    including the name, location, and a description. Admins can delete and be redirected to a separate
+                    page
                     for editing the center.After selecting a center, the user is redirected to
                     the inmates page.
                     It offers the ability for administrators to add detention centers.</p>
@@ -414,7 +410,8 @@
                 <h3>Edit Center Page</h3>
                 <p>The Edit Center Page presents a user-friendly interface for modifying and updating detention center
                     information within the system. This page offers data entry fields for administrators to edit the
-                    details of a specific detention center, including the name, location, and description. It incorporates
+                    details of a specific detention center, including the name, location, and description. It
+                    incorporates
                     validation checks and security measures to ensure the accuracy and integrity of the center data,
                     safeguarding sensitive information and protecting user privacy.</p>
             </section>
@@ -589,31 +586,36 @@
 
             <section>
                 <h3>GET /api/centers/{center_id}/inmates</h3>
-                <p>Route for retrieving a list of inmates in a specific detention center based on the center ID. Returns a JSON
+                <p>Route for retrieving a list of inmates in a specific detention center based on the center ID. Returns
+                    a JSON
                     array of inmate objects with details such as name, crimes, and sentences.</p>
             </section>
 
             <section>
                 <h3>GET /api/centers/{center_id}/inmates/count</h3>
-                <p>Route for retrieving the count of inmates in a specific detention center based on the center ID. Returns an
+                <p>Route for retrieving the count of inmates in a specific detention center based on the center ID.
+                    Returns an
                     integer value representing the total number of inmates.</p>
             </section>
 
             <section>
                 <h3>GET /api/account/{username}/visits</h3>
-                <p>Route for retrieving visits associated with a specific user account based on the username. Returns a JSON
+                <p>Route for retrieving visits associated with a specific user account based on the username. Returns a
+                    JSON
                     array of visit objects with details such as date, time, and status.</p>
             </section>
 
             <section>
                 <h3>GET /api/statistics/{center_id}/{inmate_id}/{start_date}/{end_date}</h3>
-                <p>Route for retrieving statistics based on specific parameters: center ID, inmate ID, start date, and end
+                <p>Route for retrieving statistics based on specific parameters: center ID, inmate ID, start date, and
+                    end
                     date. Returns a JSON object with statistical data.</p>
             </section>
 
             <section>
                 <h3>PATCH /api/account/{username}</h3>
-                <p>Route for updating user account details based on the username. Requires updated user information as input.
+                <p>Route for updating user account details based on the username. Requires updated user information as
+                    input.
                     Returns a success message upon successful update.</p>
             </section>
 
@@ -625,19 +627,22 @@
 
             <section>
                 <h3>PATCH /api/visits/{visit_id}/status</h3>
-                <p>Route for updating the status of a visit based on the visit ID. Requires new status information as input.
+                <p>Route for updating the status of a visit based on the visit ID. Requires new status information as
+                    input.
                     Returns a success message upon successful status update.</p>
             </section>
 
             <section>
                 <h3>PATCH /api/visits/{visit_id}</h3>
-                <p>Route for editing a visit based on the visit ID. Requires updated visit details as input. Returns a success
+                <p>Route for editing a visit based on the visit ID. Requires updated visit details as input. Returns a
+                    success
                     message upon successful edit.</p>
             </section>
 
             <section>
                 <h3>PATCH /api/centers/{center_id}/inmates/{inmate_id}/transfer</h3>
-                <p>Route for transferring an inmate from one detention center to another based on the center ID and inmate ID.
+                <p>Route for transferring an inmate from one detention center to another based on the center ID and
+                    inmate ID.
                     Returns a success message upon successful transfer.</p>
             </section>
 
@@ -649,19 +654,22 @@
 
             <section>
                 <h3>PATCH /api/centers/{center_id}/edit</h3>
-                <p>Route for editing detention center details based on the center ID. Requires updated center information as
+                <p>Route for editing detention center details based on the center ID. Requires updated center
+                    information as
                     input. Returns a success message upon successful edit.</p>
             </section>
 
             <section>
                 <h3>DELETE /api/account/{username}</h3>
-                <p>Route for deleting user account based on the username. Performs account deletion and returns a success
+                <p>Route for deleting user account based on the username. Performs account deletion and returns a
+                    success
                     message upon completion.</p>
             </section>
 
             <section>
                 <h3>DELETE /api/centers/{center_id}/inmates/{inmate_id}/delete</h3>
-                <p>Route for deleting an inmate from a specific detention center based on the center ID and inmate ID. Performs
+                <p>Route for deleting an inmate from a specific detention center based on the center ID and inmate ID.
+                    Performs
                     deletion and returns a success message upon completion.</p>
             </section>
 
@@ -673,19 +681,22 @@
 
             <section>
                 <h3>PUT /api/centers</h3>
-                <p>Route for adding a new detention center. Requires new center details as input. Returns a success message
+                <p>Route for adding a new detention center. Requires new center details as input. Returns a success
+                    message
                     upon successful addition.</p>
             </section>
 
             <section>
                 <h3>PUT /api/centers/{center_id}/add-inmate</h3>
-                <p>Route for adding a new inmate to a specific detention center based on the center ID. Requires new inmate
+                <p>Route for adding a new inmate to a specific detention center based on the center ID. Requires new
+                    inmate
                     details as input. Returns a success message upon successful addition.</p>
             </section>
 
             <section>
                 <h3>PUT /api/centers/{center_id}/inmates/{inmate_id}/add-visit</h3>
-                <p>Route for adding a new visit for an inmate in a specific detention center based on the center ID and inmate
+                <p>Route for adding a new visit for an inmate in a specific detention center based on the center ID and
+                    inmate
                     ID. Requires new visit details as input. Returns a success message upon successful addition.</p>
             </section>
 

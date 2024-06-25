@@ -2,7 +2,9 @@
 
 import {
     API_CENTERS_COUNT_URL,
-    API_CENTERS_URL, API_DELETE_CENTER_URL, FRONT_EDIT_CENTER_URL,
+    API_CENTERS_URL,
+    API_DELETE_CENTER_URL,
+    FRONT_EDIT_CENTER_URL,
     FRONT_INMATES_URL,
 } from "./constants.js";
 import {handleNavbar} from "./handle_navbar.js";
@@ -12,7 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
     isLogged((logged) => {
         if (!logged) {
             window.location.assign("/login");
-        } else {
+        }
+        else {
             handleNavbar("centers", logged)
                 .then(() => {
                     isAdmin((admin) => {
@@ -42,7 +45,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             noCentersDiv.textContent = 'No centers found';
                             noCentersDiv.classList.add('no-centers');
                             centersContainer.appendChild(noCentersDiv);
-                        } else {
+                        }
+                        else {
                             data.forEach(function (center) {
                                 const centerDiv = document.createElement('div');
                                 centerDiv.classList.add('center');

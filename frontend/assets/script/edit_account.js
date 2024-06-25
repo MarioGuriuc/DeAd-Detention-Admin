@@ -34,9 +34,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     })
                         .then((response) => {
                             if (response.status === 200) {
-                                //logout().then(() => {
-                                    //window.location.assign("/login");
-                                //});
+                                logout().then(() => {
+                                window.location.assign("/login");
+                                });
                             }
                             return response.json();
                         })
