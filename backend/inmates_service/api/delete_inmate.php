@@ -1,5 +1,7 @@
 <?php
 
+// Author: Vlad
+
 use MongoDB\BSON\ObjectId;
 
 if ($_SERVER['REQUEST_METHOD'] !== 'DELETE') {

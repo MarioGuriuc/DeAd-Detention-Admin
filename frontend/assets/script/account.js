@@ -21,18 +21,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 .then(() => {
                     function fetchUserInfo() {
                         fetch(API_ACCOUNT_URL.replace("{username}", getUsernameFromUrl()), {
-                            'method': 'GET',
-                            'headers': getHeaders(),
+                            method: 'GET',
+                            headers: getHeaders(),
                             credentials: 'include',
                         }).then(response => {
                             if (!response.ok) {
-                                logout().then(() => {
-                                });
+                                logout().then(() => {});
                             }
                             return response.json();
                         }).then(accountInfo => {
                             const accountInfoDiv = document.getElementById("account-info");
-                            accountInfoDiv.id = 'account-info';
+                            accountInfoDiv.innerHTML = ''; // Clear previous content if any
 
                             const accountInfoHeading = document.createElement('h2');
                             accountInfoHeading.textContent = 'Account Information';
@@ -46,20 +45,35 @@ document.addEventListener('DOMContentLoaded', () => {
                                 "Phone Number": accountInfo.phone,
                                 "Role": accountInfo.role,
                                 "Date of birth": accountInfo.dob
-                            }
+                            };
+
+                            const userDetailsDiv = document.createElement('div');
+                            userDetailsDiv.className = 'user-details';
 
                             for (const [key, value] of Object.entries(userInfo)) {
-                                const paragraph = document.createElement('p');
-                                paragraph.textContent = `${key}: ${value}`;
-                                accountInfoDiv.appendChild(paragraph);
+                                const detailDiv = document.createElement('div');
+                                detailDiv.className = 'detail';
+
+                                const labelSpan = document.createElement('span');
+                                labelSpan.className = 'label';
+                                labelSpan.textContent = `${key}:`;
+
+                                const valueSpan = document.createElement('span');
+                                valueSpan.className = 'value';
+                                valueSpan.textContent = value;
+
+                                detailDiv.appendChild(labelSpan);
+                                detailDiv.appendChild(valueSpan);
+                                userDetailsDiv.appendChild(detailDiv);
                             }
 
+                            accountInfoDiv.appendChild(userDetailsDiv);
                             appendButtons(accountInfo.role === "admin");
                         }).catch(_ => {
-                            logout().then(_ => {
-                            });
-                        })
+                            logout().then(_ => {});
+                        });
                     }
+
 
                     function appendButtons(isAdmin) {
                         const accountButtons = document.getElementById("account-buttons");

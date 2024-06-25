@@ -1,5 +1,7 @@
 <?php
 
+// Author: Vlad
+
 use MongoDB\BSON\Binary;
 use MongoDB\BSON\ObjectId;
 
@@ -36,14 +38,14 @@ if (!is_array($data['sentences']) || empty($data['sentences'])) {
 }
 
 foreach ($data['crimes'] as $crime) {
-    if (!is_string($crime) || empty($crime)) {
-        send_response("Each crime must be a non-empty string", 400);
+    if (!is_string($crime) || empty($crime) || strlen($crime) < 4 || strlen($crime) > 50){
+        send_response("Each crime must be a non-empty > 4 & < 50", 400);
     }
 }
 
 foreach ($data['sentences'] as $sentence) {
-    if (!is_string($sentence) || empty($sentence)) {
-        send_response("Each sentence must be a non-empty string", 400);
+    if (!is_string($sentence) || empty($sentence) || strlen($sentence) < 4 || strlen($sentence) > 50){
+        send_response("Each sentence must be a non-empty string > 4 & < 50", 400);
     }
 }
 

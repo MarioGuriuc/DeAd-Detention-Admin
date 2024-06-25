@@ -1,5 +1,7 @@
 <?php
 
+// Author: Vlad
+
 use MongoDB\BSON\Binary;
 use MongoDB\BSON\ObjectId;
 
