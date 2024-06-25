@@ -29,6 +29,7 @@ $api_routes = [
         'api/verify-jwt' => 'api/verify_jwt.php',
         'api/verify-admin' => 'api/verify_admin.php',
         'api/statistics/{center_id}/{inmate_id}/{start_date}/{end_date}' => 'api/get_statistics.php',//Vlad
+        'api/users' => 'api/get_users.php',//Vlad
     ],
     'POST' => [
         'api/login' => 'api/login.php',

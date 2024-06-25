@@ -6,7 +6,7 @@ import {
     FRONT_CHANGE_PASSWORD_URL,
     FRONT_CHANGE_ROLE_URL,
     FRONT_DELETE_ACCOUNT_URL,
-    FRONT_EDIT_ACCOUNT_URL
+    FRONT_EDIT_ACCOUNT_URL, FRONT_VISITS_URL
 } from "./constants.js";
 import {handleNavbar} from "./handle_navbar.js";
 import {getButton, getHeaders, getLogoutButton, getUsernameFromUrl, isLogged, logout} from "./utils.js";
@@ -80,6 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         accountButtons.appendChild(getButton("Edit Account", FRONT_EDIT_ACCOUNT_URL.replace("{username}", getUsernameFromUrl())));
                         accountButtons.appendChild(getButton("Delete Account", FRONT_DELETE_ACCOUNT_URL.replace("{username}", getUsernameFromUrl())));
                         accountButtons.appendChild(getButton("Change Password", FRONT_CHANGE_PASSWORD_URL.replace("{username}", getUsernameFromUrl())));
+                        accountButtons.appendChild(getButton("Visits",FRONT_VISITS_URL.replace("{username}", getUsernameFromUrl())));
                         if (isAdmin) {
                             accountButtons.appendChild(getButton("Admin Page", FRONT_ADMIN_URL.replace("{username}", getUsernameFromUrl())));
                             accountButtons.appendChild(getButton("Change User Role", FRONT_CHANGE_ROLE_URL.replace("{username}", getUsernameFromUrl())));

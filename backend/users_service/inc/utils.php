@@ -50,6 +50,13 @@ function send_response_username(string $username): void
     echo $json;
 }
 
+function send_response_with_users(array $users): void
+{
+    $json = json_encode(["users" => $users]);
+    http_response_code(200);
+    echo $json;
+}
+
 function send_response_with_stats($data, int $status = 200): void
 {
     http_response_code($status);
