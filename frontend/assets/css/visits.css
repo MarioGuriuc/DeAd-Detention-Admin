@@ -178,12 +178,14 @@
 .attended-btn:hover {
     background-color: grey;
 }
+
 .no-visits {
     text-align: center;
     margin-top: 20px;
     font-size: 20px;
     color: #555;
 }
+
 @media (max-width: 992px) {
     .visit-entry {
         flex-basis: calc(50% - 2rem);

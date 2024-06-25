@@ -39,6 +39,7 @@
     flex-wrap: wrap;
     justify-content: center;
 }
+
 .main-content {
     display: flex;
     flex-direction: column;
@@ -91,6 +92,7 @@ div.inmates-wrapper {
     border-radius: 10px;
     margin-right: 15px;
 }
+
 .center-name-box {
     font: inherit;
     margin-top: 20px;
@@ -101,6 +103,7 @@ div.inmates-wrapper {
     border-radius: 5px;
     cursor: pointer;
 }
+
 .button-container {
     display: flex;
     gap: 10px;

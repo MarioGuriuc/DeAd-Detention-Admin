@@ -26,6 +26,7 @@
 .search-bar button:hover {
     background-color: #45a049;
 }
+
 .button-container {
     display: flex;
     gap: 10px;

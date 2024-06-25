@@ -16,7 +16,7 @@
     text-align: center;
 }
 
-.admin-btn,.visit-btn,.inmate-btn , .center-btn, .stats-btn {
+.admin-btn, .visit-btn, .inmate-btn, .center-btn, .stats-btn {
     width: 200px;
     height: 50px;
     padding: 0;
@@ -30,7 +30,7 @@
     transition: background-color 0.3s ease;
 }
 
-.admin-btn:hover,.visit-btn:hover,.inmate-btn:hover , .center-btn:hover, .stats-btn:hover{
+.admin-btn:hover, .visit-btn:hover, .inmate-btn:hover, .center-btn:hover, .stats-btn:hover {
     background-color: #4CAF50;
 }
 

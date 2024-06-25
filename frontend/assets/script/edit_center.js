@@ -1,15 +1,16 @@
 "use strict";
 
-import {API_ONE_CENTER_URL, API_EDIT_CENTER_URL, FRONT_CENTERS_URL} from "./constants.js";
-import { handleNavbar } from "./handle_navbar.js";
-import { openPopup } from "./popup.js";
-import { extractCenterIdFromUrl, getHeaders, isLogged } from "./utils.js";
+import {API_EDIT_CENTER_URL, API_ONE_CENTER_URL, FRONT_CENTERS_URL} from "./constants.js";
+import {handleNavbar} from "./handle_navbar.js";
+import {openPopup} from "./popup.js";
+import {extractCenterIdFromUrl, getHeaders, isLogged} from "./utils.js";
 
 document.addEventListener("DOMContentLoaded", function () {
     isLogged((logged) => {
         if (!logged) {
             window.location.assign("/login");
-        } else {
+        }
+        else {
             handleNavbar("centers", logged).then(r => {
                 loadCenterData();
 
@@ -30,9 +31,9 @@ function loadCenterData() {
         credential: 'include'
     })
         .then(response => response.json()
-            .then(data => ({ status: response.status, body: data }))
-            .catch(() => ({ status: response.status, body: {} })))
-        .then(({ status, body }) => {
+            .then(data => ({status: response.status, body: data}))
+            .catch(() => ({status: response.status, body: {}})))
+        .then(({status, body}) => {
             if (status === 200) {
                 const centerData = body.center;
                 if (centerData) {
@@ -49,10 +50,12 @@ function loadCenterData() {
                         document.getElementById("imageContainer").appendChild(imageInput);
                     }
 
-                } else {
+                }
+                else {
                     openPopup("Center not found.");
                 }
-            } else {
+            }
+            else {
                 openPopup("Failed to load center data.");
             }
         })
@@ -89,7 +92,8 @@ function submitEditedCenter(event) {
             editCenter(formData);
         };
         reader.readAsDataURL(imageFile);
-    } else {
+    }
+    else {
         const formData = {
             title: title,
             location: location,
@@ -111,17 +115,19 @@ function editCenter(formData) {
         body: JSON.stringify(formData)
     })
         .then(response => response.json()
-            .then(data => ({ status: response.status, body: data }))
-            .catch(() => ({ status: response.status, body: {} })))
-        .then(({ status, body }) => {
+            .then(data => ({status: response.status, body: data}))
+            .catch(() => ({status: response.status, body: {}})))
+        .then(({status, body}) => {
             openPopup(body["result"]);
             if (status === 200) {
                 setTimeout(() => {
                     window.location.assign(FRONT_CENTERS_URL);
                 }, 2000);
-            } else if (status === 401) {
+            }
+            else if (status === 401) {
                 openPopup(body["result"]);
-            } else {
+            }
+            else {
                 openPopup(body["result"]);
             }
         })

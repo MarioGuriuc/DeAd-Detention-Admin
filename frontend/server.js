@@ -31,8 +31,8 @@ const dynamicWebRoutes = {
     'account/{username}/visits': 'html/visits.html',//Vlad
     'centers/{center_id}/inmates/{inmate_id}/add-visit': 'html/add_visit.html',//Vlad
     'account/{username}/visits/{visit_id}': 'html/edit_visit.html',//Vlad
-    'centers/{center_id}/inmates/{inmate_id}/transfer' : 'html/transfer_inmate.html',//Vlad
-    'centers/{center_id}/inmates/{inmate_id}/edit' : 'html/edit_inmate.html',//Vlad
+    'centers/{center_id}/inmates/{inmate_id}/transfer': 'html/transfer_inmate.html',//Vlad
+    'centers/{center_id}/inmates/{inmate_id}/edit': 'html/edit_inmate.html',//Vlad
 };
 
 function matchRoute(route, routes) {
